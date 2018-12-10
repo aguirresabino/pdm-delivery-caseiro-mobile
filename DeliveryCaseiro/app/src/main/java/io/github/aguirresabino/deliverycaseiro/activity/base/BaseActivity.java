@@ -13,7 +13,7 @@ public class BaseActivity extends ComponentActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        MyLogger.logInfo(this.TAG, getClass(), "onCreate() chamado" + " " + savedInstanceState);
+        MyLogger.logInfo(this.TAG, getClass(), "onCreate() chamado " + savedInstanceState);
 
         super.onCreate(savedInstanceState);
     }
@@ -62,14 +62,14 @@ public class BaseActivity extends ComponentActivity {
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
-        MyLogger.logInfo(this.TAG, getClass(), "onSaveInstanceState() chamado" + " " + outState);
+        MyLogger.logInfo(this.TAG, getClass(), "onSaveInstanceState() chamado " + outState);
 
         super.onSaveInstanceState(outState);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        MyLogger.logInfo(this.TAG, getClass(), "onRestoreInstanceState() chamado" + " " + savedInstanceState);
+        MyLogger.logInfo(this.TAG, getClass(), "onRestoreInstanceState() chamado " + savedInstanceState);
 
         super.onRestoreInstanceState(savedInstanceState);
     }
