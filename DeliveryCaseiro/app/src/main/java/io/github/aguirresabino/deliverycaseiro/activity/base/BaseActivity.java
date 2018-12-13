@@ -2,13 +2,18 @@ package io.github.aguirresabino.deliverycaseiro.activity.base;
 
 import android.os.Bundle;
 
-import androidx.activity.ComponentActivity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import io.github.aguirresabino.deliverycaseiro.logs.MyLogger;
 
-public class BaseActivity extends ComponentActivity {
+/**
+ * BaseActivity é um objeto que implementa o LifeCycle da Activity e outras lógicas
+ * que serão herdadas por Activities da aplicação (reuso).
+ */
+public class BaseActivity extends AppCompatActivity {
 
+    //Atributo que define o nome da TAG específica utilizada por esta classe em DEBUG
     private final String TAG = getClass().getName();
 
     @Override
