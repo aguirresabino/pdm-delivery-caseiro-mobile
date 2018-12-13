@@ -6,12 +6,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.tabs.TabLayout;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import io.github.aguirresabino.deliverycaseiro.fragments.base.BaseFragment;
+import androidx.viewpager.widget.ViewPager;
 import io.github.aguirresabino.deliverycaseiro.R;
+import io.github.aguirresabino.deliverycaseiro.adapter.InitialFragmentPagerAdapter;
+import io.github.aguirresabino.deliverycaseiro.fragments.base.BaseFragment;
 
 /**
  * Este Fragment implementa a tela inicial da aplicação após o Login.
@@ -22,19 +25,17 @@ public class InitialFragment extends BaseFragment {
 
     //Atributo que define o nome da TAG específica utilizada por esta classe em DEBUG
     private final String TAG = getClass().getName();
-    //private AppCompatActivity activityContext = null;
 
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-
-//        this.activityContext = (AppCompatActivity) getActivity();
-    }
+    private InitialFragmentPagerAdapter initialFragmentPagerAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Inicia uma nova instancia de initialFragmentPagerAdapter e passo o getChildFragmentManger,
+        //pois o estou trabalhando com nested fragments (fragmento dentro de fragmento)
+        initialFragmentPagerAdapter = new InitialFragmentPagerAdapter(
+                this.getChildFragmentManager(),
+                this.getResources().getStringArray(R.array.initialFragmentTabTitles));
     }
 
     @Nullable
@@ -47,6 +48,15 @@ public class InitialFragment extends BaseFragment {
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         //Adicionando o toolbar a activity do contexto por meio do método da classe BaseFragment
         setUpToolbar(toolbar, this.getResources().getString(R.string.app_name));
+
+        //buscando a referencia para o viewpager no layout
+        ViewPager viewPager = view.findViewById(R.id.viewPagerFragmentInitial);
+        //buscando a referencia para o tablayout no layout
+        TabLayout tabLayout = view.findViewById(R.id.tabLayoutFramentInitial);
+        //definindo o adapter do viewpager utilizado neste fragment
+        viewPager.setAdapter(initialFragmentPagerAdapter);
+        //inicializando o tablayout utilizando um viewpager
+        tabLayout.setupWithViewPager(viewPager);
 
         //retorna a view com as modificações feitas
         return view;
