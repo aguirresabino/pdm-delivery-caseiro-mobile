@@ -1,6 +1,5 @@
 package io.github.aguirresabino.deliverycaseiro.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,9 +49,9 @@ public class InitialFragment extends BaseFragment {
         setUpToolbar(toolbar, this.getResources().getString(R.string.app_name));
 
         //buscando a referencia para o viewpager no layout
-        ViewPager viewPager = view.findViewById(R.id.viewPagerFragmentInitial);
+        ViewPager viewPager = view.findViewById(R.id.fragmentInitialViewPager);
         //buscando a referencia para o tablayout no layout
-        TabLayout tabLayout = view.findViewById(R.id.tabLayoutFramentInitial);
+        TabLayout tabLayout = view.findViewById(R.id.fragmentInitialTabLayout);
         //definindo o adapter do viewpager utilizado neste fragment
         viewPager.setAdapter(initialFragmentPagerAdapter);
         //inicializando o tablayout utilizando um viewpager
