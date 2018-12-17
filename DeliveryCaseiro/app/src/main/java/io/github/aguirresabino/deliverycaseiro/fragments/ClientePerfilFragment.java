@@ -1,23 +1,40 @@
 package io.github.aguirresabino.deliverycaseiro.fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import io.github.aguirresabino.deliverycaseiro.R;
 import io.github.aguirresabino.deliverycaseiro.fragments.base.BaseFragment;
 
 public class ClientePerfilFragment extends BaseFragment {
 
+    private Toolbar toolbar;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cliente_perfil, container, false);
+        //Inflando o fragment e salvando na variavel view
+        View view = inflater.inflate(R.layout.fragment_cliente_perfil, container, false);
+        //Buscando o toolbar
+        toolbar = view.findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.perfil);
+        //Adicionando o toolbar a activity do contexto
+        //A activity do contexto é recuperada e depois é utilizado o método setUpToolbar implementado em BaseActivity
+        //A variável activityContext está definida em BaseFragment como protected. Ela é inicializada em onAttach, pois
+        //neste momento do ciclo de vida do fragment, já podemos ter uma referência para a activity pai
+        activityContext.setUpToolbar(toolbar);
+        //retorna a view com as modificações feitas
+        return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        ////Atualizando a toolbar na implementação do menu lateral
+        activityContext.updateToolbar(toolbar);
+    }
 }

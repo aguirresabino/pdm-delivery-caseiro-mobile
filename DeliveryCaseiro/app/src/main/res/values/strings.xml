@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Delivery Caseiro</string>
+    <string name="meus_pedidos">Meus Pedidos</string>
+    <string name="perfil">Perfil</string>
 
+    <!--String para abas-->
     <string name="chefes">Chefes</string>
     <string name="pedido_personalizado">Pedido personalizado</string>
 

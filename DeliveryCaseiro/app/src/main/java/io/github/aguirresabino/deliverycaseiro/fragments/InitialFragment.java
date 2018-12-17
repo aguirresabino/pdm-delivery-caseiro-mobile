@@ -25,6 +25,7 @@ public class InitialFragment extends BaseFragment {
     //Atributo que define o nome da TAG específica utilizada por esta classe em DEBUG
     private final String TAG = getClass().getName();
 
+    private Toolbar toolbar;
     private InitialFragmentPagerAdapter initialFragmentPagerAdapter;
 
     @Override
@@ -44,9 +45,13 @@ public class InitialFragment extends BaseFragment {
         //Inflando o fragment e salvando na variavel view
         View view = inflater.inflate(R.layout.fragment_initial, container, false);
         //Buscando o toolbar
-        Toolbar toolbar = view.findViewById(R.id.toolbar);
-        //Adicionando o toolbar a activity do contexto por meio do método da classe BaseFragment
-        setUpToolbar(toolbar, this.getResources().getString(R.string.app_name));
+        toolbar = view.findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.app_name);
+        //Adicionando o toolbar a activity do contexto
+        //A activity do contexto é recuperada e depois é utilizado o método setUpToolbar implementado em BaseActivity
+        //A variável activityContext está definida em BaseFragment como protected. Ela é inicializada em onAttach, pois
+        //neste momento do ciclo de vida do fragment, já podemos ter uma referência para a activity pai
+        activityContext.setUpToolbar(toolbar);
 
         //buscando a referencia para o viewpager no layout
         ViewPager viewPager = view.findViewById(R.id.fragmentInitialViewPager);
@@ -59,5 +64,20 @@ public class InitialFragment extends BaseFragment {
 
         //retorna a view com as modificações feitas
         return view;
+    }
+
+//    @Override
+//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+//        super.onActivityCreated(savedInstanceState);
+//        ////Atualizando a toolbar na implementação do menu lateral
+//        activityContext.updateToolbar(toolbar);
+//    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //Atualizando a toolbar na implementação do menu lateral
+        activityContext.updateToolbar(toolbar);
     }
 }
