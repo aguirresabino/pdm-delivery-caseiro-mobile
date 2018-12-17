@@ -27,9 +27,10 @@ public class BaseFragment extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        MyLogger.logInfo(this.TAG, getClass(), "onAttach() chamado " + context);
         //recupera activity do contexto
         this.activityContext = (AppCompatActivity) getActivity();
+
+        MyLogger.logInfo(this.TAG, getClass(), "onAttach() chamado " + context);
     }
 
     @Override
