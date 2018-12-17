@@ -157,19 +157,15 @@ public class BaseActivity extends AppCompatActivity {
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        BaseFragment fragment;
                         switch (position){
                             case INICIO:
-                                fragment = new InitialFragment();
-                                replaceFragment(fragment);
+                                replaceFragment(new InitialFragment());
                                 break;
                             case MEUS_PEDIDOS:
-                                fragment = new ClientePedidosFragment();
-                                replaceFragment(fragment);
+                                replaceFragment(new ClientePedidosFragment());
                                 break;
                             case PERFIL:
-                                fragment = new ClientePerfilFragment();
-                                replaceFragment(fragment);
+                                replaceFragment(new ClientePerfilFragment());
                                 break;
                         }
                         return true;
