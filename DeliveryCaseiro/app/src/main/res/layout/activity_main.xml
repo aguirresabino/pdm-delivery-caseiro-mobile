@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout="@layout/fragment_initial"
-        android:id="@+id/fragmentContainerMainActivity">
+        android:id="@+id/mainActivityfragmentContainer">
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

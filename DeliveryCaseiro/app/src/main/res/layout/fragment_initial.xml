@@ -10,7 +10,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/appBarLayoutFragmentInitial">
+        android:id="@+id/fragmentInitialAppBarLayout">
 
         <include layout="@layout/toolbar_collapase"/>
 
@@ -18,19 +18,19 @@
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
             android:visibility="visible"
-            android:id="@+id/tabLayoutFramentInitial">
+            android:id="@+id/fragmentInitialTabLayout">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="@string/chefes"
-                android:id="@+id/tabItemChefeFragmentInitial"/>
+                android:id="@+id/fragmentInitialTabItemChefe"/>
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="@string/pedido_personalizado"
-                android:id="@+id/tabItemPedidoPersonalizadoFragmentInitial"/>
+                android:id="@+id/fragmentInitialTabItemPedidoPersonalizado"/>
 
         </com.google.android.material.tabs.TabLayout>
 
@@ -40,6 +40,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:id="@+id/viewPagerFragmentInitial"/>
+        android:id="@+id/fragmentInitialViewPager"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
