@@ -70,7 +70,7 @@ public class InitialFragment extends BaseFragment {
 //    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 //        super.onActivityCreated(savedInstanceState);
 //        ////Atualizando a toolbar na implementação do menu lateral
-//        activityContext.updateToolbar(toolbar);
+//        activityContext.updateToolbarInDrawer(toolbar);
 //    }
 
 
@@ -78,6 +78,6 @@ public class InitialFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
         //Atualizando a toolbar na implementação do menu lateral
-        activityContext.updateToolbar(toolbar);
+        activityContext.updateToolbarInDrawer(toolbar);
     }
 }

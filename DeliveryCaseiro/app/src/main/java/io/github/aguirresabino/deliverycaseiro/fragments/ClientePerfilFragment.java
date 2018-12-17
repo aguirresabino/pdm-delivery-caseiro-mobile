@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import io.github.aguirresabino.deliverycaseiro.R;
 import io.github.aguirresabino.deliverycaseiro.fragments.base.BaseFragment;
@@ -35,6 +34,6 @@ public class ClientePerfilFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
         ////Atualizando a toolbar na implementação do menu lateral
-        activityContext.updateToolbar(toolbar);
+        activityContext.updateToolbarInDrawer(toolbar);
     }
 }

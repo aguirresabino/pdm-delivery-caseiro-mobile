@@ -125,16 +125,6 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     * Este método adiciona uma toolbar a activity do contexto.
-     * @param toolbar O layout da toolbar
-     */
-    public void setUpToolbar(Toolbar toolbar){
-        if(toolbar != null) {
-            this.setSupportActionBar(toolbar);
-        }
-    }
-
-    /**
      * Este método inicializa o menu lateral esquerdo da aplicação.
      * O menu foi implementado utilizando a biblioteca MaterialDrawer do mikepenz:
      *
@@ -142,7 +132,7 @@ public class BaseActivity extends AppCompatActivity {
      *
      * @param toolbar Toolbar utilizada pela activity ou fragment
      */
-    public void setUpNavigationDrawer(Toolbar toolbar){
+    protected void setUpNavigationDrawer(Toolbar toolbar){
 
         drawerLeft = new DrawerBuilder()
                 .withActivity(this)
@@ -156,7 +146,7 @@ public class BaseActivity extends AppCompatActivity {
                         new DividerDrawerItem(),
                         new PrimaryDrawerItem().withName("Sair")
                 )
-                .withSelectedItemByPosition(0)
+                .withSelectedItemByPosition(INICIO)
 //                .withOnDrawerNavigationListener(new Drawer.OnDrawerNavigationListener() {
 //                    @Override
 //                    public boolean onNavigationClickListener(View clickedView) {
@@ -201,10 +191,20 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     /**
+     * Este método adiciona uma toolbar a activity do contexto.
+     * @param toolbar O layout da toolbar
+     */
+    public void setUpToolbar(Toolbar toolbar){
+        if(toolbar != null) {
+            this.setSupportActionBar(toolbar);
+        }
+    }
+
+    /**
      * Este método é utilizado por algum fragment filho para atualizar a toolbar exibida na Activity.
      * @param toolbar Nova toolbar a ser exibida
      */
-    public void updateToolbar(Toolbar toolbar){
+    public void updateToolbarInDrawer(Toolbar toolbar){
         drawerLeft.setToolbar(this, toolbar, true);
     }
 
