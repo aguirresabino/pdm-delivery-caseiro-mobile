@@ -11,7 +11,7 @@ import io.github.aguirresabino.deliverycaseiro.fragments.InitialFragment;
 public class MainActivity extends BaseActivity {
 
     //Atributo que define o nome da TAG específica utilizada por esta classe em DEBUG
-    private final String TAG = this.getClass().getName();
+    private final String TAG = getClass().getName() + " ESPECIFICA ";
     private Fragment fragmentChild;
 
     @Override

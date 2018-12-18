@@ -11,6 +11,8 @@ import io.github.aguirresabino.deliverycaseiro.fragments.base.BaseFragment;
 
 public class ClientePerfilFragment extends BaseFragment {
 
+    private final String TAG = getClass().getName() + " ESPECIFICA ";
+
     private Toolbar toolbar;
 
     @Override

@@ -23,7 +23,7 @@ import io.github.aguirresabino.deliverycaseiro.fragments.base.BaseFragment;
 public class InitialFragment extends BaseFragment {
 
     //Atributo que define o nome da TAG específica utilizada por esta classe em DEBUG
-    private final String TAG = getClass().getName();
+    private final String TAG = getClass().getName() + " ESPECIFICA ";
 
     private Toolbar toolbar;
     private InitialFragmentPagerAdapter initialFragmentPagerAdapter;

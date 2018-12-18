@@ -10,6 +10,8 @@ import io.github.aguirresabino.deliverycaseiro.R;
 
 public class TabChefeFragment extends Fragment {
 
+    private final String TAG = getClass().getName() + " ESPECIFICA ";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
