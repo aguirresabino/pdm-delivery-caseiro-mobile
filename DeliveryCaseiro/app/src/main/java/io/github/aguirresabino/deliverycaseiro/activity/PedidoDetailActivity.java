@@ -2,10 +2,10 @@ package io.github.aguirresabino.deliverycaseiro.activity;
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
 import io.github.aguirresabino.deliverycaseiro.R;
+import io.github.aguirresabino.deliverycaseiro.activity.base.BaseActivity;
 
-public class PedidoDetailActivity extends AppCompatActivity {
+public class PedidoDetailActivity extends BaseActivity {
 
     private final String TAG = getClass().getName() + " ESPECIFICA ";
 

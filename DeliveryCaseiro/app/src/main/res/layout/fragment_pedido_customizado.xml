@@ -1,8 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/md_white_1000"
     tools:context=".fragments.TabPedidoCustomizadoFragment">
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/fragmentPedidoCustomizadoTextViewDescrevaSeuPedido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
+        android:lineSpacingExtra="8sp"
+        android:text="@string/descreva_seu_pedido"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/primary"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fragmentPedidoCustomizadoInputLayoutNomePrato"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_components_pattern"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentPedidoCustomizadoTextViewDescrevaSeuPedido">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/fragmentPedidoCustomizadoEditTextNomePrato"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fragmentPedidoCustomizadoInputLayoutDescricao"
+        android:layoutMode="opticalBounds"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_components_pattern"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentPedidoCustomizadoInputLayoutNomePrato">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/fragmentPedidoCustomizadoEditTextDescricao"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_components_pattern"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/postar"
+        android:textColor="@color/md_white_1000"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentPedidoCustomizadoInputLayoutDescricao" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

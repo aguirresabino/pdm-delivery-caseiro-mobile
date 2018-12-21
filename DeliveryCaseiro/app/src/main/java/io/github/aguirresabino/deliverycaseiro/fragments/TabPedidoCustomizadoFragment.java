@@ -5,10 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.fragment.app.Fragment;
 import io.github.aguirresabino.deliverycaseiro.R;
+import io.github.aguirresabino.deliverycaseiro.fragments.base.BaseFragment;
 
-public class TabPedidoCustomizadoFragment extends Fragment {
+public class TabPedidoCustomizadoFragment extends BaseFragment {
 
     private final String TAG = getClass().getName() + " ESPECIFICA ";
 

@@ -28,8 +28,8 @@ import io.github.aguirresabino.deliverycaseiro.logs.MyLogger;
  */
 public class BaseActivity extends AppCompatActivity {
 
-    //Atributo que define o nome da TAG específica utilizada por esta classe em DEBUG
-    private final String TAG = getClass().getName();
+    //Atributo que define o nome da MY_TAG específica utilizada por esta classe em DEBUG
+    private final String MY_TAG = "DELIVERY_CASEIRO_DEBUG";
 
     //CONSTANTES que representam a posicao do menu na navigation drawer
     private  final int INICIO = 0;
@@ -45,7 +45,7 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        MyLogger.logInfo(this.TAG, getClass(), " onCreate() chamado " + savedInstanceState);
+        MyLogger.logInfo(this.MY_TAG, getClass(), " onCreate() chamado " + savedInstanceState);
 
         super.onCreate(savedInstanceState);
     }
@@ -54,54 +54,54 @@ public class BaseActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        MyLogger.logInfo(this.TAG, getClass(), " onStart() chamado ");
+        MyLogger.logInfo(this.MY_TAG, getClass(), " onStart() chamado ");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        MyLogger.logInfo(this.TAG, getClass(), " onResume() chamado ");
+        MyLogger.logInfo(this.MY_TAG, getClass(), " onResume() chamado ");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
 
-        MyLogger.logInfo(this.TAG, getClass(), " onPause() chamado ");
+        MyLogger.logInfo(this.MY_TAG, getClass(), " onPause() chamado ");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
 
-        MyLogger.logInfo(this.TAG, getClass(), " onStop() chamado ");
+        MyLogger.logInfo(this.MY_TAG, getClass(), " onStop() chamado ");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
 
-        MyLogger.logInfo(this.TAG, getClass(), " onDestroy() chamado ");
+        MyLogger.logInfo(this.MY_TAG, getClass(), " onDestroy() chamado ");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
 
-        MyLogger.logInfo(this.TAG, getClass(), " onRestart() chamado ");
+        MyLogger.logInfo(this.MY_TAG, getClass(), " onRestart() chamado ");
     }
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
-        MyLogger.logInfo(this.TAG, getClass(), " onSaveInstanceState() chamado " + outState);
+        MyLogger.logInfo(this.MY_TAG, getClass(), " onSaveInstanceState() chamado " + outState);
 
         super.onSaveInstanceState(outState);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        MyLogger.logInfo(this.TAG, getClass(), "onRestoreInstanceState() chamado " + savedInstanceState);
+        MyLogger.logInfo(this.MY_TAG, getClass(), "onRestoreInstanceState() chamado " + savedInstanceState);
 
         super.onRestoreInstanceState(savedInstanceState);
     }
