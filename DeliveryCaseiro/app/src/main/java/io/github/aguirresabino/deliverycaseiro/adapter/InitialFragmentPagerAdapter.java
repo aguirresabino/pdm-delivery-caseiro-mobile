@@ -24,7 +24,6 @@ public class InitialFragmentPagerAdapter extends SmartFragmentStatePagerAdapter<
     @Override
     public Fragment getItem(int position) {
         switch (position){
-            //TODO Alterar BaseFragment para os fragments específicos
             case TAB_0: return new TabChefeFragment();
             case TAB_1: return new TabPedidoCustomizadoFragment();
             default: return null;
