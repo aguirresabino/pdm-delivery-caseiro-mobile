@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.ClientePerfilFragment">
+
+    <include layout="@layout/toolbar"
+        android:id="@+id/myToolbar"/>
+
+    <!--Nome-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fragmentClientePerfilInputLayoutNome"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_components_pattern"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:hint="@string/nome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myToolbar">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/fragmentClientePerfilEditTextNome"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--Email-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fragmentClientePerfilInputLayoutEmail"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_components_pattern"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:hint="@string/email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentClientePerfilInputLayoutNome">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/fragmentClientePerfilEditTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--Senha-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fragmentClientePerfilInputLayoutSenha"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_components_pattern"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:hint="@string/senha"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentClientePerfilInputLayoutEmail">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/fragmentClientePerfilEditTextSenha"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--Telefone-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fragmentClientePerfilInputLayoutTelefone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_components_pattern"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:hint="@string/telefone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentClientePerfilInputLayoutSenha">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/fragmentClientePerfilEditTextTelefone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="phone" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--CEP-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fragmentClientePerfilInputLayoutCEP"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_components_pattern"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:hint="@string/cep"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentClientePerfilInputLayoutTelefone">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/fragmentClientePerfilEditTextCEP"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/appCompatButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_components_pattern"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/colorAccent"
+        android:text="@string/atualizar"
+        android:textColor="@color/md_white_1000"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentClientePerfilInputLayoutCEP" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

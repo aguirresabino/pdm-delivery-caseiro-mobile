@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<color name="colorPrimary">#d32f2f</color>-->
+    <!--<color name="colorPrimaryDark">#b71c1c</color>-->
+    <!--<color name="colorAccent">#fbc02d</color>-->
+
+    <!--Tons de branco-->
+    <!--#fcfcfc-->
+    <!--#fefefe-->
+
+    <color name="colorPrimary">#fcfcfc</color>
+    <color name="colorPrimaryDark">#b71c1c</color>
+    <color name="colorAccent">#d32f2f</color>
+</resources>

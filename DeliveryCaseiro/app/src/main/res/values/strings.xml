@@ -1,0 +1,107 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Delivery Caseiro</string>
+    <string name="meus_pedidos">Meus Pedidos</string>
+    <string name="perfil">Perfil</string>
+
+    <!--String para abas-->
+    <string name="chefes">Chefes</string>
+    <string name="pedido_personalizado">Pedido personalizado</string>
+
+    <string-array name="initialFragmentTabTitles">
+        <item>Chefes</item>
+        <item>Pedido customizado</item>
+    </string-array>
+
+    <string name="entrar">Entrar</string>
+    <string name="crie_sua_conta">Crie sua conta</string>
+    <string name="descreva_seu_pedido">Descreva seu pedido</string>
+    <string name="postar">Postar</string>
+    <string name="nome_do_prato">Nome do prato</string>
+    <string name="descricao">Descrição...</string>
+    <string name="cadastrar">Cadastrar</string>
+    <string name="telefone">Telefone</string>
+    <string name="senha">Senha</string>
+    <string name="email">Email</string>
+    <string name="nome">Nome</string>
+    <string name="atualizar">Atualizar</string>
+    <string name="cep" tools:ignore="ExtraTranslation">CEP</string>
+    <string name="nome_do_chefe">Nome...</string>
+    <string name="pedir">Pedir</string>
+    <string name="quantidade">Quantidade</string>
+
+    <!--TODO excluir abaixo-->
+    <string-array name="teste">
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+    </string-array>
+</resources>
