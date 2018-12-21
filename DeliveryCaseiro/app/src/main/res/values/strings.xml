@@ -26,6 +26,8 @@
     <string name="atualizar">Atualizar</string>
     <string name="cep" tools:ignore="ExtraTranslation">CEP</string>
     <string name="nome_do_chefe">Nome...</string>
+    <string name="pedir">Pedir</string>
+    <string name="quantidade">Quantidade</string>
 
     <!--TODO excluir abaixo-->
     <string-array name="teste">

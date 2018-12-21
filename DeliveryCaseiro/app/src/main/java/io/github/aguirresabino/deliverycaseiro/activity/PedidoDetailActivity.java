@@ -17,6 +17,7 @@ public class PedidoDetailActivity extends BaseActivity {
         setContentView(R.layout.activity_pedido_detail);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Detalhe do Pedido");
         setUpToolbar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
