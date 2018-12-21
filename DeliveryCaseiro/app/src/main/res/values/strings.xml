@@ -18,4 +18,9 @@
     <string name="postar">Postar</string>
     <string name="nome_do_prato">Nome do prato</string>
     <string name="descricao">Descrição</string>
+    <string name="cadastrar">Cadastrar</string>
+    <string name="telefone">Telefone</string>
+    <string name="senha">Senha</string>
+    <string name="email">Email</string>
+    <string name="nome">Nome</string>
 </resources>

@@ -24,7 +24,8 @@ public class LoginActivity extends BaseActivity {
         //buscando botão CADASTRAR na View
         this.btCadastrar = findViewById(R.id.activityLoginButtonCrieSuaConta);
         //configurando ação de clique sobre o botão ENTRAR
-        btEntrar.setOnClickListener(this.btEntrar());
+        this.btEntrar.setOnClickListener(this.btEntrarListener());
+        this.btCadastrar.setOnClickListener(this.btCadastrarListener());
     }
 
     /**
@@ -33,11 +34,21 @@ public class LoginActivity extends BaseActivity {
      * do aplicativo.
      * @return Implementação do OnClickListener
      */
-    private View.OnClickListener btEntrar(){
+    private View.OnClickListener btEntrarListener(){
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        };
+    }
+
+    private View.OnClickListener btCadastrarListener(){
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), CadastroActivity.class);
                 startActivity(intent);
             }
         };

@@ -10,11 +10,12 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/activityLoginInputUser"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="@dimen/height_components_pattern"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/input_bg"
+        app:hintEnabled="false"
         app:layout_constraintBottom_toTopOf="@+id/activityLoginInputPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -25,6 +26,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
+            android:paddingLeft="@dimen/materialize_baseline_grid"
+            android:hint="@string/email"
             android:inputType="none|textUri|textEmailSubject" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -36,6 +39,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/input_bg"
+        app:hintEnabled="false"
         app:layout_constraintBottom_toTopOf="@+id/activityLoginButtonEntrar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -45,6 +49,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
+            android:paddingLeft="@dimen/materialize_baseline_grid"
+            android:hint="@string/senha"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -55,7 +61,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorAccent"
         android:text="@string/entrar"
         android:textSize="22sp"
         android:textColor="@color/md_white_1000"
@@ -71,7 +77,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="32dp"
-        android:background="@color/md_white_1000"
+        android:background="@color/colorAccent"
         android:text="@string/crie_sua_conta"
         android:textSize="22sp"
         android:textColor="@color/colorPrimary"

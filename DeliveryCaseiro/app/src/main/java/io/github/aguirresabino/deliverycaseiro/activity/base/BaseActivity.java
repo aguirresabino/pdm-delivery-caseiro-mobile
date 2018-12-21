@@ -45,7 +45,7 @@ public class BaseActivity extends AppCompatActivity {
 
     //variável utilizada para verificar se o botão voltar foi pressionado duas vezes
     //caso sim, a aplicação será fechada
-    protected static int count = 0;
+//    protected static int count = 0;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -116,24 +116,6 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     * Caso o drawerLeft esteja aberto e o usuário aperte o botão "voltar", o drawerLeft é fechado.
-     */
-    @Override
-    public void onBackPressed() {
-        if(drawerLeft.isDrawerOpen()) drawerLeft.closeDrawer();
-        else {
-            if(count == 1){
-                count = 0;
-                super.onBackPressed();
-            }
-            else{
-                count++;
-                Toast.makeText(this, "Aperte o botão voltar novamente para fechar o aplicativo.", Toast.LENGTH_LONG).show();
-            }
-        };
-    }
-
-    /**
      * Este método inicializa o menu lateral esquerdo da aplicação.
      * O menu foi implementado utilizando a biblioteca MaterialDrawer do mikepenz:
      *
@@ -184,6 +166,28 @@ public class BaseActivity extends AppCompatActivity {
                     }
                 })
                 .build();
+    }
+
+    /**
+     * Caso o drawerLeft esteja aberto e o usuário aperte o botão "voltar", o drawerLeft é fechado.
+     */
+    @Override
+    public void onBackPressed() {
+        if(drawerLeft != null){
+            if(drawerLeft.isDrawerOpen()) drawerLeft.closeDrawer();
+        }
+        else {
+//            if(count == 1){
+//                count = 0;
+//                super.onBackPressed();
+//            }
+//            else{
+//                count++;
+//                Toast.makeText(this, "Aperte o botão voltar novamente para fechar o aplicativo.", Toast.LENGTH_LONG).show();
+//            }
+
+            super.onBackPressed();
+        }
     }
 
     /**

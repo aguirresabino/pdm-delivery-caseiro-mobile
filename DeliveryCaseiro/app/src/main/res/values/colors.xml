@@ -4,7 +4,11 @@
     <!--<color name="colorPrimaryDark">#b71c1c</color>-->
     <!--<color name="colorAccent">#fbc02d</color>-->
 
-    <color name="colorPrimary">@color/md_white_1000</color>
-    <color name="colorPrimaryDark">#d32f2f</color>
+    <!--Tons de branco-->
+    <!--#fcfcfc-->
+    <!--#fefefe-->
+
+    <color name="colorPrimary">#fcfcfc</color>
+    <color name="colorPrimaryDark">#b71c1c</color>
     <color name="colorAccent">#d32f2f</color>
 </resources>
