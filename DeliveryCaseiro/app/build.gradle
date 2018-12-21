@@ -26,6 +26,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
     implementation "com.mikepenz:materialdrawer:6.1.1"
     implementation "androidx.recyclerview:recyclerview:1.1.0-alpha01"
+    implementation 'androidx.cardview:cardview:1.0.0'
     implementation "androidx.annotation:annotation:1.0.1"
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
     implementation 'com.google.android.material:material:1.0.0'
@@ -33,6 +34,6 @@ dependencies {
     implementation 'io.github.inflationx:calligraphy3:3.0.0'
     implementation 'io.github.inflationx:viewpump:1.0.0'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.1-beta01'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1-beta01'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 }
