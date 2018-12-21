@@ -1,5 +1,6 @@
 package io.github.aguirresabino.deliverycaseiro.activity.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -16,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import io.github.aguirresabino.deliverycaseiro.R;
+import io.github.aguirresabino.deliverycaseiro.activity.LoginActivity;
 import io.github.aguirresabino.deliverycaseiro.fragments.ClientePedidosFragment;
 import io.github.aguirresabino.deliverycaseiro.fragments.ClientePerfilFragment;
 import io.github.aguirresabino.deliverycaseiro.fragments.InitialFragment;
@@ -35,7 +37,7 @@ public class BaseActivity extends AppCompatActivity {
     private  final int INICIO = 0;
     private  final int MEUS_PEDIDOS = 1;
     private  final int PERFIL = 2;
-    private  final int SAIR = 3;
+    private  final int SAIR = 4;
 
     private Drawer drawerLeft;
 
@@ -166,6 +168,9 @@ public class BaseActivity extends AppCompatActivity {
                                 break;
                             case PERFIL:
                                 replaceFragment(new ClientePerfilFragment());
+                                break;
+                            case SAIR:
+                                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                                 break;
                         }
                         return true;
