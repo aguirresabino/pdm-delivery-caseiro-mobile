@@ -17,7 +17,7 @@
     <string name="descreva_seu_pedido">Descreva seu pedido</string>
     <string name="postar">Postar</string>
     <string name="nome_do_prato">Nome do prato</string>
-    <string name="descricao">Descrição</string>
+    <string name="descricao">Descrição...</string>
     <string name="cadastrar">Cadastrar</string>
     <string name="telefone">Telefone</string>
     <string name="senha">Senha</string>
@@ -25,7 +25,7 @@
     <string name="nome">Nome</string>
     <string name="atualizar">Atualizar</string>
     <string name="cep" tools:ignore="ExtraTranslation">CEP</string>
-    <string name="nome_do_chefe">Nome do Chefe</string>
+    <string name="nome_do_chefe">Nome...</string>
 
     <!--TODO excluir abaixo-->
     <string-array name="teste">

@@ -31,7 +31,7 @@ public class TabChefeFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        recyclerView = getActivity().findViewById(R.id.fragmentTabChefeRecyclerView);
+        recyclerView = view.findViewById(R.id.fragmentTabChefeRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);
