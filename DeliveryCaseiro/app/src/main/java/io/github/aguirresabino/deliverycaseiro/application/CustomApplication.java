@@ -18,13 +18,13 @@ public class CustomApplication extends Application {
 
         MyLogger.logInfo(MY_TAG, getClass(), " onCreate() chamado ");
 
-        ViewPump.init(ViewPump.builder()
-                .addInterceptor(new CalligraphyInterceptor(
-                        new CalligraphyConfig.Builder()
-                                .setDefaultFontPath("font/montserrat_bold.xml")
-                                .setFontAttrId(R.attr.fontPath)
-                                .build()))
-                .build());
+//        ViewPump.init(ViewPump.builder()
+//                .addInterceptor(new CalligraphyInterceptor(
+//                        new CalligraphyConfig.Builder()
+//                                .setDefaultFontPath("font/montserrat_medium.ttf")
+//                                .setFontAttrId(R.attr.fontPath)
+//                                .build()))
+//                .build());
 
     }
 }

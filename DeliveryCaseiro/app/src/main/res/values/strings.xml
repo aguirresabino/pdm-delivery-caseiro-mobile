@@ -16,4 +16,6 @@
     <string name="crie_sua_conta">Crie sua conta</string>
     <string name="descreva_seu_pedido">Descreva seu pedido</string>
     <string name="postar">Postar</string>
+    <string name="nome_do_prato">Nome do prato</string>
+    <string name="descricao">Descrição</string>
 </resources>

@@ -1,5 +1,6 @@
 package io.github.aguirresabino.deliverycaseiro.activity.base;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -23,6 +24,7 @@ import io.github.aguirresabino.deliverycaseiro.fragments.ClientePerfilFragment;
 import io.github.aguirresabino.deliverycaseiro.fragments.InitialFragment;
 import io.github.aguirresabino.deliverycaseiro.fragments.base.BaseFragment;
 import io.github.aguirresabino.deliverycaseiro.logs.MyLogger;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 /**
  * BaseActivity é um objeto que implementa o LifeCycle da Activity e outras lógicas
@@ -44,6 +46,11 @@ public class BaseActivity extends AppCompatActivity {
     //variável utilizada para verificar se o botão voltar foi pressionado duas vezes
     //caso sim, a aplicação será fechada
     protected static int count = 0;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
