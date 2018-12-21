@@ -12,7 +12,6 @@
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.ChefeActivity" />
         <activity android:name=".activity.PratoPedidoActivity" />
-        <activity android:name=".activity.PedidosActivity" />
         <activity android:name=".activity.PedidoDetailActivity" />
         <activity android:name=".activity.LoginActivity" >
             <intent-filter>

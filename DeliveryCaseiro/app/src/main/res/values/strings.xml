@@ -25,4 +25,81 @@
     <string name="nome">Nome</string>
     <string name="atualizar">Atualizar</string>
     <string name="cep" tools:ignore="ExtraTranslation">CEP</string>
+    <string name="nome_do_chefe">Nome do Chefe</string>
+
+    <!--TODO excluir abaixo-->
+    <string-array name="teste">
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+        <item>Chefes Locais</item>
+        <item>Prato customizado</item>
+    </string-array>
 </resources>
