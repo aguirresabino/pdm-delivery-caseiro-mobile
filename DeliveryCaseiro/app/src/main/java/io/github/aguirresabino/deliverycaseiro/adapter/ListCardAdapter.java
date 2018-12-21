@@ -36,8 +36,8 @@ public class ListCardAdapter extends RecyclerView.Adapter<ListCardAdapter.ListCa
     public void onBindViewHolder(@NonNull final ListCardViewHolder holder, final int position) {
         String elem = dataSet[position];
 
-        holder.nome.setText("Nome do chefe");
-        holder.descricao.setText("Descrição");
+        holder.nome.setText("Nome...");
+        holder.descricao.setText("Descrição...");
         //holder.image.setImageResource(Integer.parseInt(holder.itemView.getResources().getResourceName(R.mipmap.ic_launcher_round)));
 
         if(cardOnClickListener != null){

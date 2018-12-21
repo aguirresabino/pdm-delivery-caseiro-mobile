@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import io.github.aguirresabino.deliverycaseiro.R;
 import io.github.aguirresabino.deliverycaseiro.activity.ChefeActivity;
+import io.github.aguirresabino.deliverycaseiro.activity.PedidoDetailActivity;
 import io.github.aguirresabino.deliverycaseiro.adapter.ListCardAdapter;
 import io.github.aguirresabino.deliverycaseiro.fragments.base.BaseFragment;
 
@@ -64,7 +65,7 @@ public class ClientePedidosFragment extends BaseFragment {
             @Override
             public void onClickCard(View view, int idx) {
                 String item = getResources().getStringArray(R.array.teste)[idx];
-                Intent intent = new Intent(getActivity(), ChefeActivity.class);
+                Intent intent = new Intent(getActivity(), PedidoDetailActivity.class);
                 startActivity(intent);
             }
         };
