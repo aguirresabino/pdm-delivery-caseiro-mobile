@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Delivery Caseiro</string>
     <string name="meus_pedidos">Meus Pedidos</string>
     <string name="perfil">Perfil</string>
@@ -23,4 +23,6 @@
     <string name="senha">Senha</string>
     <string name="email">Email</string>
     <string name="nome">Nome</string>
+    <string name="atualizar">Atualizar</string>
+    <string name="cep" tools:ignore="ExtraTranslation">CEP</string>
 </resources>

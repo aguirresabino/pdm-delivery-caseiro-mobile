@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/fragmentInitialAppBarLayout">
 
-        <include layout="@layout/toolbar_collapase"/>
+        <include layout="@layout/toolbar_collapase" />
 
         <com.google.android.material.tabs.TabLayout
             android:layout_width="match_parent"

@@ -1,6 +1,5 @@
 package io.github.aguirresabino.deliverycaseiro.activity;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
@@ -8,7 +7,6 @@ import androidx.fragment.app.Fragment;
 import io.github.aguirresabino.deliverycaseiro.R;
 import io.github.aguirresabino.deliverycaseiro.activity.base.BaseActivity;
 import io.github.aguirresabino.deliverycaseiro.fragments.InitialFragment;
-import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 public class MainActivity extends BaseActivity {
 
