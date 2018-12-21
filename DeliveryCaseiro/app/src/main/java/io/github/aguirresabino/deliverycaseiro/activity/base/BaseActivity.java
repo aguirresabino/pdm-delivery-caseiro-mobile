@@ -150,15 +150,19 @@ public class BaseActivity extends AppCompatActivity {
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         switch (position){
                             case INICIO:
+                                drawerLeft.closeDrawer();
                                 replaceFragment(new InitialFragment());
                                 break;
                             case MEUS_PEDIDOS:
+                                drawerLeft.closeDrawer();
                                 replaceFragment(new ClientePedidosFragment());
                                 break;
                             case PERFIL:
+                                drawerLeft.closeDrawer();
                                 replaceFragment(new ClientePerfilFragment());
                                 break;
                             case SAIR:
+                                drawerLeft.closeDrawer();
                                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                                 break;
                         }

@@ -28,7 +28,7 @@
             android:background="@android:color/transparent"
             android:paddingLeft="@dimen/materialize_baseline_grid"
             android:hint="@string/email"
-            android:inputType="none|textUri|textEmailSubject" />
+            android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
