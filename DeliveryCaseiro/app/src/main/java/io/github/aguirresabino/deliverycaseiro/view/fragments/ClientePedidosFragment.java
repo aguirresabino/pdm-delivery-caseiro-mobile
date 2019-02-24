@@ -1,4 +1,4 @@
-package io.github.aguirresabino.deliverycaseiro.fragments;
+package io.github.aguirresabino.deliverycaseiro.view.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,26 +12,26 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.github.aguirresabino.deliverycaseiro.R;
-import io.github.aguirresabino.deliverycaseiro.activity.ChefeActivity;
-import io.github.aguirresabino.deliverycaseiro.activity.PedidoDetailActivity;
-import io.github.aguirresabino.deliverycaseiro.adapter.ListCardAdapter;
-import io.github.aguirresabino.deliverycaseiro.fragments.base.BaseFragment;
+import io.github.aguirresabino.deliverycaseiro.view.activity.PedidoDetailActivity;
+import io.github.aguirresabino.deliverycaseiro.view.adapter.ListCardAdapter;
+import io.github.aguirresabino.deliverycaseiro.view.fragments.base.BaseFragment;
 
 public class ClientePedidosFragment extends BaseFragment {
 
-    private final String TAG = getClass().getName() + " ESPECIFICA ";
-
-    private Toolbar toolbar;
-    private RecyclerView recyclerView;
+    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.fragmentClientePedidosRecyclerView) RecyclerView recyclerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //Inflando o fragment e salvando na variavel view
         View view = inflater.inflate(R.layout.fragment_cliente_pedidos, container, false);
-        //Buscando o toolbar
-        toolbar = view.findViewById(R.id.toolbar);
+        //
+        ButterKnife.bind(this, view);
+        //
         toolbar.setTitle(R.string.meus_pedidos);
         //Adicionando o toolbar a activity do contexto
         //A activity do contexto é recuperada e depois é utilizado o método setUpToolbar implementado em BaseActivity
@@ -44,7 +44,6 @@ public class ClientePedidosFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        recyclerView = view.findViewById(R.id.fragmentClientePedidosRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);

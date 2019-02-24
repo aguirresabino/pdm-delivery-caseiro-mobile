@@ -1,18 +1,20 @@
-package io.github.aguirresabino.deliverycaseiro.activity;
+package io.github.aguirresabino.deliverycaseiro.view.activity;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import butterknife.BindView;
 import io.github.aguirresabino.deliverycaseiro.R;
-import io.github.aguirresabino.deliverycaseiro.activity.base.BaseActivity;
-import io.github.aguirresabino.deliverycaseiro.fragments.InitialFragment;
+import io.github.aguirresabino.deliverycaseiro.view.activity.base.BaseActivity;
+import io.github.aguirresabino.deliverycaseiro.view.fragments.InitialFragment;
 
 public class MainActivity extends BaseActivity {
 
-    //Atributo que define o nome da TAG específica utilizada por esta classe em DEBUG
-    private final String TAG = getClass().getName() + " ESPECIFICA ";
     private Fragment fragmentChild;
+
+    @BindView(R.id.toolbar) @Nullable Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +34,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Toolbar toolbar = findViewById(R.id.toolbar);
-
         setUpNavigationDrawer(toolbar);
     }
 }

@@ -1,4 +1,4 @@
-package io.github.aguirresabino.deliverycaseiro.activity;
+package io.github.aguirresabino.deliverycaseiro.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,25 +11,27 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.github.aguirresabino.deliverycaseiro.R;
-import io.github.aguirresabino.deliverycaseiro.activity.base.BaseActivity;
-import io.github.aguirresabino.deliverycaseiro.adapter.ListCardAdapter;
+import io.github.aguirresabino.deliverycaseiro.view.activity.base.BaseActivity;
+import io.github.aguirresabino.deliverycaseiro.view.adapter.ListCardAdapter;
 
 public class ChefeActivity extends BaseActivity {
 
-    private final String TAG = getClass().getName() + " ESPECIFICA ";
-
-    private RecyclerView recyclerView;
+    @BindView(R.id.activityChefeRecyclerView) RecyclerView recyclerView;
+    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.activityChefeCollapsingToolbarLayout) CollapsingToolbarLayout collapsingToolbarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chefe);
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        //
+        ButterKnife.bind(this);
+        //
         setUpToolbar(toolbar);
-
-        final CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.activityChefeCollapsingToolbarLayout);
+        //
         collapsingToolbarLayout.setTitle("Nome do Chefe");
         //collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
         //utilizando botão voltar
@@ -50,7 +52,6 @@ public class ChefeActivity extends BaseActivity {
     }
 
     private void setUpRecyclerView(){
-        final RecyclerView recyclerView = findViewById(R.id.activityChefeRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);

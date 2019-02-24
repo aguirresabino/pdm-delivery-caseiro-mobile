@@ -1,4 +1,4 @@
-package io.github.aguirresabino.deliverycaseiro.adapter;
+package io.github.aguirresabino.deliverycaseiro.view.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.github.aguirresabino.deliverycaseiro.R;
 
 public class ListCardAdapter extends RecyclerView.Adapter<ListCardAdapter.ListCardViewHolder> {
@@ -57,18 +59,15 @@ public class ListCardAdapter extends RecyclerView.Adapter<ListCardAdapter.ListCa
     }
 
     public static class ListCardViewHolder extends RecyclerView.ViewHolder{
-        public ImageView image;
-        public TextView nome;
-        public TextView descricao;
-        public CardView card;
+        @BindView(R.id.card_img) ImageView image;
+        @BindView(R.id.card_nome) TextView nome;
+        @BindView(R.id.card_descricao) TextView descricao;
+        @BindView(R.id.card_view) CardView card;
 
         public ListCardViewHolder(View itemView) {
             super(itemView);
-
-            image = itemView.findViewById(R.id.card_img);
-            nome = itemView.findViewById(R.id.card_nome);
-            descricao = itemView.findViewById(R.id.card_descricao);
-            card = itemView.findViewById(R.id.card_view);
+            //
+            ButterKnife.bind(this, itemView);
         }
     }
 
