@@ -36,19 +36,20 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'io.github.inflationx:calligraphy3:3.0.0'
-    implementation 'io.github.inflationx:viewpump:1.0.0'
     // Butter Knife
     implementation 'com.jakewharton:butterknife:10.1.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
-    // dagger for dependency inject
-    implementation 'com.google.dagger:dagger-android:2.21'
-    // for support libraries
-    implementation 'com.google.dagger:dagger-android-support:2.21'
-    // annotations
-    annotationProcessor 'com.google.dagger:dagger-android-processor:2.21'
-    //
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.21'
+    //Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+//    // dagger for dependency inject
+//    implementation 'com.google.dagger:dagger-android:2.21'
+//    // for support libraries
+//    implementation 'com.google.dagger:dagger-android-support:2.21'
+//    // annotations
+//    annotationProcessor 'com.google.dagger:dagger-android-processor:2.21'
+//    //
+//    annotationProcessor 'com.google.dagger:dagger-compiler:2.21'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'

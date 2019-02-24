@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.List;
+
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,12 +15,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.aguirresabino.deliverycaseiro.R;
 
-public class ListCardAdapter extends RecyclerView.Adapter<ListCardAdapter.ListCardViewHolder> {
+public class ListCardAdapter<T> extends RecyclerView.Adapter<ListCardAdapter.ListCardViewHolder> {
 
-    private String[] dataSet;
+    private List<T> dataSet;
     private CardOnClickListener cardOnClickListener;
 
-    public ListCardAdapter(String[] dataSet, CardOnClickListener cardOnClickListener){
+    public ListCardAdapter(List<T> dataSet, CardOnClickListener cardOnClickListener){
         this.dataSet = dataSet;
         this.cardOnClickListener = cardOnClickListener;
     }
@@ -36,7 +38,7 @@ public class ListCardAdapter extends RecyclerView.Adapter<ListCardAdapter.ListCa
 
     @Override
     public void onBindViewHolder(@NonNull final ListCardViewHolder holder, final int position) {
-        String elem = dataSet[position];
+        T elem = dataSet.get(position);
 
         holder.nome.setText("Nome...");
         holder.descricao.setText("Descrição...");
@@ -55,7 +57,7 @@ public class ListCardAdapter extends RecyclerView.Adapter<ListCardAdapter.ListCa
 
     @Override
     public int getItemCount() {
-        return dataSet != null ? dataSet.length : 0;
+        return dataSet != null ? dataSet.size() : 0;
     }
 
     public static class ListCardViewHolder extends RecyclerView.ViewHolder{

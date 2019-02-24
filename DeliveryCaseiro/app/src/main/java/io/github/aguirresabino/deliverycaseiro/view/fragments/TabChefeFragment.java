@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.Arrays;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -35,7 +37,7 @@ public class TabChefeFragment extends BaseFragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(new ListCardAdapter(getResources().getStringArray(R.array.teste), this.onClickChefe()));
+        recyclerView.setAdapter(new ListCardAdapter<String>(Arrays.asList(getResources().getStringArray(R.array.teste)), this.onClickChefe()));
 
         super.onViewCreated(view, savedInstanceState);
     }
