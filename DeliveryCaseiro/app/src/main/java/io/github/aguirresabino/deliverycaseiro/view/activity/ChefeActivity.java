@@ -57,7 +57,7 @@ public class ChefeActivity extends BaseActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(new ListCardAdapter<String>(Arrays.asList(getResources().getStringArray(R.array.teste)), this.onClickPrato()));
+//        recyclerView.setAdapter(new ListCardAdapter<String>(Arrays.asList(getResources().getStringArray(R.array.teste)), this.onClickPrato()));
     }
 
     private ListCardAdapter.CardOnClickListener onClickPrato(){

@@ -2,8 +2,6 @@ package io.github.aguirresabino.deliverycaseiro.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -13,10 +11,12 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.github.aguirresabino.deliverycaseiro.R;
 import io.github.aguirresabino.deliverycaseiro.application.DeliveryApplication;
+import io.github.aguirresabino.deliverycaseiro.logs.MyLogger;
 import io.github.aguirresabino.deliverycaseiro.model.entities.Usuario;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIClientDeliveryCaserio;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroServiceI;
 import io.github.aguirresabino.deliverycaseiro.view.activity.base.BaseActivity;
+import io.github.aguirresabino.deliverycaseiro.view.helpers.ToastHelper;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,6 +36,7 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
         //
         ButterKnife.bind(this);
+        //
         apiDeliveryCaseiroServiceI = APIClientDeliveryCaserio.getClient().create(APIDeliveryCaseiroServiceI.class);
     }
 
@@ -43,8 +44,8 @@ public class LoginActivity extends BaseActivity {
 
     @OnClick(R.id.activityLoginButtonEntrar)
     public void btEntrarListener(){
-
-        Log.i(DeliveryApplication.MY_TAG, "Clicou no botão LOGIN");
+        btEntrar.setText(R.string.entrar_aguarde);
+        btEntrar.setEnabled(false);
 
         Call<Usuario> call = apiDeliveryCaseiroServiceI.login(email.getEditText().getText().toString(),
                                                             senha.getEditText().getText().toString());
@@ -52,18 +53,31 @@ public class LoginActivity extends BaseActivity {
         call.enqueue(new Callback<Usuario>() {
             @Override
             public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+                MyLogger.logInfo(DeliveryApplication.MY_TAG, LoginActivity.class, "Clicou no botão LOGIN   | Thread: " + Thread.currentThread().getName());
+                //
                 Usuario usuario = response.body();
                 if(usuario != null) {
-                    Log.i(DeliveryApplication.MY_TAG, usuario.toString());
+                    MyLogger.logInfo(DeliveryApplication.MY_TAG, LoginActivity.class, "Usuário encontrado: " + usuario.toString());
+                    // TODO Utilizar outra forma de manter o usuário na sessão do aplicativo.
+                    DeliveryApplication.usuarioLogado = usuario;
+                    // Restaurando o botão Entrar
+                    btEntrar.setEnabled(true);
+                    btEntrar.setText(R.string.entrar);
+                    // Iniciando MainActivity
                     Intent intent = new Intent(getBaseContext(), MainActivity.class);
                     startActivity(intent);
                 }
-                else Log.i(DeliveryApplication.MY_TAG, "Usuário não existe");
+                else {
+                    MyLogger.logInfo(DeliveryApplication.MY_TAG, LoginActivity.class, "Usuário não existe");
+                    btEntrar.setEnabled(true);
+                    btEntrar.setText(R.string.entrar);
+                    ToastHelper.toastShort(getBaseContext(), "Usuário não encontrado!");
+                }
             }
-
             @Override
             public void onFailure(Call<Usuario> call, Throwable t) {
-
+                MyLogger.logError(DeliveryApplication.MY_TAG, LoginActivity.class, "Erro na requisição: " + t.getMessage());
+                ToastHelper.toastShort(getBaseContext(), "Tente novamente mais tarde!");
             }
         });
     }

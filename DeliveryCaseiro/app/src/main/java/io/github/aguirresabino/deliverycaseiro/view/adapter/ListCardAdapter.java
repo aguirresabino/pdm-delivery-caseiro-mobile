@@ -14,13 +14,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.aguirresabino.deliverycaseiro.R;
+import io.github.aguirresabino.deliverycaseiro.model.entities.Chefe;
 
-public class ListCardAdapter<T> extends RecyclerView.Adapter<ListCardAdapter.ListCardViewHolder> {
+public class ListCardAdapter extends RecyclerView.Adapter<ListCardAdapter.ListCardViewHolder> {
 
-    private List<T> dataSet;
+    private List<Chefe> dataSet;
     private CardOnClickListener cardOnClickListener;
 
-    public ListCardAdapter(List<T> dataSet, CardOnClickListener cardOnClickListener){
+    public ListCardAdapter(List<Chefe> dataSet, CardOnClickListener cardOnClickListener){
         this.dataSet = dataSet;
         this.cardOnClickListener = cardOnClickListener;
     }
@@ -38,10 +39,10 @@ public class ListCardAdapter<T> extends RecyclerView.Adapter<ListCardAdapter.Lis
 
     @Override
     public void onBindViewHolder(@NonNull final ListCardViewHolder holder, final int position) {
-        T elem = dataSet.get(position);
+        Chefe chefe = dataSet.get(position);
 
-        holder.nome.setText("Nome...");
-        holder.descricao.setText("Descrição...");
+        holder.nome.setText(chefe.getNome());
+        holder.descricao.setText(chefe.getHoraFinal());
         //holder.image.setImageResource(Integer.parseInt(holder.itemView.getResources().getResourceName(R.mipmap.ic_launcher_round)));
 
         if(cardOnClickListener != null){

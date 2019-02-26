@@ -113,4 +113,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activityCadastroInputTelefone" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/activityCadastroButtonCancelar"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/height_components_pattern"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/colorAccent"
+        android:text="@string/cancelar"
+        android:textColor="@color/colorPrimary"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activityCadastroButtonCadastrar" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

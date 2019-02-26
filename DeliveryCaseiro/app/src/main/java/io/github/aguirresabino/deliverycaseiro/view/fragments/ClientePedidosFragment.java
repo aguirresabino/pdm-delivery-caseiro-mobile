@@ -49,7 +49,7 @@ public class ClientePedidosFragment extends BaseFragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(new ListCardAdapter<String>(Arrays.asList(getResources().getStringArray(R.array.teste)), this.onClickPedido()));
+//        recyclerView.setAdapter(new ListCardAdapter(Arrays.asList(getResources().getStringArray(R.array.teste)), this.onClickPedido()));
 
         super.onViewCreated(view, savedInstanceState);
     }
