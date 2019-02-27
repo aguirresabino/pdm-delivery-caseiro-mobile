@@ -77,6 +77,7 @@ public class TabChefeFragment extends BaseFragment {
             @Override
             public void onClickCard(View view, int idx) {
                 Intent intent = new Intent(getActivity(), ChefeActivity.class);
+                intent.putExtra("chefe", chefes.get(idx));
                 startActivity(intent);
             }
         };

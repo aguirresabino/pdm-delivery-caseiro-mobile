@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.aguirresabino.deliverycaseiro.R;
+import io.github.aguirresabino.deliverycaseiro.model.entities.Chefe;
 import io.github.aguirresabino.deliverycaseiro.view.activity.base.BaseActivity;
 
 public class ChefeActivity extends BaseActivity {
@@ -36,8 +37,11 @@ public class ChefeActivity extends BaseActivity {
         ButterKnife.bind(this);
         //
         setUpToolbar(toolbar);
-        //
-        collapsingToolbarLayout.setTitle("Nome do Chefe");
+        // Recuperando nome do chefe passado na Intent
+        Intent intent = getIntent();
+        Chefe chefe = intent.getParcelableExtra("chefe");
+        // Alterando título do menu para o nome do chefe
+        collapsingToolbarLayout.setTitle(chefe.getNome());
         //collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
         //utilizando botão voltar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

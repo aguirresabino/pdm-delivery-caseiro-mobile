@@ -15,6 +15,7 @@ import butterknife.OnClick;
 import io.github.aguirresabino.deliverycaseiro.R;
 import io.github.aguirresabino.deliverycaseiro.application.DeliveryApplication;
 import io.github.aguirresabino.deliverycaseiro.logs.MyLogger;
+import io.github.aguirresabino.deliverycaseiro.model.entities.Endereco;
 import io.github.aguirresabino.deliverycaseiro.model.entities.Usuario;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIClientDeliveryCaserio;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroServiceI;
@@ -32,6 +33,7 @@ public class CadastroActivity extends BaseActivity {
     @BindView(R.id.activityCadastroInputNome) TextInputLayout nome;
     @BindView(R.id.activityCadastroInputSenha) TextInputLayout senha;
     @BindView(R.id.activityCadastroInputTelefone) TextInputLayout telefone;
+    @BindView(R.id.activityCadastroInputCep) TextInputLayout cep;
 
     private APIDeliveryCaseiroServiceI apiDeliveryCaseiroServiceI;
 
@@ -52,6 +54,11 @@ public class CadastroActivity extends BaseActivity {
         usuario.setEmail(email.getEditText().getText().toString());
         usuario.setTelefone(telefone.getEditText().getText().toString());
         usuario.setSenha(senha.getEditText().getText().toString());
+        Endereco endereco = new Endereco();
+        endereco.setCep(cep.getEditText().getText().toString());
+        usuario.setEndereco(endereco);
+
+        MyLogger.logInfo(DeliveryApplication.MY_TAG, CadastroActivity.class, usuario.toString());
 
         cadastrar.setEnabled(false);
         cancelar.setEnabled(false);
