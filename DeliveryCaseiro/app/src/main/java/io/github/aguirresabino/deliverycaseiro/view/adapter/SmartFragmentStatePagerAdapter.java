@@ -1,4 +1,4 @@
-package io.github.aguirresabino.deliverycaseiro.adapter;
+package io.github.aguirresabino.deliverycaseiro.view.adapter;
 
 import android.util.SparseArray;
 import android.view.ViewGroup;

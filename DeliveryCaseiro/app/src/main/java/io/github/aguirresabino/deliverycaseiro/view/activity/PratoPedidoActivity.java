@@ -1,25 +1,28 @@
-package io.github.aguirresabino.deliverycaseiro.activity;
+package io.github.aguirresabino.deliverycaseiro.view.activity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.appcompat.widget.Toolbar;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.github.aguirresabino.deliverycaseiro.R;
-import io.github.aguirresabino.deliverycaseiro.activity.base.BaseActivity;
+import io.github.aguirresabino.deliverycaseiro.view.activity.base.BaseActivity;
 
 public class PratoPedidoActivity extends BaseActivity {
 
-    private final String TAG = getClass().getName() + " ESPECIFICA ";
+    @BindView(R.id.toolbar) Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prato_pedido);
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        //
+        ButterKnife.bind(this);
+        //
         toolbar.setTitle("Nome do Prato...");
         setUpToolbar(toolbar);
-
+        //
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
