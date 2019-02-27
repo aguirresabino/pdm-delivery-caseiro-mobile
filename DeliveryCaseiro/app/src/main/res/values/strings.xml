@@ -13,6 +13,7 @@
     </string-array>
 
     <string name="entrar">Entrar</string>
+    <string name="entrar_aguarde">Aguarde</string>
     <string name="crie_sua_conta">Crie sua conta</string>
     <string name="descreva_seu_pedido">Descreva seu pedido</string>
     <string name="postar">Postar</string>
@@ -28,80 +29,22 @@
     <string name="nome_do_chefe">Nome...</string>
     <string name="pedir">Pedir</string>
     <string name="quantidade">Quantidade</string>
+    <string name="cancelar">Cancelar</string>
 
     <!--TODO excluir abaixo-->
-    <string-array name="teste">
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
-        <item>Chefes Locais</item>
-        <item>Prato customizado</item>
+    <string-array name="testeChefeActivity">
+        <item>Prato 1</item>
+        <item>Prato 2</item>
+        <item>Prato 3</item>
+        <item>Prato 4</item>
+        <item>Prato 5</item>
+    </string-array>
+
+    <string-array name="testeClientePedidosFragment">
+        <item>Pedido 1</item>
+        <item>Pedido 2</item>
+        <item>Pedido 3</item>
+        <item>Pedido 4</item>
+        <item>Pedido 5</item>
     </string-array>
 </resources>
