@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.Arrays;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -26,7 +25,6 @@ import io.github.aguirresabino.deliverycaseiro.model.entities.Chefe;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIClientDeliveryCaserio;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroServiceI;
 import io.github.aguirresabino.deliverycaseiro.view.activity.ChefeActivity;
-import io.github.aguirresabino.deliverycaseiro.view.adapter.ListCardAdapter;
 import io.github.aguirresabino.deliverycaseiro.view.fragments.base.BaseFragment;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -78,7 +76,6 @@ public class TabChefeFragment extends BaseFragment {
         return new ChefeRecyclerViewAdapter.CardOnClickListener() {
             @Override
             public void onClickCard(View view, int idx) {
-                String item = getResources().getStringArray(R.array.teste)[idx];
                 Intent intent = new Intent(getActivity(), ChefeActivity.class);
                 startActivity(intent);
             }
