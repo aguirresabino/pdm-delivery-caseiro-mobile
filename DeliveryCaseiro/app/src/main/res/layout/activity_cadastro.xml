@@ -120,10 +120,10 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/activityCadastroButtonCadastrar"
-        android:layout_width="395dp"
+        android:layout_width="0dp"
         android:layout_height="@dimen/height_components_pattern"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:background="@color/colorAccent"
         android:text="@string/cadastrar"
@@ -135,10 +135,10 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/activityCadastroButtonCancelar"
-        android:layout_width="395dp"
+        android:layout_width="0dp"
         android:layout_height="@dimen/height_components_pattern"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@color/colorAccent"
@@ -150,6 +150,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activityCadastroButtonCadastrar"
-        app:layout_constraintVertical_bias="0.038" />
+        app:layout_constraintVertical_bias="0.011" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
