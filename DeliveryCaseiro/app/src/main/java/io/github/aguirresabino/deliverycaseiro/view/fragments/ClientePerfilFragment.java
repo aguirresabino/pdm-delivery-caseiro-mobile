@@ -1,4 +1,4 @@
-package io.github.aguirresabino.deliverycaseiro.fragments;
+package io.github.aguirresabino.deliverycaseiro.view.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,22 +6,23 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.appcompat.widget.Toolbar;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.github.aguirresabino.deliverycaseiro.R;
-import io.github.aguirresabino.deliverycaseiro.fragments.base.BaseFragment;
+import io.github.aguirresabino.deliverycaseiro.view.fragments.base.BaseFragment;
 
 public class ClientePerfilFragment extends BaseFragment {
 
-    private final String TAG = getClass().getName() + " ESPECIFICA ";
-
-    private Toolbar toolbar;
+    @BindView(R.id.toolbar) Toolbar toolbar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //Inflando o fragment e salvando na variavel view
         View view = inflater.inflate(R.layout.fragment_cliente_perfil, container, false);
-        //Buscando o toolbar
-        toolbar = view.findViewById(R.id.toolbar);
+        //
+        ButterKnife.bind(this, view);
+        //
         toolbar.setTitle(R.string.perfil);
         //Adicionando o toolbar a activity do contexto
         //A activity do contexto é recuperada e depois é utilizado o método setUpToolbar implementado em BaseActivity

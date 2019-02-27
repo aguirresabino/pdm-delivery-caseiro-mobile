@@ -1,4 +1,4 @@
-package io.github.aguirresabino.deliverycaseiro.fragments;
+package io.github.aguirresabino.deliverycaseiro.view.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,9 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.github.aguirresabino.deliverycaseiro.R;
-import io.github.aguirresabino.deliverycaseiro.adapter.InitialFragmentPagerAdapter;
-import io.github.aguirresabino.deliverycaseiro.fragments.base.BaseFragment;
+import io.github.aguirresabino.deliverycaseiro.view.adapter.InitialFragmentPagerAdapter;
+import io.github.aguirresabino.deliverycaseiro.view.fragments.base.BaseFragment;
 
 /**
  * Este Fragment implementa a tela inicial da aplicação após o Login.
@@ -22,10 +24,10 @@ import io.github.aguirresabino.deliverycaseiro.fragments.base.BaseFragment;
  */
 public class InitialFragment extends BaseFragment {
 
-    //Atributo que define o nome da TAG específica utilizada por esta classe em DEBUG
-    private final String TAG = getClass().getName() + " ESPECIFICA ";
+    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.fragmentInitialViewPager) ViewPager viewPager;
+    @BindView(R.id.fragmentInitialTabLayout) TabLayout tabLayout;
 
-    private Toolbar toolbar;
     private InitialFragmentPagerAdapter initialFragmentPagerAdapter;
 
     @Override
@@ -44,19 +46,15 @@ public class InitialFragment extends BaseFragment {
 
         //Inflando o fragment e salvando na variavel view
         View view = inflater.inflate(R.layout.fragment_initial, container, false);
-        //Buscando o toolbar
-        toolbar = view.findViewById(R.id.toolbar);
+        //
+        ButterKnife.bind(this, view);
+        //
         toolbar.setTitle(R.string.app_name);
         //Adicionando o toolbar a activity do contexto
         //A activity do contexto é recuperada e depois é utilizado o método setUpToolbar implementado em BaseActivity
         //A variável activityContext está definida em BaseFragment como protected. Ela é inicializada em onAttach, pois
         //neste momento do ciclo de vida do fragment, já podemos ter uma referência para a activity pai
         activityContext.setUpToolbar(toolbar);
-
-        //buscando a referencia para o viewpager no layout
-        ViewPager viewPager = view.findViewById(R.id.fragmentInitialViewPager);
-        //buscando a referencia para o tablayout no layout
-        TabLayout tabLayout = view.findViewById(R.id.fragmentInitialTabLayout);
         //definindo o adapter do viewpager utilizado neste fragment
         viewPager.setAdapter(initialFragmentPagerAdapter);
         //inicializando o tablayout utilizando um viewpager

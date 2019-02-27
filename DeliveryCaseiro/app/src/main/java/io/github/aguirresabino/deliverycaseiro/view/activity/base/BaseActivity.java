@@ -1,11 +1,10 @@
-package io.github.aguirresabino.deliverycaseiro.activity.base;
+package io.github.aguirresabino.deliverycaseiro.view.activity.base;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.Toast;
 
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -18,22 +17,19 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import io.github.aguirresabino.deliverycaseiro.R;
-import io.github.aguirresabino.deliverycaseiro.activity.LoginActivity;
-import io.github.aguirresabino.deliverycaseiro.fragments.ClientePedidosFragment;
-import io.github.aguirresabino.deliverycaseiro.fragments.ClientePerfilFragment;
-import io.github.aguirresabino.deliverycaseiro.fragments.InitialFragment;
-import io.github.aguirresabino.deliverycaseiro.fragments.base.BaseFragment;
+import io.github.aguirresabino.deliverycaseiro.application.DeliveryApplication;
+import io.github.aguirresabino.deliverycaseiro.view.activity.LoginActivity;
+import io.github.aguirresabino.deliverycaseiro.view.fragments.ClientePedidosFragment;
+import io.github.aguirresabino.deliverycaseiro.view.fragments.ClientePerfilFragment;
+import io.github.aguirresabino.deliverycaseiro.view.fragments.InitialFragment;
+import io.github.aguirresabino.deliverycaseiro.view.fragments.base.BaseFragment;
 import io.github.aguirresabino.deliverycaseiro.logs.MyLogger;
-import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 /**
  * BaseActivity é um objeto que implementa o LifeCycle da Activity e outras lógicas
  * que serão herdadas por Activities da aplicação (reuso).
  */
 public class BaseActivity extends AppCompatActivity {
-
-    //Atributo que define o nome da MY_TAG específica utilizada por esta classe em DEBUG
-    private final String MY_TAG = "DELIVERY_CASEIRO_DEBUG";
 
     //CONSTANTES que representam a posicao do menu na navigation drawer
     private  final int INICIO = 0;
@@ -43,18 +39,14 @@ public class BaseActivity extends AppCompatActivity {
 
     private Drawer drawerLeft;
 
-    //variável utilizada para verificar se o botão voltar foi pressionado duas vezes
-    //caso sim, a aplicação será fechada
-//    protected static int count = 0;
-
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+        super.attachBaseContext(newBase);
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        MyLogger.logInfo(this.MY_TAG, getClass(), " onCreate() chamado " + savedInstanceState);
+        MyLogger.logInfo(DeliveryApplication.MY_TAG, getClass(), " onCreate() chamado " + savedInstanceState);
 
         super.onCreate(savedInstanceState);
     }
@@ -63,54 +55,54 @@ public class BaseActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        MyLogger.logInfo(this.MY_TAG, getClass(), " onStart() chamado ");
+        MyLogger.logInfo(DeliveryApplication.MY_TAG, getClass(), " onStart() chamado ");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        MyLogger.logInfo(this.MY_TAG, getClass(), " onResume() chamado ");
+        MyLogger.logInfo(DeliveryApplication.MY_TAG, getClass(), " onResume() chamado ");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
 
-        MyLogger.logInfo(this.MY_TAG, getClass(), " onPause() chamado ");
+        MyLogger.logInfo(DeliveryApplication.MY_TAG, getClass(), " onPause() chamado ");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
 
-        MyLogger.logInfo(this.MY_TAG, getClass(), " onStop() chamado ");
+        MyLogger.logInfo(DeliveryApplication.MY_TAG, getClass(), " onStop() chamado ");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
 
-        MyLogger.logInfo(this.MY_TAG, getClass(), " onDestroy() chamado ");
+        MyLogger.logInfo(DeliveryApplication.MY_TAG, getClass(), " onDestroy() chamado ");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
 
-        MyLogger.logInfo(this.MY_TAG, getClass(), " onRestart() chamado ");
+        MyLogger.logInfo(DeliveryApplication.MY_TAG, getClass(), " onRestart() chamado ");
     }
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
-        MyLogger.logInfo(this.MY_TAG, getClass(), " onSaveInstanceState() chamado " + outState);
+        MyLogger.logInfo(DeliveryApplication.MY_TAG, getClass(), " onSaveInstanceState() chamado " + outState);
 
         super.onSaveInstanceState(outState);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        MyLogger.logInfo(this.MY_TAG, getClass(), "onRestoreInstanceState() chamado " + savedInstanceState);
+        MyLogger.logInfo(DeliveryApplication.MY_TAG, getClass(), "onRestoreInstanceState() chamado " + savedInstanceState);
 
         super.onRestoreInstanceState(savedInstanceState);
     }
@@ -138,13 +130,6 @@ public class BaseActivity extends AppCompatActivity {
                         new PrimaryDrawerItem().withName("Sair")
                 )
                 .withSelectedItemByPosition(INICIO)
-//                .withOnDrawerNavigationListener(new Drawer.OnDrawerNavigationListener() {
-//                    @Override
-//                    public boolean onNavigationClickListener(View clickedView) {
-//                        Toast.makeText(BaseActivity.this, "Menu lateral aberto/fechado", Toast.LENGTH_SHORT).show();
-//                        return true;
-//                    }
-//                })
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
@@ -180,18 +165,7 @@ public class BaseActivity extends AppCompatActivity {
         if(drawerLeft != null){
             if(drawerLeft.isDrawerOpen()) drawerLeft.closeDrawer();
         }
-        else {
-//            if(count == 1){
-//                count = 0;
-//                super.onBackPressed();
-//            }
-//            else{
-//                count++;
-//                Toast.makeText(this, "Aperte o botão voltar novamente para fechar o aplicativo.", Toast.LENGTH_LONG).show();
-//            }
-
-            super.onBackPressed();
-        }
+        else super.onBackPressed();
     }
 
     /**
