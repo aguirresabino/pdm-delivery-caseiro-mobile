@@ -60,9 +60,6 @@ public class LoginActivity extends BaseActivity {
                     MyLogger.logInfo(DeliveryApplication.MY_TAG, LoginActivity.class, "Usuário encontrado: " + usuario.toString());
                     // TODO Utilizar outra forma de manter o usuário na sessão do aplicativo.
                     DeliveryApplication.usuarioLogado = usuario;
-                    // Restaurando o botão Entrar
-                    btEntrar.setEnabled(true);
-                    btEntrar.setText(R.string.entrar);
                     // Iniciando MainActivity
                     Intent intent = new Intent(getBaseContext(), MainActivity.class);
                     startActivity(intent);
@@ -76,6 +73,8 @@ public class LoginActivity extends BaseActivity {
             }
             @Override
             public void onFailure(Call<Usuario> call, Throwable t) {
+                btEntrar.setEnabled(true);
+                btEntrar.setText(R.string.entrar);
                 MyLogger.logError(DeliveryApplication.MY_TAG, LoginActivity.class, "Erro na requisição: " + t.getMessage());
                 ToastHelper.toastShort(getBaseContext(), "Tente novamente mais tarde!");
             }
