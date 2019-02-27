@@ -7,6 +7,9 @@
     android:background="@drawable/login_bg"
     tools:context=".view.activity.LoginActivity">
 
+    <!--TODO Remover background dos inputs-->
+    <!--TODO Como implementar um design "responsivo"?-->
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/activityLoginInputUser"
         android:layout_width="match_parent"
