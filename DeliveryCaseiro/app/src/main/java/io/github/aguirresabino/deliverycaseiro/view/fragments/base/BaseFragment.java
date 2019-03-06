@@ -10,8 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import io.github.aguirresabino.deliverycaseiro.application.DeliveryApplication;
-import io.github.aguirresabino.deliverycaseiro.view.activity.base.BaseActivity;
 import io.github.aguirresabino.deliverycaseiro.logs.MyLogger;
+import io.github.aguirresabino.deliverycaseiro.view.activity.base.BaseActivity;
 
 /**
  * BaseFragment é um objeto que implementa o LifeCycle do Fragment e outras lógicas

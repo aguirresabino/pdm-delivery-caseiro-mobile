@@ -2,13 +2,10 @@ package io.github.aguirresabino.deliverycaseiro.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.renderscript.ScriptGroup;
-import android.util.Log;
 import android.widget.Button;
 
 import com.google.android.material.textfield.TextInputLayout;
 
-import androidx.appcompat.widget.Toolbar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

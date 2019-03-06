@@ -2,8 +2,6 @@ package io.github.aguirresabino.deliverycaseiro.view.activity;
 
 import android.os.Bundle;
 
-import java.util.List;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -12,12 +10,8 @@ import butterknife.ButterKnife;
 import io.github.aguirresabino.deliverycaseiro.R;
 import io.github.aguirresabino.deliverycaseiro.application.DeliveryApplication;
 import io.github.aguirresabino.deliverycaseiro.logs.MyLogger;
-import io.github.aguirresabino.deliverycaseiro.model.entities.Chefe;
-import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIClientDeliveryCaserio;
-import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroServiceI;
 import io.github.aguirresabino.deliverycaseiro.view.activity.base.BaseActivity;
 import io.github.aguirresabino.deliverycaseiro.view.fragments.InitialFragment;
-import retrofit2.Call;
 
 public class MainActivity extends BaseActivity {
 
