@@ -90,40 +90,58 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <!--CEP-->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/fragmentClientePerfilInputLayoutCEP"
+    <!--<com.google.android.material.textfield.TextInputLayout-->
+        <!--android:id="@+id/fragmentClientePerfilInputLayoutCEP"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/height_components_pattern"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:hint="@string/cep"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/fragmentClientePerfilInputLayoutTelefone">-->
+
+        <!--<com.google.android.material.textfield.TextInputEditText-->
+            <!--android:id="@+id/fragmentClientePerfilEditTextCEP"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:inputType="number" />-->
+    <!--</com.google.android.material.textfield.TextInputLayout>-->
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/fragmentClientePerfilButtonAtualizar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_components_pattern"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="144dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/colorAccent"
+        android:text="@string/atualizar"
+        android:textColor="@color/md_white_1000"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentClientePerfilInputLayoutTelefone" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/fragmentClientePerfilButtonDeletar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_components_pattern"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:hint="@string/cep"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentClientePerfilInputLayoutTelefone">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/fragmentClientePerfilEditTextCEP"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="number" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/appCompatButton"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_components_pattern"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@color/colorAccent"
-        android:text="@string/atualizar"
+        android:text="@string/deletar"
         android:textColor="@color/md_white_1000"
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentClientePerfilInputLayoutCEP" />
+        app:layout_constraintTop_toBottomOf="@+id/fragmentClientePerfilButtonAtualizar"
+        app:layout_constraintVertical_bias="0.165" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

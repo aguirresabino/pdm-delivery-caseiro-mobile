@@ -1,5 +1,6 @@
 package io.github.aguirresabino.deliverycaseiro.view.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -38,12 +39,19 @@ public class TabChefeFragment extends BaseFragment {
     private List<Chefe> chefes;
 
     @Override
+    public void onAttach(@NonNull Context context) {
+
+        //Recuperando serviço para consumir API
+        apiDeliveryCaseiroChefe = APIClientDeliveryCaserio.getApiDeliveryCaseiroChefe();
+
+        super.onAttach(context);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tab_chefe, container, false);
         ButterKnife.bind(this, view);
-
-        apiDeliveryCaseiroChefe = APIClientDeliveryCaserio.getApiDeliveryCaseiroChefe();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
