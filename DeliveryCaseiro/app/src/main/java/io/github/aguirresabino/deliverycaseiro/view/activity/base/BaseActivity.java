@@ -18,12 +18,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import io.github.aguirresabino.deliverycaseiro.R;
 import io.github.aguirresabino.deliverycaseiro.application.DeliveryApplication;
+import io.github.aguirresabino.deliverycaseiro.logs.MyLogger;
 import io.github.aguirresabino.deliverycaseiro.view.activity.LoginActivity;
 import io.github.aguirresabino.deliverycaseiro.view.fragments.ClientePedidosFragment;
 import io.github.aguirresabino.deliverycaseiro.view.fragments.ClientePerfilFragment;
 import io.github.aguirresabino.deliverycaseiro.view.fragments.InitialFragment;
 import io.github.aguirresabino.deliverycaseiro.view.fragments.base.BaseFragment;
-import io.github.aguirresabino.deliverycaseiro.logs.MyLogger;
 
 /**
  * BaseActivity é um objeto que implementa o LifeCycle da Activity e outras lógicas
@@ -148,6 +148,7 @@ public class BaseActivity extends AppCompatActivity {
                                 break;
                             case SAIR:
                                 drawerLeft.closeDrawer();
+                                DeliveryApplication.usuarioLogado = null;
                                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                                 break;
                         }

@@ -4,8 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import io.github.aguirresabino.deliverycaseiro.view.fragments.TabPedidoCustomizadoFragment;
 import io.github.aguirresabino.deliverycaseiro.view.fragments.TabChefeFragment;
+import io.github.aguirresabino.deliverycaseiro.view.fragments.TabPedidoCustomizadoFragment;
 import io.github.aguirresabino.deliverycaseiro.view.fragments.base.BaseFragment;
 
 public class InitialFragmentPagerAdapter extends SmartFragmentStatePagerAdapter<BaseFragment> {
