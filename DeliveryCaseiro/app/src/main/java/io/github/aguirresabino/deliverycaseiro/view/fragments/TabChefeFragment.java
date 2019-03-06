@@ -23,7 +23,7 @@ import io.github.aguirresabino.deliverycaseiro.application.DeliveryApplication;
 import io.github.aguirresabino.deliverycaseiro.logs.MyLogger;
 import io.github.aguirresabino.deliverycaseiro.model.entities.Chefe;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIClientDeliveryCaserio;
-import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroServiceI;
+import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroChefe;
 import io.github.aguirresabino.deliverycaseiro.view.activity.ChefeActivity;
 import io.github.aguirresabino.deliverycaseiro.view.fragments.base.BaseFragment;
 import retrofit2.Call;
@@ -34,7 +34,7 @@ public class TabChefeFragment extends BaseFragment {
 
     @BindView(R.id.fragmentTabChefeRecyclerView) RecyclerView recyclerView;
 
-    private APIDeliveryCaseiroServiceI apiDeliveryCaseiroServiceI;
+    private APIDeliveryCaseiroChefe apiDeliveryCaseiroChefe;
     private List<Chefe> chefes;
 
     @Override
@@ -43,7 +43,7 @@ public class TabChefeFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_tab_chefe, container, false);
         ButterKnife.bind(this, view);
 
-        apiDeliveryCaseiroServiceI = APIClientDeliveryCaserio.getClient().create(APIDeliveryCaseiroServiceI.class);
+        apiDeliveryCaseiroChefe = APIClientDeliveryCaserio.getApiDeliveryCaseiroChefe();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -54,7 +54,7 @@ public class TabChefeFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        Call<List<Chefe>> call = apiDeliveryCaseiroServiceI.buscarChefesPorCep(DeliveryApplication.usuarioLogado.getEndereco().getCep());
+        Call<List<Chefe>> call = apiDeliveryCaseiroChefe.buscarChefesPorCep(DeliveryApplication.usuarioLogado.getEndereco().getCep());
         call.enqueue(new Callback<List<Chefe>>() {
             @Override
             public void onResponse(Call<List<Chefe>> call, Response<List<Chefe>> response) {

@@ -148,6 +148,7 @@ public class BaseActivity extends AppCompatActivity {
                                 break;
                             case SAIR:
                                 drawerLeft.closeDrawer();
+                                DeliveryApplication.usuarioLogado = null;
                                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                                 break;
                         }

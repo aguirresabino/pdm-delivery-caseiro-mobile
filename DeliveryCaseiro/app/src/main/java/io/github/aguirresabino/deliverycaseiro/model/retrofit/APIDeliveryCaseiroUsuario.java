@@ -13,14 +13,11 @@ import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
-public interface APIDeliveryCaseiroServiceI {
+public interface APIDeliveryCaseiroUsuario {
     @POST("usuarios")
     public Call<Usuario> create(@Body Usuario usuario);
 
     @FormUrlEncoded
     @POST("login")
     public Call<Usuario> login(@Field("email") String email, @Field("senha") String senha);
-
-    @GET("chefes/local/{cep}")
-    public Call<List<Chefe>> buscarChefesPorCep(@Path("cep") String cep);
 }

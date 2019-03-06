@@ -15,7 +15,7 @@ import io.github.aguirresabino.deliverycaseiro.logs.MyLogger;
 import io.github.aguirresabino.deliverycaseiro.model.entities.Endereco;
 import io.github.aguirresabino.deliverycaseiro.model.entities.Usuario;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIClientDeliveryCaserio;
-import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroServiceI;
+import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroUsuario;
 import io.github.aguirresabino.deliverycaseiro.view.activity.base.BaseActivity;
 import io.github.aguirresabino.deliverycaseiro.view.helpers.ToastHelper;
 import retrofit2.Call;
@@ -32,7 +32,7 @@ public class CadastroActivity extends BaseActivity {
     @BindView(R.id.activityCadastroInputTelefone) TextInputLayout telefone;
     @BindView(R.id.activityCadastroInputCep) TextInputLayout cep;
 
-    private APIDeliveryCaseiroServiceI apiDeliveryCaseiroServiceI;
+    private APIDeliveryCaseiroUsuario apiDeliveryCaseiroUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,7 @@ public class CadastroActivity extends BaseActivity {
         //
         ButterKnife.bind(this);
 
-        apiDeliveryCaseiroServiceI = APIClientDeliveryCaserio.getClient().create(APIDeliveryCaseiroServiceI.class);
+        apiDeliveryCaseiroUsuario = APIClientDeliveryCaserio.getApiDeliveryCaseiroUsuario();
     }
 
     @OnClick(R.id.activityCadastroButtonCadastrar)
@@ -61,7 +61,7 @@ public class CadastroActivity extends BaseActivity {
         cancelar.setEnabled(false);
         cadastrar.setText("Aguarde...");
 
-        Call<Usuario> call =  apiDeliveryCaseiroServiceI.create(usuario);
+        Call<Usuario> call =  apiDeliveryCaseiroUsuario.create(usuario);
 
         call.enqueue(new Callback<Usuario>() {
             @Override

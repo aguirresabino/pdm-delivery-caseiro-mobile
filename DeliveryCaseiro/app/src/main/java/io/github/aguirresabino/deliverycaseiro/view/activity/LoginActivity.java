@@ -29,7 +29,7 @@ public class LoginActivity extends BaseActivity {
 
     private LocalBroadcastLoginIntentService localBroadcastLoginIntentService;
 
-//    private APIDeliveryCaseiroServiceI apiDeliveryCaseiroServiceI;
+//    private APIDeliveryCaseiroUsuario apiDeliveryCaseiroServiceI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class LoginActivity extends BaseActivity {
         //
         ButterKnife.bind(this);
         //
-//        apiDeliveryCaseiroServiceI = APIClientDeliveryCaserio.getClient().create(APIDeliveryCaseiroServiceI.class);
+//        apiDeliveryCaseiroServiceI = APIClientDeliveryCaserio.getClient().create(APIDeliveryCaseiroUsuario.class);
 
         localBroadcastLoginIntentService = new LocalBroadcastLoginIntentService();
         LocalBroadcastManager.getInstance(LoginActivity.this).registerReceiver(localBroadcastLoginIntentService, new IntentFilter(LoginIntentService.FILTER_ACTION_LOGIN_INTENT_SERVICE));
