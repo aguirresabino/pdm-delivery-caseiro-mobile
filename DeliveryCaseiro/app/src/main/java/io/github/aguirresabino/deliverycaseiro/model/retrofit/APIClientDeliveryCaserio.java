@@ -1,7 +1,5 @@
 package io.github.aguirresabino.deliverycaseiro.model.retrofit;
 
-import com.google.gson.Gson;
-
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -10,10 +8,6 @@ public class APIClientDeliveryCaserio {
     private static Retrofit retrofit = null;
 
     private static final String BASE_URL = "https://comida-caseira.herokuapp.com/comida-caseira/";
-
-    {
-        initClient();
-    }
 
     public static void initClient() {
 
