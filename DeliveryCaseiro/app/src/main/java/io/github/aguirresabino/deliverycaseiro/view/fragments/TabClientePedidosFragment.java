@@ -21,9 +21,8 @@ import io.github.aguirresabino.deliverycaseiro.R;
 import io.github.aguirresabino.deliverycaseiro.view.activity.PedidoDetailActivity;
 import io.github.aguirresabino.deliverycaseiro.view.fragments.base.BaseFragment;
 
-public class ClientePedidosFragment extends BaseFragment {
+public class TabClientePedidosFragment extends BaseFragment {
 
-    @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.fragmentClientePedidosRecyclerView) RecyclerView recyclerView;
 
     @Override
@@ -34,13 +33,6 @@ public class ClientePedidosFragment extends BaseFragment {
         //
         ButterKnife.bind(this, view);
         //
-        toolbar.setTitle(R.string.meus_pedidos);
-        //Adicionando o toolbar a activity do contexto
-        //A activity do contexto é recuperada e depois é utilizado o método setUpToolbar implementado em BaseActivity
-        //A variável activityContext está definida em BaseFragment como protected. Ela é inicializada em onAttach, pois
-        //neste momento do ciclo de vida do fragment, já podemos ter uma referência para a activity pai
-        activityContext.setUpToolbar(toolbar);
-        //retorna a view com as modificações feitas
         return view;
     }
 
@@ -52,13 +44,6 @@ public class ClientePedidosFragment extends BaseFragment {
         recyclerView.setAdapter(new ListCardAdapter(getResources().getStringArray(R.array.testeClientePedidosFragment), this.onClickPedido()));
 
         super.onViewCreated(view, savedInstanceState);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        ////Atualizando a toolbar na implementação do menu lateral
-        activityContext.updateToolbarInDrawer(toolbar);
     }
 
     private ListCardAdapter.CardOnClickListener onClickPedido() {

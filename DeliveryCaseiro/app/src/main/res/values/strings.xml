@@ -9,7 +9,7 @@
 
     <string name="BASE_URL">https://comida-caseira.herokuapp.com/comida-caseira/</string>
 
-    <string-array name="initialFragmentTabTitles">
+    <string-array name="mainActivityTabTitles">
         <item>Chefes</item>
         <item>Pedido customizado</item>
         <item>Pedidos Feitos</item>

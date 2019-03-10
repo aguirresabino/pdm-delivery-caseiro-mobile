@@ -71,7 +71,7 @@ public class ClientePerfilFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
         ////Atualizando a toolbar na implementação do menu lateral
-        activityContext.updateToolbarInDrawer(toolbar);
+//        activityContext.updateToolbarInDrawer(toolbar);
         //Inicializando inputs do formulário com os dados do usuário logado.
         initInputs();
     }
