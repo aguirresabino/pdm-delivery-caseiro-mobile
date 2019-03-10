@@ -40,20 +40,6 @@ public class MainActivity extends BaseActivity {
         //inicializando o tablayout utilizando um viewpager
         tabLayout.setupWithViewPager(viewPager);
 
-        //Inicializando o fragment InitialFragment
-//        if(savedInstanceState == null){
-//            fragmentChild = new InitialFragment();
-//            getSupportFragmentManager().beginTransaction()
-//                    .add(R.id.mainActivityfragmentContainer, fragmentChild)
-//                    .commit();
-//        }
-
         MyLogger.logInfo(DeliveryApplication.MY_TAG, MainActivity.class, DeliveryApplication.usuarioLogado.toString());
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-//        setUpNavigationDrawer(toolbar);
     }
 }

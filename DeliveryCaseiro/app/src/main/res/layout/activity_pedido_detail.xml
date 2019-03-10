@@ -7,8 +7,7 @@
     android:background="@color/colorPrimary"
     tools:context=".view.activity.PedidoDetailActivity">
 
-    <include layout="@layout/toolbar"
-        android:id="@+id/myToolbar"/>
+    <include layout="@layout/toolbar"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -22,7 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myToolbar">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

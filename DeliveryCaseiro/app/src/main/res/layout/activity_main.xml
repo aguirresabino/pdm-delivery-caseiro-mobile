@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/activityMainAppBarLayout">
 
-        <include layout="@layout/toolbar_collapase" />
+        <include layout="@layout/toolbar"/>
 
         <com.google.android.material.tabs.TabLayout
             android:layout_width="match_parent"
