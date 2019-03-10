@@ -18,7 +18,7 @@ import io.github.aguirresabino.deliverycaseiro.R;
 import io.github.aguirresabino.deliverycaseiro.application.DeliveryApplication;
 import io.github.aguirresabino.deliverycaseiro.logs.MyLogger;
 import io.github.aguirresabino.deliverycaseiro.model.entities.Usuario;
-import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIClientDeliveryCaserio;
+import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroRetrofitFactory;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroUsuario;
 import io.github.aguirresabino.deliverycaseiro.view.activity.LoginActivity;
 import io.github.aguirresabino.deliverycaseiro.view.fragments.base.BaseFragment;
@@ -30,7 +30,6 @@ import retrofit2.Response;
 public class ClientePerfilFragment extends BaseFragment {
 
     @BindView(R.id.toolbar) Toolbar toolbar;
-//    @BindView(R.id.fragmentClientePerfilInputLayoutCEP) TextInputLayout cep;
     @BindView(R.id.fragmentClientePerfilInputLayoutEmail) TextInputLayout email;
     @BindView(R.id.fragmentClientePerfilInputLayoutNome) TextInputLayout nome;
     @BindView(R.id.fragmentClientePerfilInputLayoutSenha) TextInputLayout senha;
@@ -44,7 +43,7 @@ public class ClientePerfilFragment extends BaseFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
 
         //Recuperando serviço para consumir API
-        apiDeliveryCaseiroUsuario = APIClientDeliveryCaserio.getApiDeliveryCaseiroUsuario();
+        apiDeliveryCaseiroUsuario = APIDeliveryCaseiroRetrofitFactory.getApiDeliveryCaseiroUsuario();
 
         super.onCreate(savedInstanceState);
     }

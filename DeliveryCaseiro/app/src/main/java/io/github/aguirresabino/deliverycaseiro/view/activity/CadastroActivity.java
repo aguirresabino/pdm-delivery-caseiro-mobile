@@ -14,7 +14,7 @@ import io.github.aguirresabino.deliverycaseiro.application.DeliveryApplication;
 import io.github.aguirresabino.deliverycaseiro.logs.MyLogger;
 import io.github.aguirresabino.deliverycaseiro.model.entities.Endereco;
 import io.github.aguirresabino.deliverycaseiro.model.entities.Usuario;
-import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIClientDeliveryCaserio;
+import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroRetrofitFactory;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroUsuario;
 import io.github.aguirresabino.deliverycaseiro.view.activity.base.BaseActivity;
 import io.github.aguirresabino.deliverycaseiro.view.helpers.ToastHelper;
@@ -41,7 +41,7 @@ public class CadastroActivity extends BaseActivity {
         //
         ButterKnife.bind(this);
 
-        apiDeliveryCaseiroUsuario = APIClientDeliveryCaserio.getApiDeliveryCaseiroUsuario();
+        apiDeliveryCaseiroUsuario = APIDeliveryCaseiroRetrofitFactory.getApiDeliveryCaseiroUsuario();
     }
 
     @OnClick(R.id.activityCadastroButtonCadastrar)
@@ -77,6 +77,9 @@ public class CadastroActivity extends BaseActivity {
             public void onFailure(Call<Usuario> call, Throwable t) {
                 MyLogger.logInfo(DeliveryApplication.MY_TAG, CadastroActivity.class, "Erro no cadastro do usuário!");
                 ToastHelper.toastShort(getBaseContext(), "Tente novamente mais tarde!");
+                cadastrar.setEnabled(true);
+                cancelar.setEnabled(true);
+                cadastrar.setText(R.string.cadastrar);
             }
         });
     }

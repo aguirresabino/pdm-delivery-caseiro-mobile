@@ -7,9 +7,12 @@
     <string name="chefes">Chefes</string>
     <string name="pedido_personalizado">Pedido personalizado</string>
 
+    <string name="BASE_URL">https://comida-caseira.herokuapp.com/comida-caseira/</string>
+
     <string-array name="initialFragmentTabTitles">
         <item>Chefes</item>
         <item>Pedido customizado</item>
+        <item>Pedidos Feitos</item>
     </string-array>
 
     <string name="entrar">Entrar</string>

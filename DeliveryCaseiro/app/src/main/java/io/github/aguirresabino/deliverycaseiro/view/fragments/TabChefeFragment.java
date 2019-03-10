@@ -23,7 +23,7 @@ import io.github.aguirresabino.deliverycaseiro.R;
 import io.github.aguirresabino.deliverycaseiro.application.DeliveryApplication;
 import io.github.aguirresabino.deliverycaseiro.logs.MyLogger;
 import io.github.aguirresabino.deliverycaseiro.model.entities.Chefe;
-import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIClientDeliveryCaserio;
+import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroRetrofitFactory;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroChefe;
 import io.github.aguirresabino.deliverycaseiro.view.activity.ChefeActivity;
 import io.github.aguirresabino.deliverycaseiro.view.fragments.base.BaseFragment;
@@ -42,7 +42,7 @@ public class TabChefeFragment extends BaseFragment {
     public void onAttach(@NonNull Context context) {
 
         //Recuperando serviço para consumir API
-        apiDeliveryCaseiroChefe = APIClientDeliveryCaserio.getApiDeliveryCaseiroChefe();
+        apiDeliveryCaseiroChefe = APIDeliveryCaseiroRetrofitFactory.getApiDeliveryCaseiroChefe();
 
         super.onAttach(context);
     }

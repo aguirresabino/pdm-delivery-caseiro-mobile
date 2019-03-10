@@ -10,9 +10,10 @@ import io.github.aguirresabino.deliverycaseiro.view.fragments.base.BaseFragment;
 
 public class InitialFragmentPagerAdapter extends SmartFragmentStatePagerAdapter<BaseFragment> {
 
-    private final int TAB_0 = 0;
-    private final int TAB_1 = 1;
-    private final int NUM_TABS = 2;
+    private final int CHEFE_LIST = 0;
+    private final int PEDIDO_CUSTOMIZADO = 1;
+    private final int MEUS_PEDIDOS = 2;
+    private final int NUM_TABS = 3;
     private String[] tabTitles;
 
     public InitialFragmentPagerAdapter(FragmentManager fragmentManager, String[] tabTitles) {
@@ -24,8 +25,8 @@ public class InitialFragmentPagerAdapter extends SmartFragmentStatePagerAdapter<
     @Override
     public Fragment getItem(int position) {
         switch (position){
-            case TAB_0: return new TabChefeFragment();
-            case TAB_1: return new TabPedidoCustomizadoFragment();
+            case CHEFE_LIST: return new TabChefeFragment();
+            case PEDIDO_CUSTOMIZADO: return new TabPedidoCustomizadoFragment();
             default: return null;
         }
     }
