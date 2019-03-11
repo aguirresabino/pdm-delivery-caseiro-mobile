@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            android:paddingLeft="@dimen/materialize_baseline_grid"
+            android:paddingStart="@dimen/materialize_baseline_grid"
             android:hint="@string/email"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
-            android:paddingLeft="@dimen/materialize_baseline_grid"
+            android:paddingStart="@dimen/materialize_baseline_grid"
             android:hint="@string/senha"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>

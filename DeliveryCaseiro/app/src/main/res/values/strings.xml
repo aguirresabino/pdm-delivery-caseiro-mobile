@@ -3,6 +3,7 @@
     <string name="meus_pedidos">Meus Pedidos</string>
     <string name="perfil">Perfil</string>
     <string name="chefes">Chefes</string>
+    <string name="chefe">Chefe</string>
     <string name="pedido_personalizado">Pedido personalizado</string>
     <string name="entrar">Entrar</string>
     <string name="entrar_aguarde">Aguarde</string>
@@ -24,6 +25,7 @@
     <string name="cancelar">Cancelar</string>
     <string name="deletar">Deletar</string>
     <string name="detalhe_do_pedido">Detalhe do Pedido</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi porta erat vel vehicula dapibus. Aenean at molestie massa, quis malesuada quam. Aenean non nisl mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
 
     <string-array name="mainActivityTabTitles">
         <item>Chefes</item>
