@@ -7,6 +7,7 @@ import io.github.aguirresabino.deliverycaseiro.model.entities.Usuario;
 
 public class DeliveryApplication extends Application {
 
+    // Atributos estáticos que são utilizados por diversas outras classes
     public static final String MY_TAG = "DELIVERY_CASEIRO_DEBUG";
     public static final String URL_BASE_API_DELIVERY_CASEIRO = "https://comida-caseira.herokuapp.com/comida-caseira/";
     public static Usuario usuarioLogado;

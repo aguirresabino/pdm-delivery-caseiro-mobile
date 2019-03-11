@@ -1,5 +1,6 @@
 package io.github.aguirresabino.deliverycaseiro.view.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,8 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,24 +25,23 @@ public class TabClientePedidosFragment extends BaseFragment {
     @BindView(R.id.fragmentClientePedidosRecyclerView) RecyclerView recyclerView;
 
     @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //Inflando o fragment e salvando na variavel view
         View view = inflater.inflate(R.layout.fragment_cliente_pedidos, container, false);
-        //
+        // ButterKnife
         ButterKnife.bind(this, view);
         //
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(new ListCardAdapter(getResources().getStringArray(R.array.testeClientePedidosFragment), this.onClickPedido()));
-
-        super.onViewCreated(view, savedInstanceState);
+        return view;
     }
 
     private ListCardAdapter.CardOnClickListener onClickPedido() {
@@ -110,7 +108,7 @@ public class TabClientePedidosFragment extends BaseFragment {
 
             public ListCardViewHolder(View itemView) {
                 super(itemView);
-                //
+                // ButterKnife
                 ButterKnife.bind(this, itemView);
             }
         }

@@ -2,19 +2,8 @@
     <string name="app_name">Delivery Caseiro</string>
     <string name="meus_pedidos">Meus Pedidos</string>
     <string name="perfil">Perfil</string>
-
-    <!--String para abas-->
     <string name="chefes">Chefes</string>
     <string name="pedido_personalizado">Pedido personalizado</string>
-
-    <string name="BASE_URL">https://comida-caseira.herokuapp.com/comida-caseira/</string>
-
-    <string-array name="mainActivityTabTitles">
-        <item>Chefes</item>
-        <item>Pedido customizado</item>
-        <item>Pedidos Feitos</item>
-    </string-array>
-
     <string name="entrar">Entrar</string>
     <string name="entrar_aguarde">Aguarde</string>
     <string name="crie_sua_conta">Crie sua conta</string>
@@ -34,6 +23,13 @@
     <string name="quantidade">Quantidade</string>
     <string name="cancelar">Cancelar</string>
     <string name="deletar">Deletar</string>
+    <string name="detalhe_do_pedido">Detalhe do Pedido</string>
+
+    <string-array name="mainActivityTabTitles">
+        <item>Chefes</item>
+        <item>Pedido customizado</item>
+        <item>Pedidos Feitos</item>
+    </string-array>
 
     <!--TODO excluir abaixo-->
     <string-array name="testeChefeActivity">

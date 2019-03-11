@@ -1,5 +1,6 @@
 package io.github.aguirresabino.deliverycaseiro.view.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,7 +9,7 @@ import android.view.ViewGroup;
 
 import com.google.android.material.textfield.TextInputLayout;
 
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 import butterknife.BindView;
@@ -40,12 +41,10 @@ public class ClientePerfilFragment extends BaseFragment {
     private APIDeliveryCaseiroUsuario apiDeliveryCaseiroUsuario;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-
+    public void onAttach(@NonNull Context context) {
         //Recuperando serviço para consumir API
         apiDeliveryCaseiroUsuario = APIDeliveryCaseiroRetrofitFactory.getApiDeliveryCaseiroUsuario();
-
-        super.onCreate(savedInstanceState);
+        super.onAttach(context);
     }
 
     @Override
@@ -53,7 +52,7 @@ public class ClientePerfilFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         //Inflando o fragment e salvando na variavel view
         View view = inflater.inflate(R.layout.fragment_cliente_perfil, container, false);
-        //
+        // ButterKnife
         ButterKnife.bind(this, view);
         //
         toolbar.setTitle(R.string.perfil);
@@ -62,16 +61,12 @@ public class ClientePerfilFragment extends BaseFragment {
         //A variável activityContext está definida em BaseFragment como protected. Ela é inicializada em onAttach, pois
         //neste momento do ciclo de vida do fragment, já podemos ter uma referência para a activity pai
         activityContext.setUpToolbar(toolbar);
-
-        //retorna a view com as modificações feitas
         return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        ////Atualizando a toolbar na implementação do menu lateral
-//        activityContext.updateToolbarInDrawer(toolbar);
         //Inicializando inputs do formulário com os dados do usuário logado.
         initInputs();
     }

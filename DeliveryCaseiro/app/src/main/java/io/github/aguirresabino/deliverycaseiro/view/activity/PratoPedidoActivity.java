@@ -19,10 +19,9 @@ public class PratoPedidoActivity extends BaseActivity {
         setContentView(R.layout.activity_prato_pedido);
         //
         ButterKnife.bind(this);
-        //
+        //TODO Colocar nome do prato.
         toolbar.setTitle("Nome do Prato...");
         setUpToolbar(toolbar);
-        //
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 

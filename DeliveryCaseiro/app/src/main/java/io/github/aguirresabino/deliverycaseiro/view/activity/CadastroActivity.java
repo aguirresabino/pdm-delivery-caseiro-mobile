@@ -55,10 +55,9 @@ public class CadastroActivity extends BaseActivity {
         endereco.setCep(cep.getEditText().getText().toString());
         usuario.setEndereco(endereco);
 
-        MyLogger.logInfo(DeliveryApplication.MY_TAG, CadastroActivity.class, usuario.toString());
-
         cadastrar.setEnabled(false);
         cancelar.setEnabled(false);
+        //TODO Alterar isto para alguma coisa que mostre um loading.
         cadastrar.setText("Aguarde...");
 
         Call<Usuario> call =  apiDeliveryCaseiroUsuario.create(usuario);

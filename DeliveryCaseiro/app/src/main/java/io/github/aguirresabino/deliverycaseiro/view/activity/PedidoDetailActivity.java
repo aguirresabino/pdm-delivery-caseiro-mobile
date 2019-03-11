@@ -17,12 +17,11 @@ public class PedidoDetailActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pedido_detail);
-        //
+        // ButterKnife
         ButterKnife.bind(this);
         //
-        toolbar.setTitle("Detalhe do Pedido");
+        toolbar.setTitle(R.string.detalhe_do_pedido);
         setUpToolbar(toolbar);
-        //
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 

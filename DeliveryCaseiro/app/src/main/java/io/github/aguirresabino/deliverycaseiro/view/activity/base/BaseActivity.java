@@ -1,9 +1,6 @@
 package io.github.aguirresabino.deliverycaseiro.view.activity.base;
 
-import android.content.Context;
 import android.os.Bundle;
-
-import com.mikepenz.materialdrawer.Drawer;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,8 +17,9 @@ import io.github.aguirresabino.deliverycaseiro.view.fragments.base.BaseFragment;
 public class BaseActivity extends AppCompatActivity {
 
     @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(newBase);
+    public void onAttachedToWindow() {
+        MyLogger.logInfo(DeliveryApplication.MY_TAG, getClass(), " onAttachedToWindow() chamado");
+        super.onAttachedToWindow();
     }
 
     @Override
@@ -88,14 +86,6 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     * Caso o drawerLeft esteja aberto e o usuário aperte o botão "voltar", o drawerLeft é fechado.
-     */
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
-
-    /**
      * Este método auxilia a troca de fragments dentro de uma Activity.
      * @param fragment Fragment que deve ser exibido na tela.
      */
@@ -115,13 +105,4 @@ public class BaseActivity extends AppCompatActivity {
             this.setSupportActionBar(toolbar);
         }
     }
-
-    /**
-     * Este método é utilizado por algum fragment filho para atualizar a toolbar exibida na Activity.
-     * @param toolbar Nova toolbar a ser exibida
-     */
-//    public void updateToolbarInDrawer(Toolbar toolbar){
-//        drawerLeft.setToolbar(this, toolbar, true);
-//    }
-
 }
