@@ -29,6 +29,7 @@ import io.github.aguirresabino.deliverycaseiro.model.entities.Chefe;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroChefe;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroRetrofitFactory;
 import io.github.aguirresabino.deliverycaseiro.view.activity.ChefeActivity;
+import io.github.aguirresabino.deliverycaseiro.view.activity.ClientePerfilActivity;
 import io.github.aguirresabino.deliverycaseiro.view.fragments.base.BaseFragment;
 import io.github.aguirresabino.deliverycaseiro.view.helpers.ToastHelper;
 import retrofit2.Call;
@@ -94,7 +95,7 @@ public class TabChefeFragment extends BaseFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_perfil:
-                ToastHelper.toastShort(getContext(), "Clicou em Perfil");
+                getActivity().startActivity(new Intent(getContext(), ClientePerfilActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }

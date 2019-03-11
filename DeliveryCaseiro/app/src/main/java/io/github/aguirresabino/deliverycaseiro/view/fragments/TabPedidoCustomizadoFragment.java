@@ -1,6 +1,7 @@
 package io.github.aguirresabino.deliverycaseiro.view.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import butterknife.ButterKnife;
 import io.github.aguirresabino.deliverycaseiro.R;
+import io.github.aguirresabino.deliverycaseiro.view.activity.ClientePerfilActivity;
 import io.github.aguirresabino.deliverycaseiro.view.fragments.base.BaseFragment;
 import io.github.aguirresabino.deliverycaseiro.view.helpers.ToastHelper;
 
@@ -44,7 +46,7 @@ public class TabPedidoCustomizadoFragment extends BaseFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_perfil:
-                ToastHelper.toastShort(getContext(), "Clicou em Perfil");
+                getActivity().startActivity(new Intent(getContext(), ClientePerfilActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
