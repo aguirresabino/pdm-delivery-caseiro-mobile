@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -33,15 +35,24 @@ public class TabClientePedidosFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //Inflando o fragment e salvando na variavel view
-        View view = inflater.inflate(R.layout.fragment_cliente_pedidos, container, false);
+        View view = inflater.inflate(R.layout.fragment_tab_cliente_pedidos, container, false);
         // ButterKnife
         ButterKnife.bind(this, view);
+        // O fragment define o menu da toolbar
+        setHasOptionsMenu(true);
         //
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(new ListCardAdapter(getResources().getStringArray(R.array.testeClientePedidosFragment), this.onClickPedido()));
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.fragment_tab_cliente_pedidos_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     private ListCardAdapter.CardOnClickListener onClickPedido() {

@@ -21,7 +21,7 @@ public class TabPedidoCustomizadoFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_pedido_customizado, container, false);
+        View view = inflater.inflate(R.layout.fragment_tab_pedido_customizado, container, false);
         ButterKnife.bind(this, view);
         return view;
     }

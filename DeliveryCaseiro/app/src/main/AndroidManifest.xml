@@ -28,7 +28,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.activity.CadastroActivity"/>
-
     </application>
 
 </manifest>
