@@ -8,7 +8,7 @@
         android:title="Refresh"
         app:showAsAction="always" />
     <item
-        android:id="@+id/action_settings"
-        android:title="Configurações">
+        android:id="@+id/action_perfil"
+        android:title="@string/perfil">
     </item>
 </menu>

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -21,6 +22,7 @@ import butterknife.ButterKnife;
 import io.github.aguirresabino.deliverycaseiro.R;
 import io.github.aguirresabino.deliverycaseiro.view.activity.PedidoDetailActivity;
 import io.github.aguirresabino.deliverycaseiro.view.fragments.base.BaseFragment;
+import io.github.aguirresabino.deliverycaseiro.view.helpers.ToastHelper;
 
 public class TabClientePedidosFragment extends BaseFragment {
 
@@ -53,6 +55,15 @@ public class TabClientePedidosFragment extends BaseFragment {
         menu.clear();
         inflater.inflate(R.menu.fragment_tab_cliente_pedidos_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_perfil:
+                ToastHelper.toastShort(getContext(), "Clicou em Perfil");
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private ListCardAdapter.CardOnClickListener onClickPedido() {

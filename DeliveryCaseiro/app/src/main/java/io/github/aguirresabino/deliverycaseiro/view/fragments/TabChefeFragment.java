@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -27,6 +30,7 @@ import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiro
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroRetrofitFactory;
 import io.github.aguirresabino.deliverycaseiro.view.activity.ChefeActivity;
 import io.github.aguirresabino.deliverycaseiro.view.fragments.base.BaseFragment;
+import io.github.aguirresabino.deliverycaseiro.view.helpers.ToastHelper;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -51,6 +55,8 @@ public class TabChefeFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_tab_chefe, container, false);
         // ButterKnife
         ButterKnife.bind(this, view);
+        // O fragment define o menu da toolbar
+        setHasOptionsMenu(true);
         //
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -75,6 +81,22 @@ public class TabChefeFragment extends BaseFragment {
             }
         });
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.fragment_tab_chefe, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_perfil:
+                ToastHelper.toastShort(getContext(), "Clicou em Perfil");
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private ChefeRecyclerViewAdapter.CardOnClickListener onClickChefe() {
