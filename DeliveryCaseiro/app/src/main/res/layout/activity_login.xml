@@ -4,34 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_bg"
+    android:background="@color/colorPrimary"
     tools:context=".view.activity.LoginActivity">
 
     <!--TODO Remover background dos inputs-->
     <!--TODO Como implementar um design "responsivo"?-->
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="195dp"
+        android:layout_height="143dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo1" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/activityLoginInputUser"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_components_pattern"
+        android:layout_height="56dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
         android:background="@drawable/input_bg"
         app:hintEnabled="false"
-        app:layout_constraintBottom_toTopOf="@+id/activityLoginInputPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
         tools:ignore="MissingConstraints">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            android:paddingStart="@dimen/materialize_baseline_grid"
             android:hint="@string/email"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:paddingStart="@dimen/materialize_baseline_grid" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -39,22 +51,22 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_components_pattern"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="24dp"
         android:background="@drawable/input_bg"
         app:hintEnabled="false"
-        app:layout_constraintBottom_toTopOf="@+id/activityLoginButtonEntrar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activityLoginInputUser">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
-            android:paddingStart="@dimen/materialize_baseline_grid"
             android:hint="@string/senha"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:paddingStart="@dimen/materialize_baseline_grid" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -62,15 +74,15 @@
         android:layout_width="0dp"
         android:layout_height="@dimen/height_components_pattern"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimary2"
         android:text="@string/entrar"
-        android:textSize="22sp"
         android:textColor="@color/md_white_1000"
-        app:layout_constraintBottom_toTopOf="@+id/activityLoginButtonCrieSuaConta"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activityLoginInputPassword"
         tools:ignore="MissingConstraints" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -78,16 +90,15 @@
         android:layout_width="0dp"
         android:layout_height="@dimen/height_components_pattern"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="32dp"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimary"
         android:text="@string/crie_sua_conta"
+        android:textColor="@color/colorPrimary2"
         android:textSize="22sp"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activityLoginButtonEntrar"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,8 +7,9 @@
 
     <!--THEME COLORS-->
     <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimary2">#e72133</color>
     <color name="colorPrimaryDark">#b71c1c</color>
-    <color name="colorAccent">#d32f2f</color>
+    <color name="colorAccent">#e72133</color>
     <color name="colorAccent2">#FFB703</color>
 
     <!--MATERIAL COLORS-->
