@@ -18,6 +18,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:hint="@string/nome"
+        android:background="@drawable/border"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
@@ -27,6 +28,7 @@
             android:id="@+id/activityClientePerfilEditTextNome"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@android:color/transparent"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -39,6 +41,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:hint="@string/email"
+        android:background="@drawable/border"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activityClientePerfilInputLayoutNome">
@@ -47,6 +50,7 @@
             android:id="@+id/activityClientePerfilEditTextEmail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@android:color/transparent"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -59,6 +63,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:hint="@string/senha"
+        android:background="@drawable/border"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activityClientePerfilInputLayoutEmail">
@@ -67,6 +72,7 @@
             android:id="@+id/activityClientePerfilEditTextSenha"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@android:color/transparent"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -79,6 +85,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:hint="@string/telefone"
+        android:background="@drawable/border"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activityClientePerfilInputLayoutSenha">
@@ -87,6 +94,7 @@
             android:id="@+id/activityClientePerfilEditTextTelefone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@android:color/transparent"
             android:inputType="phone" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -101,6 +109,8 @@
         android:text="@string/atualizar"
         android:textColor="@color/colorPrimary"
         android:textSize="22sp"
+        android:clickable="true"
+        android:foreground="?selectableItemBackgroundBorderless"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -118,6 +128,8 @@
         android:text="@string/deletar"
         android:textColor="@color/colorPrimary"
         android:textSize="22sp"
+        android:clickable="true"
+        android:foreground="?selectableItemBackgroundBorderless"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

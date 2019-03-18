@@ -4,7 +4,7 @@
     <item
         android:id="@+id/action_ok"
         android:orderInCategory="100"
-        android:icon="@drawable/ic_send_black_24dp"
+        android:icon="@drawable/ic_done_black_24dp"
         android:title="Ok"
         app:showAsAction="always" />
 </menu>

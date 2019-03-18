@@ -8,8 +8,7 @@
     card_view:cardElevation="0dp"
     android:background="@color/colorPrimary"
     android:layout_margin="8dp"
-    android:clickable="true"
-    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
     card_view:layout_insetEdge="bottom"
     android:id="@+id/card_view">
 
