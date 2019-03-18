@@ -30,6 +30,7 @@ import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiro
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroRetrofitFactory;
 import io.github.aguirresabino.deliverycaseiro.view.activity.ChefeActivity;
 import io.github.aguirresabino.deliverycaseiro.view.activity.ClientePerfilActivity;
+import io.github.aguirresabino.deliverycaseiro.view.activity.LoginActivity;
 import io.github.aguirresabino.deliverycaseiro.view.fragments.base.BaseFragment;
 import io.github.aguirresabino.deliverycaseiro.view.helpers.ToastHelper;
 import retrofit2.Call;
@@ -96,6 +97,11 @@ public class TabChefeFragment extends BaseFragment {
         switch (item.getItemId()){
             case R.id.action_perfil:
                 getActivity().startActivity(new Intent(getContext(), ClientePerfilActivity.class));
+                break;
+            case R.id.action_sair:
+                DeliveryApplication.usuarioLogado = null;
+                startActivity(new Intent(getContext(), LoginActivity.class));
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

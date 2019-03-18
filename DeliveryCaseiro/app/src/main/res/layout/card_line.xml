@@ -22,7 +22,7 @@
             android:id="@+id/card_img"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:background="@mipmap/ic_launcher_round" />
+            android:background="@drawable/chef" />
 
         <LinearLayout
             android:layout_width="match_parent"

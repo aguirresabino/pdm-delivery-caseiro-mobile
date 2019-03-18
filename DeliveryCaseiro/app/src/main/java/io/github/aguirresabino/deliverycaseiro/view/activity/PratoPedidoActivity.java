@@ -1,6 +1,7 @@
 package io.github.aguirresabino.deliverycaseiro.view.activity;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.appcompat.widget.Toolbar;
@@ -8,6 +9,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.aguirresabino.deliverycaseiro.R;
 import io.github.aguirresabino.deliverycaseiro.view.activity.base.BaseActivity;
+import io.github.aguirresabino.deliverycaseiro.view.helpers.ToastHelper;
 
 public class PratoPedidoActivity extends BaseActivity {
 
@@ -26,12 +28,22 @@ public class PratoPedidoActivity extends BaseActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_prato_pedido_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         //se clicar no botão voltar, a activity atual é finalizada
-        if(id == android.R.id.home){
-            finish();
-            return true;
+        switch (id) {
+            case android.R.id.home:
+                finish();
+                break;
+            case R.id.action_ok:
+                ToastHelper.toastShort(PratoPedidoActivity.this, "Clicou");
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

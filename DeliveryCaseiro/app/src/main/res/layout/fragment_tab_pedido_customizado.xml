@@ -7,84 +7,46 @@
     android:background="@color/colorPrimary"
     tools:context=".view.fragments.TabPedidoCustomizadoFragment">
 
-    <TextView
-        android:id="@+id/fragmentPedidoCustomizadoTextViewDescrevaSeuPedido"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+
+    <EditText
+        android:id="@+id/fragmentTabPedidoCustomizadoEditTextNomePrato"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:lineSpacingExtra="8sp"
-        android:text="@string/descreva_seu_pedido"
-        android:textAlignment="viewStart"
-        android:textAllCaps="true"
-        android:textColor="@color/md_black_1000"
-        android:textSize="18sp"
-        android:textStyle="bold"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="@string/nome_do_prato"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--Nome do prato-->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/fragmentPedidoCustomizadoInputLayoutNomePrato"
+    <View
+        android:id="@+id/divider"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_components_pattern"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        android:hint="@string/nome_do_prato"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentPedidoCustomizadoTextViewDescrevaSeuPedido">
+        app:layout_constraintTop_toBottomOf="@+id/fragmentTabPedidoCustomizadoEditTextNomePrato" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/fragmentPedidoCustomizadoEditTextNomePrato"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <!--Descrição do prato-->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/fragmentPedidoCustomizadoInputLayoutDescricao"
-        android:layout_width="match_parent"
-        android:layout_height="201dp"
+    <EditText
+        android:id="@+id/fragmentTabPedidoCustomizadoEditTextDescricaoPrato"
+        android:layout_width="0dp"
+        android:layout_height="410dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:gravity="top"
+        android:inputType="textMultiLine"
+        android:lines="20"
         android:hint="@string/descricao"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentPedidoCustomizadoInputLayoutNomePrato">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/fragmentPedidoCustomizadoEditTextDescricao"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="top|left"
-            android:inputType="textMultiLine"
-            android:overScrollMode="always"
-            android:scrollbarStyle="insideInset"
-            android:scrollbars="vertical"
-            android:lines="6"
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_components_pattern"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:background="@color/colorPrimary2"
-        android:text="@string/postar"
-        android:textColor="@color/colorPrimary"
-        android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentPedidoCustomizadoInputLayoutDescricao" />
-
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
 </androidx.constraintlayout.widget.ConstraintLayout>

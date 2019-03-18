@@ -20,7 +20,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.aguirresabino.deliverycaseiro.R;
+import io.github.aguirresabino.deliverycaseiro.application.DeliveryApplication;
 import io.github.aguirresabino.deliverycaseiro.view.activity.ClientePerfilActivity;
+import io.github.aguirresabino.deliverycaseiro.view.activity.LoginActivity;
 import io.github.aguirresabino.deliverycaseiro.view.activity.PedidoDetailActivity;
 import io.github.aguirresabino.deliverycaseiro.view.fragments.base.BaseFragment;
 import io.github.aguirresabino.deliverycaseiro.view.helpers.ToastHelper;
@@ -63,6 +65,11 @@ public class TabClientePedidosFragment extends BaseFragment {
         switch (item.getItemId()){
             case R.id.action_perfil:
                 getActivity().startActivity(new Intent(getContext(), ClientePerfilActivity.class));
+                break;
+            case R.id.action_sair:
+                DeliveryApplication.usuarioLogado = null;
+                startActivity(new Intent(getContext(), LoginActivity.class));
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

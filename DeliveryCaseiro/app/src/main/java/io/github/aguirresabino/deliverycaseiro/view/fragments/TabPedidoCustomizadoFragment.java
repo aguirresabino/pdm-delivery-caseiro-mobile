@@ -13,7 +13,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import butterknife.ButterKnife;
 import io.github.aguirresabino.deliverycaseiro.R;
+import io.github.aguirresabino.deliverycaseiro.application.DeliveryApplication;
 import io.github.aguirresabino.deliverycaseiro.view.activity.ClientePerfilActivity;
+import io.github.aguirresabino.deliverycaseiro.view.activity.LoginActivity;
 import io.github.aguirresabino.deliverycaseiro.view.fragments.base.BaseFragment;
 import io.github.aguirresabino.deliverycaseiro.view.helpers.ToastHelper;
 
@@ -45,8 +47,16 @@ public class TabPedidoCustomizadoFragment extends BaseFragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
+            case R.id.action_post:
+                ToastHelper.toastShort(getContext(), "Clicou em Postar");
+                break;
             case R.id.action_perfil:
                 getActivity().startActivity(new Intent(getContext(), ClientePerfilActivity.class));
+                break;
+            case R.id.action_sair:
+                DeliveryApplication.usuarioLogado = null;
+                startActivity(new Intent(getContext(), LoginActivity.class));
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
