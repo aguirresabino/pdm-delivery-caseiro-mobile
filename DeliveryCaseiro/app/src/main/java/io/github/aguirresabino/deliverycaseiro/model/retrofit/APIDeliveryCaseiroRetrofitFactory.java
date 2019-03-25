@@ -1,6 +1,6 @@
 package io.github.aguirresabino.deliverycaseiro.model.retrofit;
 
-import io.github.aguirresabino.deliverycaseiro.application.DeliveryApplication;
+import io.github.aguirresabino.deliverycaseiro.model.enums.ValuesApplicationEnum;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -14,7 +14,7 @@ public class APIDeliveryCaseiroRetrofitFactory {
             OkHttpClient client = new OkHttpClient.Builder().build();
 
             retrofit = new Retrofit.Builder()
-                    .baseUrl(DeliveryApplication.URL_BASE_API_DELIVERY_CASEIRO)
+                    .baseUrl(ValuesApplicationEnum.URL_BASE_DELIVERY_SERVICE.getValue())
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
                     .build();

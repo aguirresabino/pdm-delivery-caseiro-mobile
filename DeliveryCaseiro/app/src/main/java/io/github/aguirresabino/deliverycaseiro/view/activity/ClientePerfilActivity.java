@@ -1,5 +1,11 @@
 package io.github.aguirresabino.deliverycaseiro.view.activity;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+
+import com.google.android.material.textfield.TextInputLayout;
+
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 import butterknife.BindView;
@@ -9,6 +15,7 @@ import io.github.aguirresabino.deliverycaseiro.R;
 import io.github.aguirresabino.deliverycaseiro.application.DeliveryApplication;
 import io.github.aguirresabino.deliverycaseiro.logs.MyLogger;
 import io.github.aguirresabino.deliverycaseiro.model.entities.Usuario;
+import io.github.aguirresabino.deliverycaseiro.model.enums.ValuesApplicationEnum;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroRetrofitFactory;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroUsuario;
 import io.github.aguirresabino.deliverycaseiro.view.activity.base.BaseActivity;
@@ -16,12 +23,6 @@ import io.github.aguirresabino.deliverycaseiro.view.helpers.ToastHelper;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
-
-import com.google.android.material.textfield.TextInputLayout;
 
 public class ClientePerfilActivity extends BaseActivity {
 
@@ -96,7 +97,7 @@ public class ClientePerfilActivity extends BaseActivity {
             }
         });
 
-        MyLogger.logInfo(DeliveryApplication.MY_TAG, ClientePerfilActivity.class, "Atualizando usuário: " + DeliveryApplication.usuarioLogado.toString());
+        MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), ClientePerfilActivity.class, "Atualizando usuário: " + DeliveryApplication.usuarioLogado.toString());
     }
 
     @OnClick(R.id.activityClientePerfilButtonDeletar)
@@ -109,7 +110,7 @@ public class ClientePerfilActivity extends BaseActivity {
         call.enqueue(new Callback<Usuario>() {
             @Override
             public void onResponse(Call<Usuario> call, Response<Usuario> response) {
-                MyLogger.logInfo(DeliveryApplication.MY_TAG, ClientePerfilActivity.class, "Deletando usuário: " + response.toString());
+                MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), ClientePerfilActivity.class, "Deletando usuário: " + response.toString());
                 DeliveryApplication.usuarioLogado = null;
                 startActivity(new Intent(ClientePerfilActivity.this, LoginActivity.class));
             }

@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import io.github.aguirresabino.deliverycaseiro.application.DeliveryApplication;
 import io.github.aguirresabino.deliverycaseiro.logs.MyLogger;
+import io.github.aguirresabino.deliverycaseiro.model.enums.ValuesApplicationEnum;
 import io.github.aguirresabino.deliverycaseiro.view.activity.base.BaseActivity;
 
 /**
@@ -26,67 +27,67 @@ public class BaseFragment extends Fragment {
         super.onAttach(context);
         //recupera activity do contexto
         this.activityContext = (BaseActivity) getActivity();
-        MyLogger.logInfo(DeliveryApplication.MY_TAG, getClass(), " onAttach() chamado " + context);
+        MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), getClass(), " onAttach() chamado " + context);
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        MyLogger.logInfo(DeliveryApplication.MY_TAG, getClass(), " onCreate() chamado " + savedInstanceState);
+        MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), getClass(), " onCreate() chamado " + savedInstanceState);
         super.onCreate(savedInstanceState);
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        MyLogger.logInfo(DeliveryApplication.MY_TAG, getClass(), " onCreateView() chamado " + inflater + container + savedInstanceState);
+        MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), getClass(), " onCreateView() chamado " + inflater + container + savedInstanceState);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        MyLogger.logInfo(DeliveryApplication.MY_TAG, getClass(), " onActivityCreated() chamado " + savedInstanceState);
+        MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), getClass(), " onActivityCreated() chamado " + savedInstanceState);
         super.onActivityCreated(savedInstanceState);
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        MyLogger.logInfo(DeliveryApplication.MY_TAG, getClass(), " onStart() chamado ");
+        MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), getClass(), " onStart() chamado ");
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        MyLogger.logInfo(DeliveryApplication.MY_TAG, getClass(), " onResume() chamado ");
+        MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), getClass(), " onResume() chamado ");
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        MyLogger.logInfo(DeliveryApplication.MY_TAG, getClass(), " onPause() chamado ");
+        MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), getClass(), " onPause() chamado ");
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        MyLogger.logInfo(DeliveryApplication.MY_TAG, getClass(), " onStop() chamado ");
+        MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), getClass(), " onStop() chamado ");
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        MyLogger.logInfo(DeliveryApplication.MY_TAG, getClass(), " onDestroyView() chamado ");
+        MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), getClass(), " onDestroyView() chamado ");
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        MyLogger.logInfo(DeliveryApplication.MY_TAG, getClass(), " onDestroy() chamado ");
+        MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), getClass(), " onDestroy() chamado ");
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        MyLogger.logInfo(DeliveryApplication.MY_TAG, getClass(), " onDetach() chamado ");
+        MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), getClass(), " onDetach() chamado ");
     }
 }

@@ -13,6 +13,7 @@ import io.github.aguirresabino.deliverycaseiro.R;
 import io.github.aguirresabino.deliverycaseiro.application.DeliveryApplication;
 import io.github.aguirresabino.deliverycaseiro.logs.MyLogger;
 import io.github.aguirresabino.deliverycaseiro.model.entities.Usuario;
+import io.github.aguirresabino.deliverycaseiro.model.enums.ValuesApplicationEnum;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroRetrofitFactory;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroUsuario;
 import io.github.aguirresabino.deliverycaseiro.view.activity.base.BaseActivity;
@@ -53,11 +54,11 @@ public class LoginActivity extends BaseActivity {
         call.enqueue(new Callback<Usuario>() {
             @Override
             public void onResponse(Call<Usuario> call, Response<Usuario> response) {
-                MyLogger.logInfo(DeliveryApplication.MY_TAG, LoginActivity.class, "Clicou no botão LOGIN   | Thread: " + Thread.currentThread().getName());
+                MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), LoginActivity.class, "Clicou no botão LOGIN   | Thread: " + Thread.currentThread().getName());
                 //
                 Usuario usuario = response.body();
                 if(usuario != null) {
-                    MyLogger.logInfo(DeliveryApplication.MY_TAG, LoginActivity.class, "Usuário encontrado: " + usuario.toString());
+                    MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), LoginActivity.class, "Usuário encontrado: " + usuario.toString());
                     // TODO Utilizar outra forma de manter o usuário na sessão do aplicativo.
                     DeliveryApplication.usuarioLogado = usuario;
                     // Iniciando MainActivity
@@ -65,7 +66,7 @@ public class LoginActivity extends BaseActivity {
                     startActivity(intent);
                 }
                 else {
-                    MyLogger.logInfo(DeliveryApplication.MY_TAG, LoginActivity.class, "Usuário não existe");
+                    MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), LoginActivity.class, "Usuário não existe");
                     btEntrar.setEnabled(true);
                     btEntrar.setText(R.string.entrar);
                     ToastHelper.toastShort(getBaseContext(), "Usuário não encontrado!");
@@ -75,7 +76,7 @@ public class LoginActivity extends BaseActivity {
             public void onFailure(Call<Usuario> call, Throwable t) {
                 btEntrar.setEnabled(true);
                 btEntrar.setText(R.string.entrar);
-                MyLogger.logError(DeliveryApplication.MY_TAG, LoginActivity.class, "Erro na requisição: " + t.getMessage());
+                MyLogger.logError(ValuesApplicationEnum.MY_TAG.getValue(), LoginActivity.class, "Erro na requisição: " + t.getMessage());
                 ToastHelper.toastShort(getBaseContext(), "Tente novamente mais tarde!");
             }
         });

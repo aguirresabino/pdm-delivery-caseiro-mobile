@@ -26,13 +26,13 @@ import io.github.aguirresabino.deliverycaseiro.R;
 import io.github.aguirresabino.deliverycaseiro.application.DeliveryApplication;
 import io.github.aguirresabino.deliverycaseiro.logs.MyLogger;
 import io.github.aguirresabino.deliverycaseiro.model.entities.Chefe;
+import io.github.aguirresabino.deliverycaseiro.model.enums.ValuesApplicationEnum;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroChefe;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroRetrofitFactory;
 import io.github.aguirresabino.deliverycaseiro.view.activity.ChefeActivity;
 import io.github.aguirresabino.deliverycaseiro.view.activity.ClientePerfilActivity;
 import io.github.aguirresabino.deliverycaseiro.view.activity.LoginActivity;
 import io.github.aguirresabino.deliverycaseiro.view.fragments.base.BaseFragment;
-import io.github.aguirresabino.deliverycaseiro.view.helpers.ToastHelper;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -75,11 +75,11 @@ public class TabChefeFragment extends BaseFragment {
                 chefes = response.body();
                 // Como informar ao recyclerview que a view deve ser atualizada
                 recyclerView.setAdapter(new ChefeRecyclerViewAdapter(chefes, onClickChefe()));
-                MyLogger.logInfo(DeliveryApplication.MY_TAG, TabChefeFragment.class, chefes.toString());
+                MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), TabChefeFragment.class, chefes.toString());
             }
             @Override
             public void onFailure(Call<List<Chefe>> call, Throwable t) {
-                MyLogger.logInfo(DeliveryApplication.MY_TAG, TabChefeFragment.class, "ERRORRRRR");
+                MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), TabChefeFragment.class, "ERRORRRRR");
             }
         });
         super.onViewCreated(view, savedInstanceState);
