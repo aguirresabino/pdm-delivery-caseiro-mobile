@@ -1,6 +1,0 @@
-projectKey=aguirre:deliveryMobile
-serverUrl=http://localhost:9000
-serverVersion=7.6.0.21501
-dashboardUrl=http://localhost:9000/dashboard?id=aguirre%3AdeliveryMobile
-ceTaskId=AWmiYjSr757SL8av2rlM
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AWmiYjSr757SL8av2rlM
