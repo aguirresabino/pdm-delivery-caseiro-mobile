@@ -1,6 +1,0 @@
-projectKey=aguirre:deliveryMobile
-serverUrl=http://192.168.0.106:9000
-serverVersion=7.6.0.21501
-dashboardUrl=http://192.168.0.106:9000/dashboard?id=aguirre%3AdeliveryMobile
-ceTaskId=AWkySmjUe_S0Ks_3gQ7F
-ceTaskUrl=http://192.168.0.106:9000/api/ce/task?id=AWkySmjUe_S0Ks_3gQ7F

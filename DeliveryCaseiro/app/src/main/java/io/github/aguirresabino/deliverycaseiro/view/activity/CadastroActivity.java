@@ -10,11 +10,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.github.aguirresabino.deliverycaseiro.R;
-import io.github.aguirresabino.deliverycaseiro.application.DeliveryApplication;
 import io.github.aguirresabino.deliverycaseiro.logs.MyLogger;
 import io.github.aguirresabino.deliverycaseiro.model.entities.Endereco;
 import io.github.aguirresabino.deliverycaseiro.model.entities.Usuario;
-import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIClientDeliveryCaserio;
+import io.github.aguirresabino.deliverycaseiro.model.enums.ValuesApplicationEnum;
+import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroRetrofitFactory;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroUsuario;
 import io.github.aguirresabino.deliverycaseiro.view.activity.base.BaseActivity;
 import io.github.aguirresabino.deliverycaseiro.view.helpers.ToastHelper;
@@ -41,7 +41,7 @@ public class CadastroActivity extends BaseActivity {
         //
         ButterKnife.bind(this);
 
-        apiDeliveryCaseiroUsuario = APIClientDeliveryCaserio.getApiDeliveryCaseiroUsuario();
+        apiDeliveryCaseiroUsuario = APIDeliveryCaseiroRetrofitFactory.getApiDeliveryCaseiroUsuario();
     }
 
     @OnClick(R.id.activityCadastroButtonCadastrar)
@@ -55,10 +55,9 @@ public class CadastroActivity extends BaseActivity {
         endereco.setCep(cep.getEditText().getText().toString());
         usuario.setEndereco(endereco);
 
-        MyLogger.logInfo(DeliveryApplication.MY_TAG, CadastroActivity.class, usuario.toString());
-
         cadastrar.setEnabled(false);
         cancelar.setEnabled(false);
+        //TODO Alterar isto para alguma coisa que mostre um loading.
         cadastrar.setText("Aguarde...");
 
         Call<Usuario> call =  apiDeliveryCaseiroUsuario.create(usuario);
@@ -66,7 +65,7 @@ public class CadastroActivity extends BaseActivity {
         call.enqueue(new Callback<Usuario>() {
             @Override
             public void onResponse(Call<Usuario> call, Response<Usuario> response) {
-                MyLogger.logInfo(DeliveryApplication.MY_TAG, CadastroActivity.class, "Usuário cadastrado: " + usuario.toString());
+                MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), CadastroActivity.class, "Usuário cadastrado: " + usuario.toString());
                 //
                 cadastrar.setText("Usuário cadastrado!");
                 cancelar.setText("Voltar");
@@ -75,15 +74,18 @@ public class CadastroActivity extends BaseActivity {
 
             @Override
             public void onFailure(Call<Usuario> call, Throwable t) {
-                MyLogger.logInfo(DeliveryApplication.MY_TAG, CadastroActivity.class, "Erro no cadastro do usuário!");
+                MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), CadastroActivity.class, "Erro no cadastro do usuário!");
                 ToastHelper.toastShort(getBaseContext(), "Tente novamente mais tarde!");
+                cadastrar.setEnabled(true);
+                cancelar.setEnabled(true);
+                cadastrar.setText(R.string.cadastrar);
             }
         });
     }
 
     @OnClick(R.id.activityCadastroButtonCancelar)
     public void btnCancelar() {
-        MyLogger.logInfo(DeliveryApplication.MY_TAG, CadastroActivity.class, "Botão Cancelar clicado.");
+        MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), CadastroActivity.class, "Botão Cancelar clicado.");
         startActivity(new Intent(this, LoginActivity.class));
     }
 }

@@ -33,7 +33,7 @@ public class ChefeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chefe);
-        //
+        // ButterKnife
         ButterKnife.bind(this);
         //
         setUpToolbar(toolbar);
@@ -64,11 +64,11 @@ public class ChefeActivity extends BaseActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(new ListCardAdapter(getResources().getStringArray(R.array.testeChefeActivity), this.onClickPrato()));
+        recyclerView.setAdapter(new ChefeListCardAdapter(getResources().getStringArray(R.array.testeChefeActivity), this.onClickPrato()));
     }
 
-    private ListCardAdapter.CardOnClickListener onClickPrato(){
-        return new ListCardAdapter.CardOnClickListener() {
+    private ChefeListCardAdapter.CardOnClickListener onClickPrato(){
+        return new ChefeListCardAdapter.CardOnClickListener() {
             @Override
             public void onClickCard(View view, int idx) {
                 //String item = getResources().getStringArray(R.array.teste)[idx];
@@ -79,12 +79,12 @@ public class ChefeActivity extends BaseActivity {
         };
     }
 
-    static class ListCardAdapter extends RecyclerView.Adapter<ListCardAdapter.ListCardViewHolder> {
+    static class ChefeListCardAdapter extends RecyclerView.Adapter<ChefeListCardAdapter.ListCardViewHolder> {
 
         private String[] dataSet;
-        private ListCardAdapter.CardOnClickListener cardOnClickListener;
+        private ChefeListCardAdapter.CardOnClickListener cardOnClickListener;
 
-        public ListCardAdapter(String[] dataSet, ListCardAdapter.CardOnClickListener cardOnClickListener){
+        public ChefeListCardAdapter(String[] dataSet, ChefeListCardAdapter.CardOnClickListener cardOnClickListener){
             this.dataSet = dataSet;
             this.cardOnClickListener = cardOnClickListener;
         }
@@ -92,16 +92,16 @@ public class ChefeActivity extends BaseActivity {
         //Cria novas views
         @NonNull
         @Override
-        public ListCardAdapter.ListCardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        public ChefeListCardAdapter.ListCardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             //criando nova view
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_line, parent, false);
 
-            ListCardAdapter.ListCardViewHolder listCardViewHolder = new ListCardAdapter.ListCardViewHolder(view);
+            ChefeListCardAdapter.ListCardViewHolder listCardViewHolder = new ChefeListCardAdapter.ListCardViewHolder(view);
             return listCardViewHolder;
         }
 
         @Override
-        public void onBindViewHolder(@NonNull final ListCardAdapter.ListCardViewHolder holder, final int position) {
+        public void onBindViewHolder(@NonNull final ChefeListCardAdapter.ListCardViewHolder holder, final int position) {
             String elem = dataSet[position];
 
             holder.nome.setText(elem);
@@ -110,7 +110,6 @@ public class ChefeActivity extends BaseActivity {
 
             if(cardOnClickListener != null){
                 holder.itemView.setOnClickListener(new View.OnClickListener(){
-
                     @Override
                     public void onClick(View v) {
                         cardOnClickListener.onClickCard(holder.itemView, position);

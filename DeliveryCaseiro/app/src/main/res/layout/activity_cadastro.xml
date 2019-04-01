@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/colorPrimary"
     tools:context=".view.activity.CadastroActivity">
 
     <com.google.android.material.textfield.TextInputLayout
@@ -12,9 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_components_pattern"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/input_bg"
+        android:background="@drawable/border"
         app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
             android:background="@android:color/transparent"
             android:hint="@string/nome"
             android:inputType="textCapWords"
-            android:paddingLeft="@dimen/materialize_baseline_grid" />
+            android:paddingStart="@dimen/materialize_baseline_grid" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -34,9 +34,9 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_components_pattern"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/input_bg"
+        android:background="@drawable/border"
         app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +48,7 @@
             android:background="@android:color/transparent"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
-            android:paddingLeft="@dimen/materialize_baseline_grid" />
+            android:paddingStart="@dimen/materialize_baseline_grid" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -56,9 +56,9 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_components_pattern"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/input_bg"
+        android:background="@drawable/border"
         app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +70,7 @@
             android:background="@android:color/transparent"
             android:hint="@string/senha"
             android:inputType="textPassword"
-            android:paddingLeft="@dimen/materialize_baseline_grid" />
+            android:paddingStart="@dimen/materialize_baseline_grid" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -78,9 +78,9 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_components_pattern"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/input_bg"
+        android:background="@drawable/border"
         app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -93,7 +93,7 @@
             android:background="@android:color/transparent"
             android:hint="@string/telefone"
             android:inputType="phone"
-            android:paddingLeft="@dimen/materialize_baseline_grid" />
+            android:paddingStart="@dimen/materialize_baseline_grid" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -101,9 +101,9 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_components_pattern"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/input_bg"
+        android:background="@drawable/border"
         app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -115,7 +115,7 @@
             android:background="@android:color/transparent"
             android:hint="@string/cep"
             android:inputType="number"
-            android:paddingLeft="@dimen/materialize_baseline_grid" />
+            android:paddingStart="@dimen/materialize_baseline_grid" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -123,9 +123,11 @@
         android:layout_width="0dp"
         android:layout_height="@dimen/height_components_pattern"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimary2"
+        android:clickable="true"
+        android:foreground="?selectableItemBackgroundBorderless"
         android:text="@string/cadastrar"
         android:textColor="@color/colorPrimary"
         android:textSize="22sp"
@@ -138,12 +140,14 @@
         android:layout_width="0dp"
         android:layout_height="@dimen/height_components_pattern"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@color/colorAccent2"
+        android:background="@color/colorPrimary"
+        android:clickable="true"
+        android:foreground="?selectableItemBackgroundBorderless"
         android:text="@string/cancelar"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorPrimary2"
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

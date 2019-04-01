@@ -1,16 +1,18 @@
 package io.github.aguirresabino.deliverycaseiro.view.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,47 +20,58 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.aguirresabino.deliverycaseiro.R;
+import io.github.aguirresabino.deliverycaseiro.application.DeliveryApplication;
+import io.github.aguirresabino.deliverycaseiro.view.activity.ClientePerfilActivity;
+import io.github.aguirresabino.deliverycaseiro.view.activity.LoginActivity;
 import io.github.aguirresabino.deliverycaseiro.view.activity.PedidoDetailActivity;
 import io.github.aguirresabino.deliverycaseiro.view.fragments.base.BaseFragment;
+import io.github.aguirresabino.deliverycaseiro.view.helpers.ToastHelper;
 
-public class ClientePedidosFragment extends BaseFragment {
+public class TabClientePedidosFragment extends BaseFragment {
 
-    @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.fragmentClientePedidosRecyclerView) RecyclerView recyclerView;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //Inflando o fragment e salvando na variavel view
-        View view = inflater.inflate(R.layout.fragment_cliente_pedidos, container, false);
-        //
+        View view = inflater.inflate(R.layout.fragment_tab_cliente_pedidos, container, false);
+        // ButterKnife
         ButterKnife.bind(this, view);
+        // O fragment define o menu da toolbar
+        setHasOptionsMenu(true);
         //
-        toolbar.setTitle(R.string.meus_pedidos);
-        //Adicionando o toolbar a activity do contexto
-        //A activity do contexto é recuperada e depois é utilizado o método setUpToolbar implementado em BaseActivity
-        //A variável activityContext está definida em BaseFragment como protected. Ela é inicializada em onAttach, pois
-        //neste momento do ciclo de vida do fragment, já podemos ter uma referência para a activity pai
-        activityContext.setUpToolbar(toolbar);
-        //retorna a view com as modificações feitas
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(new ListCardAdapter(getResources().getStringArray(R.array.testeClientePedidosFragment), this.onClickPedido()));
-
-        super.onViewCreated(view, savedInstanceState);
+        return view;
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        ////Atualizando a toolbar na implementação do menu lateral
-        activityContext.updateToolbarInDrawer(toolbar);
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.fragment_tab_cliente_pedidos_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_perfil:
+                getActivity().startActivity(new Intent(getContext(), ClientePerfilActivity.class));
+                break;
+            case R.id.action_sair:
+                DeliveryApplication.usuarioLogado = null;
+                startActivity(new Intent(getContext(), LoginActivity.class));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private ListCardAdapter.CardOnClickListener onClickPedido() {
@@ -125,7 +138,7 @@ public class ClientePedidosFragment extends BaseFragment {
 
             public ListCardViewHolder(View itemView) {
                 super(itemView);
-                //
+                // ButterKnife
                 ButterKnife.bind(this, itemView);
             }
         }

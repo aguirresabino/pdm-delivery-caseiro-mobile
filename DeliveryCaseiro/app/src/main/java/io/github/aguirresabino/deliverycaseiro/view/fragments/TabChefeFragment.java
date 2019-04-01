@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -23,9 +26,12 @@ import io.github.aguirresabino.deliverycaseiro.R;
 import io.github.aguirresabino.deliverycaseiro.application.DeliveryApplication;
 import io.github.aguirresabino.deliverycaseiro.logs.MyLogger;
 import io.github.aguirresabino.deliverycaseiro.model.entities.Chefe;
-import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIClientDeliveryCaserio;
+import io.github.aguirresabino.deliverycaseiro.model.enums.ValuesApplicationEnum;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroChefe;
+import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroRetrofitFactory;
 import io.github.aguirresabino.deliverycaseiro.view.activity.ChefeActivity;
+import io.github.aguirresabino.deliverycaseiro.view.activity.ClientePerfilActivity;
+import io.github.aguirresabino.deliverycaseiro.view.activity.LoginActivity;
 import io.github.aguirresabino.deliverycaseiro.view.fragments.base.BaseFragment;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,10 +46,8 @@ public class TabChefeFragment extends BaseFragment {
 
     @Override
     public void onAttach(@NonNull Context context) {
-
         //Recuperando serviço para consumir API
-        apiDeliveryCaseiroChefe = APIClientDeliveryCaserio.getApiDeliveryCaseiroChefe();
-
+        apiDeliveryCaseiroChefe = APIDeliveryCaseiroRetrofitFactory.getApiDeliveryCaseiroChefe();
         super.onAttach(context);
     }
 
@@ -51,12 +55,14 @@ public class TabChefeFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tab_chefe, container, false);
+        // ButterKnife
         ButterKnife.bind(this, view);
-
+        // O fragment define o menu da toolbar
+        setHasOptionsMenu(true);
+        //
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);
-
         return view;
     }
 
@@ -67,17 +73,37 @@ public class TabChefeFragment extends BaseFragment {
             @Override
             public void onResponse(Call<List<Chefe>> call, Response<List<Chefe>> response) {
                 chefes = response.body();
+                // Como informar ao recyclerview que a view deve ser atualizada
                 recyclerView.setAdapter(new ChefeRecyclerViewAdapter(chefes, onClickChefe()));
-                MyLogger.logInfo(DeliveryApplication.MY_TAG, TabChefeFragment.class, chefes.toString());
+                MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), TabChefeFragment.class, chefes.toString());
             }
-
             @Override
             public void onFailure(Call<List<Chefe>> call, Throwable t) {
-                MyLogger.logInfo(DeliveryApplication.MY_TAG, TabChefeFragment.class, "ERRORRRRR");
+                MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), TabChefeFragment.class, "ERRORRRRR");
             }
         });
-
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.fragment_tab_chefe, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_perfil:
+                getActivity().startActivity(new Intent(getContext(), ClientePerfilActivity.class));
+                break;
+            case R.id.action_sair:
+                DeliveryApplication.usuarioLogado = null;
+                startActivity(new Intent(getContext(), LoginActivity.class));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private ChefeRecyclerViewAdapter.CardOnClickListener onClickChefe() {
@@ -124,7 +150,6 @@ public class TabChefeFragment extends BaseFragment {
 
             if(cardOnClickListener != null){
                 holder.itemView.setOnClickListener(new View.OnClickListener(){
-
                     @Override
                     public void onClick(View v) {
                         cardOnClickListener.onClickCard(holder.itemView, position);
@@ -139,17 +164,14 @@ public class TabChefeFragment extends BaseFragment {
         }
 
         public static class ListCardViewHolder extends RecyclerView.ViewHolder{
-            @BindView(R.id.card_img)
-            ImageView image;
-            @BindView(R.id.card_nome)
-            TextView nome;
+            @BindView(R.id.card_img) ImageView image;
+            @BindView(R.id.card_nome) TextView nome;
             @BindView(R.id.card_descricao) TextView descricao;
-            @BindView(R.id.card_view)
-            CardView card;
+            @BindView(R.id.card_view) CardView card;
 
             public ListCardViewHolder(View itemView) {
                 super(itemView);
-                //
+                // ButterKnife
                 ButterKnife.bind(this, itemView);
             }
         }

@@ -4,144 +4,137 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragments.ClientePerfilFragment">
+    android:background="@color/colorPrimary"
+    tools:context=".view.activity.ClientePerfilActivity">
 
-    <include layout="@layout/toolbar"
-        android:id="@+id/myToolbar"/>
+    <include layout="@layout/toolbar"/>
 
     <!--Nome-->
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/fragmentClientePerfilInputLayoutNome"
+        android:id="@+id/activityClientePerfilInputLayoutNome"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_components_pattern"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:hint="@string/nome"
+        android:background="@drawable/border"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myToolbar">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        tools:ignore="UnknownIdInLayout">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/fragmentClientePerfilEditTextNome"
+            android:id="@+id/activityClientePerfilEditTextNome"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@android:color/transparent"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!--Email-->
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/fragmentClientePerfilInputLayoutEmail"
+        android:id="@+id/activityClientePerfilInputLayoutEmail"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_components_pattern"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:hint="@string/email"
+        android:background="@drawable/border"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentClientePerfilInputLayoutNome">
+        app:layout_constraintTop_toBottomOf="@+id/activityClientePerfilInputLayoutNome">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/fragmentClientePerfilEditTextEmail"
+            android:id="@+id/activityClientePerfilEditTextEmail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@android:color/transparent"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!--Senha-->
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/fragmentClientePerfilInputLayoutSenha"
+        android:id="@+id/activityClientePerfilInputLayoutSenha"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_components_pattern"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:hint="@string/senha"
+        android:background="@drawable/border"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentClientePerfilInputLayoutEmail">
+        app:layout_constraintTop_toBottomOf="@+id/activityClientePerfilInputLayoutEmail">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/fragmentClientePerfilEditTextSenha"
+            android:id="@+id/activityClientePerfilEditTextSenha"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@android:color/transparent"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!--Telefone-->
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/fragmentClientePerfilInputLayoutTelefone"
+        android:id="@+id/activityClientePerfilInputLayoutTelefone"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_components_pattern"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:hint="@string/telefone"
+        android:background="@drawable/border"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentClientePerfilInputLayoutSenha">
+        app:layout_constraintTop_toBottomOf="@+id/activityClientePerfilInputLayoutSenha">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/fragmentClientePerfilEditTextTelefone"
+            android:id="@+id/activityClientePerfilEditTextTelefone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@android:color/transparent"
             android:inputType="phone" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!--CEP-->
-    <!--<com.google.android.material.textfield.TextInputLayout-->
-        <!--android:id="@+id/fragmentClientePerfilInputLayoutCEP"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="@dimen/height_components_pattern"-->
-        <!--android:layout_marginStart="8dp"-->
-        <!--android:layout_marginTop="8dp"-->
-        <!--android:layout_marginEnd="8dp"-->
-        <!--android:hint="@string/cep"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/fragmentClientePerfilInputLayoutTelefone">-->
-
-        <!--<com.google.android.material.textfield.TextInputEditText-->
-            <!--android:id="@+id/fragmentClientePerfilEditTextCEP"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:inputType="number" />-->
-    <!--</com.google.android.material.textfield.TextInputLayout>-->
-
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/fragmentClientePerfilButtonAtualizar"
+        android:id="@+id/activityClientePerfilButtonAtualizar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_components_pattern"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="144dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimary2"
         android:text="@string/atualizar"
-        android:textColor="@color/md_white_1000"
+        android:textColor="@color/colorPrimary"
         android:textSize="22sp"
+        android:clickable="true"
+        android:foreground="?selectableItemBackgroundBorderless"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentClientePerfilInputLayoutTelefone" />
+        app:layout_constraintTop_toBottomOf="@+id/activityClientePerfilInputLayoutTelefone" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/fragmentClientePerfilButtonDeletar"
+        android:id="@+id/activityClientePerfilButtonDeletar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_components_pattern"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@color/colorAccent"
+        android:background="@color/colorAccent2"
         android:text="@string/deletar"
-        android:textColor="@color/md_white_1000"
+        android:textColor="@color/colorPrimary"
         android:textSize="22sp"
+        android:clickable="true"
+        android:foreground="?selectableItemBackgroundBorderless"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentClientePerfilButtonAtualizar"
+        app:layout_constraintTop_toBottomOf="@+id/activityClientePerfilButtonAtualizar"
         app:layout_constraintVertical_bias="0.165" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
