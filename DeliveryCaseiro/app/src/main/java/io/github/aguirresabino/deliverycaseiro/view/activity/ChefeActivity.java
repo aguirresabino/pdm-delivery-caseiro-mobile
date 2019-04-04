@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
+import java.util.List;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
@@ -21,6 +23,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.aguirresabino.deliverycaseiro.R;
 import io.github.aguirresabino.deliverycaseiro.model.entities.Chefe;
+import io.github.aguirresabino.deliverycaseiro.model.entities.Prato;
 import io.github.aguirresabino.deliverycaseiro.view.activity.base.BaseActivity;
 
 public class ChefeActivity extends BaseActivity {
@@ -28,6 +31,8 @@ public class ChefeActivity extends BaseActivity {
     @BindView(R.id.activityChefeRecyclerView) RecyclerView recyclerView;
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.activityChefeCollapsingToolbarLayout) CollapsingToolbarLayout collapsingToolbarLayout;
+
+    private Chefe chefe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +44,7 @@ public class ChefeActivity extends BaseActivity {
         setUpToolbar(toolbar);
         // Recuperando nome do chefe passado na Intent
         Intent intent = getIntent();
-        Chefe chefe = intent.getParcelableExtra("chefe");
+        this.chefe = intent.getParcelableExtra("chefe");
         // Alterando título do menu para o nome do chefe
         collapsingToolbarLayout.setTitle(chefe.getNome());
         //collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
@@ -64,7 +69,7 @@ public class ChefeActivity extends BaseActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(new ChefeListCardAdapter(getResources().getStringArray(R.array.testeChefeActivity), this.onClickPrato()));
+        recyclerView.setAdapter(new ChefeListCardAdapter(this.chefe.getPratos(), this.onClickPrato()));
     }
 
     private ChefeListCardAdapter.CardOnClickListener onClickPrato(){
@@ -74,6 +79,8 @@ public class ChefeActivity extends BaseActivity {
                 //String item = getResources().getStringArray(R.array.teste)[idx];
                 //Toast.makeText(getBaseContext(), "Clicou em " + item, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getBaseContext(), PratoPedidoActivity.class);
+                intent.putExtra("prato", chefe.getPratos().get(idx));
+                intent.putExtra("idChefe", chefe.getId());
                 startActivity(intent);
             }
         };
@@ -81,11 +88,11 @@ public class ChefeActivity extends BaseActivity {
 
     static class ChefeListCardAdapter extends RecyclerView.Adapter<ChefeListCardAdapter.ListCardViewHolder> {
 
-        private String[] dataSet;
+        private List<Prato> pratos;
         private ChefeListCardAdapter.CardOnClickListener cardOnClickListener;
 
-        public ChefeListCardAdapter(String[] dataSet, ChefeListCardAdapter.CardOnClickListener cardOnClickListener){
-            this.dataSet = dataSet;
+        public ChefeListCardAdapter(List<Prato> pratos, ChefeListCardAdapter.CardOnClickListener cardOnClickListener){
+            this.pratos = pratos;
             this.cardOnClickListener = cardOnClickListener;
         }
 
@@ -102,11 +109,11 @@ public class ChefeActivity extends BaseActivity {
 
         @Override
         public void onBindViewHolder(@NonNull final ChefeListCardAdapter.ListCardViewHolder holder, final int position) {
-            String elem = dataSet[position];
+            Prato prato = this.pratos.get(position);
 
-            holder.nome.setText(elem);
-            holder.descricao.setText("Descrição do " + elem);
-            //holder.image.setImageResource(Integer.parseInt(holder.itemView.getResources().getResourceName(R.mipmap.ic_launcher_round)));
+            holder.nome.setText(prato.getNome());
+            holder.descricao.setText(prato.getDescricao());
+//            holder.image.setImageResource(Integer.parseInt(holder.itemView.getResources().getResourceName(R.mipmap.ic_launcher_round)));
 
             if(cardOnClickListener != null){
                 holder.itemView.setOnClickListener(new View.OnClickListener(){
@@ -120,7 +127,7 @@ public class ChefeActivity extends BaseActivity {
 
         @Override
         public int getItemCount() {
-            return dataSet != null ? dataSet.length : 0;
+            return pratos != null || !pratos.isEmpty() ? pratos.size() : 0;
         }
 
         public static class ListCardViewHolder extends RecyclerView.ViewHolder{

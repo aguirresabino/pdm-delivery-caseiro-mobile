@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Chefe implements Cloneable, Parcelable {
@@ -37,11 +38,14 @@ public class Chefe implements Cloneable, Parcelable {
     @SerializedName("horaInicio")
     @Expose
     private String horaInicio;
+    @SerializedName("pratos")
+    @Expose
+    private List<Prato> pratos;
 
     public Chefe() {
     }
 
-    public Chefe(String _id, Endereco endereco, String imagem, String telefone, String email, String nome, String senha, String horaFinal, String horaInicio) {
+    public Chefe(String _id, Endereco endereco, String imagem, String telefone, String email, String nome, String senha, String horaFinal, String horaInicio, List<Prato> pratos) {
         this._id = _id;
         this.endereco = endereco;
         this.imagem = imagem;
@@ -51,6 +55,7 @@ public class Chefe implements Cloneable, Parcelable {
         this.senha = senha;
         this.horaFinal = horaFinal;
         this.horaInicio = horaInicio;
+        this.pratos = pratos;
     }
 
     protected Chefe(Parcel in) {
@@ -63,6 +68,26 @@ public class Chefe implements Cloneable, Parcelable {
         senha = in.readString();
         horaFinal = in.readString();
         horaInicio = in.readString();
+        pratos = in.createTypedArrayList(Prato.CREATOR);
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(_id);
+        dest.writeParcelable(endereco, flags);
+        dest.writeString(imagem);
+        dest.writeString(telefone);
+        dest.writeString(email);
+        dest.writeString(nome);
+        dest.writeString(senha);
+        dest.writeString(horaFinal);
+        dest.writeString(horaInicio);
+        dest.writeTypedList(pratos);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<Chefe> CREATOR = new Creator<Chefe>() {
@@ -77,29 +102,11 @@ public class Chefe implements Cloneable, Parcelable {
         }
     };
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(_id);
-        dest.writeParcelable(endereco, flags);
-        dest.writeString(imagem);
-        dest.writeString(telefone);
-        dest.writeString(email);
-        dest.writeString(nome);
-        dest.writeString(senha);
-        dest.writeString(horaFinal);
-        dest.writeString(horaInicio);
-    }
-
-    public String get_id() {
+    public String getId() {
         return _id;
     }
 
-    public void set_id(String _id) {
+    public void setId(String _id) {
         this._id = _id;
     }
 
@@ -167,6 +174,14 @@ public class Chefe implements Cloneable, Parcelable {
         this.horaInicio = horaInicio;
     }
 
+    public List<Prato> getPratos() {
+        return pratos;
+    }
+
+    public void setPratos(List<Prato> pratos) {
+        this.pratos = pratos;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -180,12 +195,13 @@ public class Chefe implements Cloneable, Parcelable {
                 Objects.equals(nome, chefe.nome) &&
                 Objects.equals(senha, chefe.senha) &&
                 Objects.equals(horaFinal, chefe.horaFinal) &&
-                Objects.equals(horaInicio, chefe.horaInicio);
+                Objects.equals(horaInicio, chefe.horaInicio) &&
+                Objects.equals(pratos, chefe.pratos);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(_id, endereco, imagem, telefone, email, nome, senha, horaFinal, horaInicio);
+        return Objects.hash(_id, endereco, imagem, telefone, email, nome, senha, horaFinal, horaInicio, pratos);
     }
 
     @Override
@@ -200,6 +216,7 @@ public class Chefe implements Cloneable, Parcelable {
                 ", senha='" + senha + '\'' +
                 ", horaFinal='" + horaFinal + '\'' +
                 ", horaInicio='" + horaInicio + '\'' +
+                ", pratos=" + pratos +
                 '}';
     }
 }
