@@ -3,6 +3,7 @@ package io.github.aguirresabino.deliverycaseiro.model.retrofit;
 import java.util.List;
 
 import io.github.aguirresabino.deliverycaseiro.model.entities.Chefe;
+import io.github.aguirresabino.deliverycaseiro.model.entities.Pedido;
 import io.github.aguirresabino.deliverycaseiro.model.entities.Usuario;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -17,15 +18,18 @@ import retrofit2.http.Path;
 
 public interface APIDeliveryCaseiroUsuario {
     @POST("usuarios")
-    public Call<Usuario> create(@Body Usuario usuario);
+    Call<Usuario> create(@Body Usuario usuario);
 
     @FormUrlEncoded
     @POST("login")
-    public Call<Usuario> login(@Field("email") String email, @Field("senha") String senha);
+    Call<Usuario> login(@Field("email") String email, @Field("senha") String senha);
 
     @PUT("usuarios/{id}")
-    public Call<Usuario> update(@Path("id") String id, @Body Usuario usuario);
+    Call<Usuario> update(@Path("id") String id, @Body Usuario usuario);
 
     @DELETE("usuarios/{id}")
-    public Call<Usuario> delete(@Path("id") String id);
+    Call<Usuario> delete(@Path("id") String id);
+
+    @GET("usuario/pedidos/{idUsuario}")
+    Call<List<Pedido>> getPedidosUsuario(@Path("idUsuario") String id);
 }

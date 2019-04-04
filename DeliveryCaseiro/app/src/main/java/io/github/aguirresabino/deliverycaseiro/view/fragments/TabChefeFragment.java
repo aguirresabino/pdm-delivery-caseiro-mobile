@@ -68,20 +68,7 @@ public class TabChefeFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        Call<List<Chefe>> call = apiDeliveryCaseiroChefe.buscarChefesPorCep(DeliveryApplication.usuarioLogado.getEndereco().getCep());
-        call.enqueue(new Callback<List<Chefe>>() {
-            @Override
-            public void onResponse(Call<List<Chefe>> call, Response<List<Chefe>> response) {
-                chefes = response.body();
-                // Como informar ao recyclerview que a view deve ser atualizada
-                recyclerView.setAdapter(new ChefeRecyclerViewAdapter(chefes, onClickChefe()));
-                MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), TabChefeFragment.class, chefes.toString());
-            }
-            @Override
-            public void onFailure(Call<List<Chefe>> call, Throwable t) {
-                MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), TabChefeFragment.class, "ERRORRRRR");
-            }
-        });
+        this.buscarChefes();
         super.onViewCreated(view, savedInstanceState);
     }
 
@@ -115,6 +102,23 @@ public class TabChefeFragment extends BaseFragment {
                 startActivity(intent);
             }
         };
+    }
+
+    private void buscarChefes() {
+        Call<List<Chefe>> call = apiDeliveryCaseiroChefe.buscarChefesPorCep(DeliveryApplication.usuarioLogado.getEndereco().getCep());
+        call.enqueue(new Callback<List<Chefe>>() {
+            @Override
+            public void onResponse(Call<List<Chefe>> call, Response<List<Chefe>> response) {
+                chefes = response.body();
+                //TODO Como informar ao recyclerview que a view deve ser atualizada
+                recyclerView.setAdapter(new ChefeRecyclerViewAdapter(chefes, onClickChefe()));
+                MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), TabChefeFragment.class, chefes.toString());
+            }
+            @Override
+            public void onFailure(Call<List<Chefe>> call, Throwable t) {
+                MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), TabChefeFragment.class, "ERRORRRRR");
+            }
+        });
     }
 
     // Implementação do RecyclerView.Adapter

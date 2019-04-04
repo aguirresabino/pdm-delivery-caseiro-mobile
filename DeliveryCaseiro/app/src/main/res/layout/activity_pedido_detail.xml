@@ -40,13 +40,13 @@
                 app:srcCompat="@drawable/food" />
 
             <TextView
+                android:id="@+id/activityPedidoDetailDescricao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="16dp"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi porta erat vel vehicula dapibus. Aenean at molestie massa, quis malesuada quam. Aenean non nisl mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                 android:textAlignment="center"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -58,12 +58,12 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
+        android:id="@+id/activityPedidoDetailValor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:text="R$ 20,00"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary2"
         android:textSize="36sp"

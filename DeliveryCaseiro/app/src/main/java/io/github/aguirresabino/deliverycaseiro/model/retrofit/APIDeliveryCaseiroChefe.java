@@ -16,5 +16,5 @@ public interface APIDeliveryCaseiroChefe {
     Call<List<Chefe>> buscarChefesPorCep(@Path("cep") String cep);
 
     @POST("pedidos")
-    public Call<Pedido> fazerPedido(@Body Pedido pedido);
+    Call<Pedido> fazerPedido(@Body Pedido pedido);
 }

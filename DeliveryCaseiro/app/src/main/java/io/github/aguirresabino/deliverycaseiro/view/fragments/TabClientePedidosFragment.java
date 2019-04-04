@@ -12,7 +12,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.List;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,18 +24,30 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.aguirresabino.deliverycaseiro.R;
 import io.github.aguirresabino.deliverycaseiro.application.DeliveryApplication;
+import io.github.aguirresabino.deliverycaseiro.logs.MyLogger;
+import io.github.aguirresabino.deliverycaseiro.model.entities.Pedido;
+import io.github.aguirresabino.deliverycaseiro.model.enums.ValuesApplicationEnum;
+import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroRetrofitFactory;
+import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroUsuario;
 import io.github.aguirresabino.deliverycaseiro.view.activity.ClientePerfilActivity;
 import io.github.aguirresabino.deliverycaseiro.view.activity.LoginActivity;
 import io.github.aguirresabino.deliverycaseiro.view.activity.PedidoDetailActivity;
 import io.github.aguirresabino.deliverycaseiro.view.fragments.base.BaseFragment;
 import io.github.aguirresabino.deliverycaseiro.view.helpers.ToastHelper;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class TabClientePedidosFragment extends BaseFragment {
 
     @BindView(R.id.fragmentClientePedidosRecyclerView) RecyclerView recyclerView;
 
+    private APIDeliveryCaseiroUsuario apiDeliveryCaseiroUsuario;
+    private List<Pedido> pedidos;
+
     @Override
     public void onAttach(@NonNull Context context) {
+        apiDeliveryCaseiroUsuario = APIDeliveryCaseiroRetrofitFactory.getApiDeliveryCaseiroUsuario();
         super.onAttach(context);
     }
 
@@ -49,8 +64,13 @@ public class TabClientePedidosFragment extends BaseFragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(new ListCardAdapter(getResources().getStringArray(R.array.testeClientePedidosFragment), this.onClickPedido()));
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        this.buscarPedidos();
+        super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
@@ -78,20 +98,41 @@ public class TabClientePedidosFragment extends BaseFragment {
         return new ListCardAdapter.CardOnClickListener() {
             @Override
             public void onClickCard(View view, int idx) {
-                String item = getResources().getStringArray(R.array.testeClientePedidosFragment)[idx];
+                Pedido pedido = pedidos.get(idx);
                 Intent intent = new Intent(getActivity(), PedidoDetailActivity.class);
+                intent.putExtra("pedido", pedido);
                 startActivity(intent);
             }
         };
     }
 
+    private void buscarPedidos() {
+        Call<List<Pedido>> call = apiDeliveryCaseiroUsuario.getPedidosUsuario(DeliveryApplication.usuarioLogado.getId());
+
+        call.enqueue(new Callback<List<Pedido>>() {
+            @Override
+            public void onResponse(Call<List<Pedido>> call, Response<List<Pedido>> response) {
+                pedidos = response.body();
+                recyclerView.setAdapter(new ListCardAdapter(pedidos, onClickPedido()));
+                MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), TabClientePedidosFragment.class, pedidos.toString());
+            }
+
+            @Override
+            public void onFailure(Call<List<Pedido>> call, Throwable t) {
+                MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), TabClientePedidosFragment.class, "Erro ao buscar pedidos do usuário!");
+            }
+        });
+    }
+
+    // Adapter RecyclerView
+
     static class ListCardAdapter extends RecyclerView.Adapter<ListCardAdapter.ListCardViewHolder> {
 
-        private String[] dataSet;
+        private List<Pedido> pedidos;
         private ListCardAdapter.CardOnClickListener cardOnClickListener;
 
-        public ListCardAdapter(String[] dataSet, ListCardAdapter.CardOnClickListener cardOnClickListener){
-            this.dataSet = dataSet;
+        public ListCardAdapter(List<Pedido> pedidos, ListCardAdapter.CardOnClickListener cardOnClickListener){
+            this.pedidos = pedidos;
             this.cardOnClickListener = cardOnClickListener;
         }
 
@@ -108,10 +149,10 @@ public class TabClientePedidosFragment extends BaseFragment {
 
         @Override
         public void onBindViewHolder(@NonNull final ListCardAdapter.ListCardViewHolder holder, final int position) {
-            String elem = dataSet[position];
+            Pedido pedido = pedidos.get(position);
 
-            holder.nome.setText(elem);
-            holder.descricao.setText("Descrição " + elem);
+            holder.nome.setText(pedido.getItens().get(0).getNome());
+            holder.descricao.setText("Preço: " + pedido.getValor() + " | " + "Quantidade: " + pedido.getItens().get(0).getQuantidade());
             //holder.image.setImageResource(Integer.parseInt(holder.itemView.getResources().getResourceName(R.mipmap.ic_launcher_round)));
 
             if(cardOnClickListener != null){
@@ -127,7 +168,7 @@ public class TabClientePedidosFragment extends BaseFragment {
 
         @Override
         public int getItemCount() {
-            return dataSet != null ? dataSet.length : 0;
+            return pedidos != null ? pedidos.size() : 0;
         }
 
         public static class ListCardViewHolder extends RecyclerView.ViewHolder{
