@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.List;
+
 import androidx.appcompat.widget.AppCompatButton;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,19 +50,19 @@ public class LoginActivity extends BaseActivity {
         btEntrar.setText(R.string.entrar_aguarde);
         btEntrar.setEnabled(false);
 
-        Call<Usuario> call = apiDeliveryCaseiroUsuario.login(email.getEditText().getText().toString(),
+        Call<List<Usuario>> call = apiDeliveryCaseiroUsuario.login(email.getEditText().getText().toString(),
                                                             senha.getEditText().getText().toString());
 
-        call.enqueue(new Callback<Usuario>() {
+        call.enqueue(new Callback<List<Usuario>>() {
             @Override
-            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+            public void onResponse(Call<List<Usuario>> call, Response<List<Usuario>> response) {
                 MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), LoginActivity.class, "Clicou no botão LOGIN   | Thread: " + Thread.currentThread().getName());
                 //
-                Usuario usuario = response.body();
-                if(usuario != null) {
-                    MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), LoginActivity.class, "Usuário encontrado: " + usuario.toString());
+                List<Usuario> usuarios = response.body();
+                if(usuarios != null && !usuarios.isEmpty()) {
+                    MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), LoginActivity.class, "Usuário encontrado: " + usuarios.toString());
                     // TODO Utilizar outra forma de manter o usuário na sessão do aplicativo.
-                    DeliveryApplication.usuarioLogado = usuario;
+                    DeliveryApplication.usuarioLogado = usuarios.get(0);
                     // Iniciando MainActivity
                     Intent intent = new Intent(getBaseContext(), MainActivity.class);
                     startActivity(intent);
@@ -73,11 +75,12 @@ public class LoginActivity extends BaseActivity {
                 }
             }
             @Override
-            public void onFailure(Call<Usuario> call, Throwable t) {
+            public void onFailure(Call<List<Usuario>> call, Throwable t) {
                 btEntrar.setEnabled(true);
                 btEntrar.setText(R.string.entrar);
                 MyLogger.logError(ValuesApplicationEnum.MY_TAG.getValue(), LoginActivity.class, "Erro na requisição: " + t.getMessage());
-                ToastHelper.toastShort(getBaseContext(), "Tente novamente mais tarde!");
+//                ToastHelper.toastShort(getBaseContext(), "Tente novamente mais tarde!");
+                ToastHelper.toastShort(getBaseContext(), call.toString());
             }
         });
     }

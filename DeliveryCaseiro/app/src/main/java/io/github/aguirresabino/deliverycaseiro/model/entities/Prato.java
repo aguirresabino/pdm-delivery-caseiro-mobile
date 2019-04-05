@@ -3,10 +3,13 @@ package io.github.aguirresabino.deliverycaseiro.model.entities;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Objects;
 
 public class Prato implements Parcelable, Cloneable {
 
+    @SerializedName("id")
     private String _id;
     private boolean disponivel;
     private String imagem;

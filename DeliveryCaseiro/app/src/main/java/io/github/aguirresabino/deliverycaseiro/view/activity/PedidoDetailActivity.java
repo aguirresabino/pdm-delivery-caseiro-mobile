@@ -4,8 +4,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import org.w3c.dom.Text;
 
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.Toolbar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,6 +21,7 @@ public class PedidoDetailActivity extends BaseActivity {
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.activityPedidoDetailDescricao) TextView descricao;
     @BindView(R.id.activityPedidoDetailValor) TextView valor;
+    @BindView(R.id.appCompatImageView) AppCompatImageView imagem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,8 @@ public class PedidoDetailActivity extends BaseActivity {
         Pedido pedido = getIntent().getParcelableExtra("pedido");
         descricao.setText(pedido.getItens().get(0).getDescricao());
         valor.setText(pedido.getValor().toString());
+
+        Picasso.get().load(pedido.getImagem()).into(imagem);
     }
 
     @Override

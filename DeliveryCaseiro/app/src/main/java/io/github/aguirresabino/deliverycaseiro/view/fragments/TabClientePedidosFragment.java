@@ -12,10 +12,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -27,6 +30,7 @@ import io.github.aguirresabino.deliverycaseiro.application.DeliveryApplication;
 import io.github.aguirresabino.deliverycaseiro.logs.MyLogger;
 import io.github.aguirresabino.deliverycaseiro.model.entities.Pedido;
 import io.github.aguirresabino.deliverycaseiro.model.enums.ValuesApplicationEnum;
+import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroPedido;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroRetrofitFactory;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroUsuario;
 import io.github.aguirresabino.deliverycaseiro.view.activity.ClientePerfilActivity;
@@ -34,6 +38,7 @@ import io.github.aguirresabino.deliverycaseiro.view.activity.LoginActivity;
 import io.github.aguirresabino.deliverycaseiro.view.activity.PedidoDetailActivity;
 import io.github.aguirresabino.deliverycaseiro.view.fragments.base.BaseFragment;
 import io.github.aguirresabino.deliverycaseiro.view.helpers.ToastHelper;
+import io.github.aguirresabino.deliverycaseiro.view.transform.CircleTransform;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -42,12 +47,12 @@ public class TabClientePedidosFragment extends BaseFragment {
 
     @BindView(R.id.fragmentClientePedidosRecyclerView) RecyclerView recyclerView;
 
-    private APIDeliveryCaseiroUsuario apiDeliveryCaseiroUsuario;
+    private APIDeliveryCaseiroPedido apiDeliveryCaseiroPedido;
     private List<Pedido> pedidos;
 
     @Override
     public void onAttach(@NonNull Context context) {
-        apiDeliveryCaseiroUsuario = APIDeliveryCaseiroRetrofitFactory.getApiDeliveryCaseiroUsuario();
+        apiDeliveryCaseiroPedido = APIDeliveryCaseiroRetrofitFactory.getApiDeliveryCaseiroPedido();
         super.onAttach(context);
     }
 
@@ -107,7 +112,7 @@ public class TabClientePedidosFragment extends BaseFragment {
     }
 
     private void buscarPedidos() {
-        Call<List<Pedido>> call = apiDeliveryCaseiroUsuario.getPedidosUsuario(DeliveryApplication.usuarioLogado.getId());
+        Call<List<Pedido>> call = apiDeliveryCaseiroPedido.getPedidosUsuario(DeliveryApplication.usuarioLogado.getId());
 
         call.enqueue(new Callback<List<Pedido>>() {
             @Override
@@ -153,7 +158,10 @@ public class TabClientePedidosFragment extends BaseFragment {
 
             holder.nome.setText(pedido.getItens().get(0).getNome());
             holder.descricao.setText("Preço: " + pedido.getValor() + " | " + "Quantidade: " + pedido.getItens().get(0).getQuantidade());
-            //holder.image.setImageResource(Integer.parseInt(holder.itemView.getResources().getResourceName(R.mipmap.ic_launcher_round)));
+            Picasso.get()
+                    .load(pedido.getImagem())
+                    .transform(new CircleTransform())
+                    .into(holder.image);
 
             if(cardOnClickListener != null){
                 holder.itemView.setOnClickListener(new View.OnClickListener(){
@@ -172,7 +180,7 @@ public class TabClientePedidosFragment extends BaseFragment {
         }
 
         public static class ListCardViewHolder extends RecyclerView.ViewHolder{
-            @BindView(R.id.card_img) ImageView image;
+            @BindView(R.id.card_img) AppCompatImageView image;
             @BindView(R.id.card_nome) TextView nome;
             @BindView(R.id.card_descricao) TextView descricao;
             @BindView(R.id.card_view) CardView card;

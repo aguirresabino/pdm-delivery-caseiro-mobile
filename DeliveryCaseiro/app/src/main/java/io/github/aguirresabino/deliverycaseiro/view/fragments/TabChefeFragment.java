@@ -12,10 +12,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,6 +36,7 @@ import io.github.aguirresabino.deliverycaseiro.view.activity.ChefeActivity;
 import io.github.aguirresabino.deliverycaseiro.view.activity.ClientePerfilActivity;
 import io.github.aguirresabino.deliverycaseiro.view.activity.LoginActivity;
 import io.github.aguirresabino.deliverycaseiro.view.fragments.base.BaseFragment;
+import io.github.aguirresabino.deliverycaseiro.view.transform.CircleTransform;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -150,7 +154,10 @@ public class TabChefeFragment extends BaseFragment {
 
             holder.nome.setText(chefe.getNome());
             holder.descricao.setText("Telefone: " + chefe.getTelefone());
-            //holder.image.setImageResource(Integer.parseInt(holder.itemView.getResources().getResourceName(R.mipmap.ic_launcher_round)));
+            Picasso.get()
+                    .load(chefe.getImagem())
+                    .transform(new CircleTransform())
+                    .into(holder.image);
 
             if(cardOnClickListener != null){
                 holder.itemView.setOnClickListener(new View.OnClickListener(){
@@ -168,7 +175,7 @@ public class TabChefeFragment extends BaseFragment {
         }
 
         public static class ListCardViewHolder extends RecyclerView.ViewHolder{
-            @BindView(R.id.card_img) ImageView image;
+            @BindView(R.id.card_img) AppCompatImageView image;
             @BindView(R.id.card_nome) TextView nome;
             @BindView(R.id.card_descricao) TextView descricao;
             @BindView(R.id.card_view) CardView card;

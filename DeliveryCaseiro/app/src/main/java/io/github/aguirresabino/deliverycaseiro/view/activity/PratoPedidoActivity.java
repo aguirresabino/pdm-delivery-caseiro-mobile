@@ -1,28 +1,31 @@
 package io.github.aguirresabino.deliverycaseiro.view.activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.squareup.picasso.Picasso;
 
 import java.util.Arrays;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.Toolbar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import io.github.aguirresabino.deliverycaseiro.R;
 import io.github.aguirresabino.deliverycaseiro.application.DeliveryApplication;
 import io.github.aguirresabino.deliverycaseiro.logs.MyLogger;
 import io.github.aguirresabino.deliverycaseiro.model.entities.ItemPedido;
 import io.github.aguirresabino.deliverycaseiro.model.entities.Pedido;
 import io.github.aguirresabino.deliverycaseiro.model.entities.Prato;
+import io.github.aguirresabino.deliverycaseiro.model.enums.StatusPedidoEnum;
 import io.github.aguirresabino.deliverycaseiro.model.enums.ValuesApplicationEnum;
-import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroChefe;
+import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroPedido;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroRetrofitFactory;
 import io.github.aguirresabino.deliverycaseiro.view.activity.base.BaseActivity;
 import io.github.aguirresabino.deliverycaseiro.view.helpers.ToastHelper;
@@ -35,8 +38,9 @@ public class PratoPedidoActivity extends BaseActivity {
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.activityPratoPedidoTextView) TextView descricao;
     @BindView(R.id.activityPratoPedidoInputQuantidade) TextInputLayout quantidade;
+    @BindView(R.id.appCompatImageView) AppCompatImageView imagem;
 
-    private APIDeliveryCaseiroChefe apiDeliveryCaseiroChefe;
+    private APIDeliveryCaseiroPedido apiDeliveryCaseiroPedido;
     private Prato prato;
 
     @Override
@@ -46,9 +50,11 @@ public class PratoPedidoActivity extends BaseActivity {
         //
         ButterKnife.bind(this);
 
-        this.apiDeliveryCaseiroChefe = APIDeliveryCaseiroRetrofitFactory.getApiDeliveryCaseiroChefe();
+        this.apiDeliveryCaseiroPedido = APIDeliveryCaseiroRetrofitFactory.getApiDeliveryCaseiroPedido();
 
         prato = getIntent().getParcelableExtra("prato");
+
+        Picasso.get().load(prato.getImagem()).into(imagem);
 
         toolbar.setTitle(prato.getNome());
         setUpToolbar(toolbar);
@@ -92,8 +98,10 @@ public class PratoPedidoActivity extends BaseActivity {
         pedido.setIdUsuario(DeliveryApplication.usuarioLogado.getId());
         pedido.setEntregar(true);
         pedido.setIdFornecedor(getIntent().getStringExtra("idChefe"));
-        pedido.setStatus(true);
+        pedido.setStatus(StatusPedidoEnum.PEDIDO_EM_PREPARO.getValue());
+        pedido.setValor(String.valueOf(itemPedido.getValor() * itemPedido.getQuantidade()));
         pedido.setItens(Arrays.asList(itemPedido));
+        pedido.setImagem(prato.getImagem());
 
         showDialog(pedido);
     }
@@ -107,7 +115,7 @@ public class PratoPedidoActivity extends BaseActivity {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Call<Pedido> call = apiDeliveryCaseiroChefe.fazerPedido(pedido);
+                                Call<Pedido> call = apiDeliveryCaseiroPedido.fazerPedido(pedido);
 
                                 call.enqueue(new Callback<Pedido>() {
                                     @Override

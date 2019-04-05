@@ -10,11 +10,9 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface APIDeliveryCaseiroChefe {
-    @GET("chefes/local/{cep}")
-    Call<List<Chefe>> buscarChefesPorCep(@Path("cep") String cep);
-
-    @POST("pedidos")
-    Call<Pedido> fazerPedido(@Body Pedido pedido);
+    @GET("chefes")
+    Call<List<Chefe>> buscarChefesPorCep(@Query("endereco.cep") String cep);
 }

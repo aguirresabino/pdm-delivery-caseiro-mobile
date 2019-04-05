@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Usuario implements Cloneable, Parcelable {
 
-    @SerializedName("_id")
+    @SerializedName("id")
     @Expose
     private String _id;
     @SerializedName("endereco")

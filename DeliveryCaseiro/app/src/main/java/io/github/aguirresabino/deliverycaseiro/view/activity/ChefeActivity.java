@@ -10,10 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -25,12 +27,14 @@ import io.github.aguirresabino.deliverycaseiro.R;
 import io.github.aguirresabino.deliverycaseiro.model.entities.Chefe;
 import io.github.aguirresabino.deliverycaseiro.model.entities.Prato;
 import io.github.aguirresabino.deliverycaseiro.view.activity.base.BaseActivity;
+import io.github.aguirresabino.deliverycaseiro.view.transform.CircleTransform;
 
 public class ChefeActivity extends BaseActivity {
 
     @BindView(R.id.activityChefeRecyclerView) RecyclerView recyclerView;
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.activityChefeCollapsingToolbarLayout) CollapsingToolbarLayout collapsingToolbarLayout;
+    @BindView(R.id.activityChefeAppBarImg) AppCompatImageView imagem;
 
     private Chefe chefe;
 
@@ -47,6 +51,8 @@ public class ChefeActivity extends BaseActivity {
         this.chefe = intent.getParcelableExtra("chefe");
         // Alterando título do menu para o nome do chefe
         collapsingToolbarLayout.setTitle(chefe.getNome());
+        // Alterando imagem da barra
+        Picasso.get().load(chefe.getImagem()).into(imagem);
         //collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
         //utilizando botão voltar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -114,6 +120,10 @@ public class ChefeActivity extends BaseActivity {
             holder.nome.setText(prato.getNome());
             holder.descricao.setText(prato.getDescricao());
 //            holder.image.setImageResource(Integer.parseInt(holder.itemView.getResources().getResourceName(R.mipmap.ic_launcher_round)));
+            Picasso.get()
+                    .load(prato.getImagem())
+                    .transform(new CircleTransform())
+                    .into(holder.image);
 
             if(cardOnClickListener != null){
                 holder.itemView.setOnClickListener(new View.OnClickListener(){
@@ -131,7 +141,7 @@ public class ChefeActivity extends BaseActivity {
         }
 
         public static class ListCardViewHolder extends RecyclerView.ViewHolder{
-            @BindView(R.id.card_img) ImageView image;
+            @BindView(R.id.card_img) AppCompatImageView image;
             @BindView(R.id.card_nome) TextView nome;
             @BindView(R.id.card_descricao) TextView descricao;
             @BindView(R.id.card_view) CardView card;

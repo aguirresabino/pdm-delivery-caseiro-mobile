@@ -6,7 +6,6 @@ import android.os.Parcelable;
 import java.util.Objects;
 
 public class ItemPedido implements Parcelable, Cloneable {
-    private String _id;
     private String nome;
     private String descricao;
     private String valor;
@@ -15,8 +14,7 @@ public class ItemPedido implements Parcelable, Cloneable {
     public ItemPedido() {
     }
 
-    public ItemPedido(String _id, String nome, String descricao, String valor, Integer quantidade) {
-        this._id = _id;
+    public ItemPedido(String nome, String descricao, String valor, Integer quantidade) {
         this.nome = nome;
         this.descricao = descricao;
         this.valor = valor;
@@ -24,7 +22,6 @@ public class ItemPedido implements Parcelable, Cloneable {
     }
 
     protected ItemPedido(Parcel in) {
-        _id = in.readString();
         nome = in.readString();
         descricao = in.readString();
         if (in.readByte() == 0) {
@@ -45,14 +42,6 @@ public class ItemPedido implements Parcelable, Cloneable {
             return new ItemPedido[size];
         }
     };
-
-    public String getId() {
-        return _id;
-    }
-
-    public void setId(String _id) {
-        this._id = _id;
-    }
 
     public String getNome() {
         return nome;
@@ -91,8 +80,7 @@ public class ItemPedido implements Parcelable, Cloneable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ItemPedido that = (ItemPedido) o;
-        return Objects.equals(_id, that._id) &&
-                Objects.equals(nome, that.nome) &&
+        return  Objects.equals(nome, that.nome) &&
                 Objects.equals(descricao, that.descricao) &&
                 Objects.equals(valor, that.valor) &&
                 Objects.equals(quantidade, that.quantidade);
@@ -100,13 +88,12 @@ public class ItemPedido implements Parcelable, Cloneable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(_id, nome, descricao, valor, quantidade);
+        return Objects.hash(nome, descricao, valor, quantidade);
     }
 
     @Override
     public String toString() {
         return "ItemPedido{" +
-                "_id='" + _id + '\'' +
                 ", nome='" + nome + '\'' +
                 ", descricao='" + descricao + '\'' +
                 ", valor=" + valor +
@@ -121,7 +108,6 @@ public class ItemPedido implements Parcelable, Cloneable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(_id);
         dest.writeString(nome);
         dest.writeString(descricao);
         if (quantidade == null) {
