@@ -1,7 +1,7 @@
 package io.github.aguirresabino.deliverycaseiro.model.enums;
 
 public enum StatusPedidoEnum {
-    PEDIDO_EM_PREPARO("0"), PEDIDO_SAIU_PARA_ENTREGA("1"), PEDIDO_ENTREGUE("3");
+    PEDIDO_EM_PREPARO("Em preparo"), PEDIDO_SAIU_PARA_ENTREGA("Saiu para entrega"), PEDIDO_ENTREGUE("Entregue");
 
     private String value;
 
