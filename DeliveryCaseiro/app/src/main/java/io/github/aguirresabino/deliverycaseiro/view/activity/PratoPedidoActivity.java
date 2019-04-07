@@ -118,7 +118,7 @@ public class PratoPedidoActivity extends BaseActivity {
         new AlertDialog.Builder(this)
                 .setTitle(getResources().getString(R.string.app_name))
                 .setMessage(getString(R.string.deseja_finalizar_o_pedido))
-                .setIcon(getResources().getDrawable(android.R.drawable.ic_dialog_alert))
+//                .setIcon(getResources().getDrawable(android.R.drawable.ic_dialog_alert))
                 .setPositiveButton(getString(R.string.sim),
                         new DialogInterface.OnClickListener() {
                             @Override
@@ -137,7 +137,11 @@ public class PratoPedidoActivity extends BaseActivity {
         public void onReceive(Context context, Intent intent) {
             boolean successMessage = (boolean) intent.getBooleanExtra("pedido.service.create", false);
 
-            if(successMessage) ToastHelper.toastShort(PratoPedidoActivity.this, "O pedido foi realizado!");
+            if(successMessage) {
+                ToastHelper.toastShort(PratoPedidoActivity.this, "O pedido foi realizado!");
+                intent = new Intent(PratoPedidoActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
             else ToastHelper.toastShort(PratoPedidoActivity.this, "Erro durante o pedido! Tente novamente mais tarde.");
         }
     }
