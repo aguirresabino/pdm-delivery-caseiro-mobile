@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activity.ClientePerfilActivity"></activity>
+        <activity android:name=".view.activity.UsuarioPerfilActivity"></activity>
         <activity android:name=".view.activity.MainActivity" />
         <activity android:name=".view.activity.ChefeActivity" />
         <activity android:name=".view.activity.PratoPedidoActivity" />

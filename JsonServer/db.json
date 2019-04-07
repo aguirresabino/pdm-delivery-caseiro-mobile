@@ -33,31 +33,6 @@
         "cidade": "Cajazeiras",
         "estado": "Paraíba"
       }
-    },
-    {
-      "nome": "Thiaguinho",
-      "email": "joao@gmail.com",
-      "senha": "1234",
-      "endereco": {
-        "estado": "Paraíba",
-        "cidade": "Cajazeiras",
-        "bairro": "Pôr do sol",
-        "rua": "Rua de Cajazeiras",
-        "complemento": "Casa",
-        "numero": "120",
-        "cep": "58900000"
-      },
-      "id": 2
-    },
-    {
-      "email": "test@gmail.com",
-      "endereco": {
-        "cep": "5890008"
-      },
-      "nome": "Teste",
-      "senha": "1234",
-      "telefone": "123487",
-      "id": 3
     }
   ],
   "chefes": [
@@ -154,6 +129,32 @@
       "status": "0",
       "valor": "70",
       "id": 1
+    },
+    {
+      "endereco": {
+        "bairro": "Por do sol",
+        "cep": "58900000",
+        "cidade": "Cajazeiras",
+        "complemento": "Casa",
+        "estado": "Paraíba",
+        "numero": "131",
+        "rua": "José Alves da Cunha"
+      },
+      "entregar": true,
+      "idFornecedor": "1",
+      "idUsuario": "0",
+      "imagem": "http://semmedida.com/wp-content/uploads/2011/09/arroz_feijao.jpg",
+      "itens": [
+        {
+          "descricao": "Um prato com arroz, feijão e carne de Josefa",
+          "nome": "Arroz, Feijão e Carne de Josefa",
+          "quantidade": 50,
+          "valor": "30"
+        }
+      ],
+      "status": "0",
+      "valor": "1500",
+      "id": 2
     }
   ]
 }

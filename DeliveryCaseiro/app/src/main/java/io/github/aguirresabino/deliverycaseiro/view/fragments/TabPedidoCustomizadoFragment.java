@@ -1,7 +1,6 @@
 package io.github.aguirresabino.deliverycaseiro.view.fragments;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,26 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import java.util.Arrays;
-
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.aguirresabino.deliverycaseiro.R;
 import io.github.aguirresabino.deliverycaseiro.application.DeliveryApplication;
-import io.github.aguirresabino.deliverycaseiro.logs.MyLogger;
-import io.github.aguirresabino.deliverycaseiro.model.entities.ItemPedido;
-import io.github.aguirresabino.deliverycaseiro.model.entities.Pedido;
-import io.github.aguirresabino.deliverycaseiro.model.enums.ValuesApplicationEnum;
-import io.github.aguirresabino.deliverycaseiro.view.activity.ClientePerfilActivity;
+import io.github.aguirresabino.deliverycaseiro.view.activity.UsuarioPerfilActivity;
 import io.github.aguirresabino.deliverycaseiro.view.activity.LoginActivity;
-import io.github.aguirresabino.deliverycaseiro.view.activity.PratoPedidoActivity;
 import io.github.aguirresabino.deliverycaseiro.view.fragments.base.BaseFragment;
-import io.github.aguirresabino.deliverycaseiro.view.helpers.ToastHelper;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class TabPedidoCustomizadoFragment extends BaseFragment {
 
@@ -68,7 +55,7 @@ public class TabPedidoCustomizadoFragment extends BaseFragment {
 //                create();
                 break;
             case R.id.action_perfil:
-                getActivity().startActivity(new Intent(getContext(), ClientePerfilActivity.class));
+                getActivity().startActivity(new Intent(getContext(), UsuarioPerfilActivity.class));
                 break;
             case R.id.action_sair:
                 DeliveryApplication.usuarioLogado = null;

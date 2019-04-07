@@ -1,7 +1,9 @@
 package io.github.aguirresabino.deliverycaseiro.view.fragments;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.cardview.widget.CardView;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,10 +34,12 @@ import io.github.aguirresabino.deliverycaseiro.model.entities.Chefe;
 import io.github.aguirresabino.deliverycaseiro.model.enums.ValuesApplicationEnum;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroChefe;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroRetrofitFactory;
+import io.github.aguirresabino.deliverycaseiro.model.services.ChefeService;
 import io.github.aguirresabino.deliverycaseiro.view.activity.ChefeActivity;
-import io.github.aguirresabino.deliverycaseiro.view.activity.ClientePerfilActivity;
+import io.github.aguirresabino.deliverycaseiro.view.activity.UsuarioPerfilActivity;
 import io.github.aguirresabino.deliverycaseiro.view.activity.LoginActivity;
 import io.github.aguirresabino.deliverycaseiro.view.fragments.base.BaseFragment;
+import io.github.aguirresabino.deliverycaseiro.view.helpers.ToastHelper;
 import io.github.aguirresabino.deliverycaseiro.view.transform.CircleTransform;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,13 +49,13 @@ public class TabChefeFragment extends BaseFragment {
 
     @BindView(R.id.fragmentTabChefeRecyclerView) RecyclerView recyclerView;
 
-    private APIDeliveryCaseiroChefe apiDeliveryCaseiroChefe;
+    private LocalBroadcastReceiver localBroadcastReceiver;
+    private ChefeService chefeService;
     private List<Chefe> chefes;
 
     @Override
     public void onAttach(@NonNull Context context) {
-        //Recuperando serviço para consumir API
-        apiDeliveryCaseiroChefe = APIDeliveryCaseiroRetrofitFactory.getApiDeliveryCaseiroChefe();
+        chefeService = new ChefeService(this.getActivity());
         super.onAttach(context);
     }
 
@@ -71,7 +76,10 @@ public class TabChefeFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        this.buscarChefes();
+        localBroadcastReceiver = new LocalBroadcastReceiver();
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(localBroadcastReceiver, new IntentFilter(LocalBroadcastReceiver.LOCAL_BROADCAST_TAB_CHEFE_FRAGMENT));
+        // Carregando todos os chefes da localidade
+        this.chefeService.readByCep(DeliveryApplication.usuarioLogado.getEndereco().getCep());
         super.onViewCreated(view, savedInstanceState);
     }
 
@@ -86,7 +94,7 @@ public class TabChefeFragment extends BaseFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_perfil:
-                getActivity().startActivity(new Intent(getContext(), ClientePerfilActivity.class));
+                getActivity().startActivity(new Intent(getContext(), UsuarioPerfilActivity.class));
                 break;
             case R.id.action_sair:
                 DeliveryApplication.usuarioLogado = null;
@@ -94,6 +102,12 @@ public class TabChefeFragment extends BaseFragment {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(localBroadcastReceiver);
     }
 
     private ChefeRecyclerViewAdapter.CardOnClickListener onClickChefe() {
@@ -105,23 +119,6 @@ public class TabChefeFragment extends BaseFragment {
                 startActivity(intent);
             }
         };
-    }
-
-    private void buscarChefes() {
-        Call<List<Chefe>> call = apiDeliveryCaseiroChefe.readByCep(DeliveryApplication.usuarioLogado.getEndereco().getCep());
-        call.enqueue(new Callback<List<Chefe>>() {
-            @Override
-            public void onResponse(Call<List<Chefe>> call, Response<List<Chefe>> response) {
-                chefes = response.body();
-                //TODO Como informar ao recyclerview que a view deve ser atualizada
-                recyclerView.setAdapter(new ChefeRecyclerViewAdapter(chefes, onClickChefe()));
-                MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), TabChefeFragment.class, chefes.toString());
-            }
-            @Override
-            public void onFailure(Call<List<Chefe>> call, Throwable t) {
-                MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), TabChefeFragment.class, "ERRORRRRR");
-            }
-        });
     }
 
     // Implementação do RecyclerView.Adapter
@@ -188,6 +185,22 @@ public class TabChefeFragment extends BaseFragment {
 
         public interface CardOnClickListener {
             public void onClickCard(View view, int idx);
+        }
+    }
+
+    public class LocalBroadcastReceiver extends BroadcastReceiver {
+
+        public static final String LOCAL_BROADCAST_TAB_CHEFE_FRAGMENT = "local.broadcast.tab.chefe.fragment";
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            chefes = intent.getParcelableArrayListExtra("chefe.service.readByCep");
+            if(chefes != null || !chefes.isEmpty()) {
+                //TODO Como informar ao recyclerview que a view deve ser atualizada
+                recyclerView.setAdapter(new TabChefeFragment.ChefeRecyclerViewAdapter(chefes, onClickChefe()));
+                MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), TabChefeFragment.class, chefes.toString());
+            } else
+                ToastHelper.toastShort(getActivity(), "Nenhum chefe foi encontrado nesta localização!");
         }
     }
 }

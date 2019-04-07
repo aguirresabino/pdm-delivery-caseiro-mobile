@@ -1,7 +1,9 @@
 package io.github.aguirresabino.deliverycaseiro.view.fragments;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.cardview.widget.CardView;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,10 +34,12 @@ import io.github.aguirresabino.deliverycaseiro.model.entities.Pedido;
 import io.github.aguirresabino.deliverycaseiro.model.enums.ValuesApplicationEnum;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroPedido;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroRetrofitFactory;
-import io.github.aguirresabino.deliverycaseiro.view.activity.ClientePerfilActivity;
+import io.github.aguirresabino.deliverycaseiro.model.services.PedidoService;
+import io.github.aguirresabino.deliverycaseiro.view.activity.UsuarioPerfilActivity;
 import io.github.aguirresabino.deliverycaseiro.view.activity.LoginActivity;
 import io.github.aguirresabino.deliverycaseiro.view.activity.PedidoDetailActivity;
 import io.github.aguirresabino.deliverycaseiro.view.fragments.base.BaseFragment;
+import io.github.aguirresabino.deliverycaseiro.view.helpers.ToastHelper;
 import io.github.aguirresabino.deliverycaseiro.view.transform.CircleTransform;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,12 +49,13 @@ public class TabClientePedidosFragment extends BaseFragment {
 
     @BindView(R.id.fragmentClientePedidosRecyclerView) RecyclerView recyclerView;
 
-    private APIDeliveryCaseiroPedido apiDeliveryCaseiroPedido;
+    private PedidoService pedidoService;
+    private LocalBroadcastReceiver localBroadcastReceiver;
     private List<Pedido> pedidos;
 
     @Override
     public void onAttach(@NonNull Context context) {
-        apiDeliveryCaseiroPedido = APIDeliveryCaseiroRetrofitFactory.getApiDeliveryCaseiroPedido();
+        pedidoService = new PedidoService(getActivity());
         super.onAttach(context);
     }
 
@@ -71,7 +77,10 @@ public class TabClientePedidosFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        this.buscarPedidos();
+        localBroadcastReceiver = new LocalBroadcastReceiver();
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(localBroadcastReceiver, new IntentFilter(LocalBroadcastReceiver.LOCAL_BROADCAST_TAB_CLIENTE_PEDIDOS_FRAGMENT));
+        // Carregando os pedidos do usuário
+        this.pedidoService.readByUsuario(DeliveryApplication.usuarioLogado.getId());
         super.onViewCreated(view, savedInstanceState);
     }
 
@@ -86,7 +95,7 @@ public class TabClientePedidosFragment extends BaseFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_perfil:
-                getActivity().startActivity(new Intent(getContext(), ClientePerfilActivity.class));
+                getActivity().startActivity(new Intent(getContext(), UsuarioPerfilActivity.class));
                 break;
             case R.id.action_sair:
                 DeliveryApplication.usuarioLogado = null;
@@ -94,6 +103,12 @@ public class TabClientePedidosFragment extends BaseFragment {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(localBroadcastReceiver);
     }
 
     private ListCardAdapter.CardOnClickListener onClickPedido() {
@@ -106,24 +121,6 @@ public class TabClientePedidosFragment extends BaseFragment {
                 startActivity(intent);
             }
         };
-    }
-
-    private void buscarPedidos() {
-        Call<List<Pedido>> call = apiDeliveryCaseiroPedido.readByUsuario(DeliveryApplication.usuarioLogado.getId());
-
-        call.enqueue(new Callback<List<Pedido>>() {
-            @Override
-            public void onResponse(Call<List<Pedido>> call, Response<List<Pedido>> response) {
-                pedidos = response.body();
-                recyclerView.setAdapter(new ListCardAdapter(pedidos, onClickPedido()));
-                MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), TabClientePedidosFragment.class, pedidos.toString());
-            }
-
-            @Override
-            public void onFailure(Call<List<Pedido>> call, Throwable t) {
-                MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), TabClientePedidosFragment.class, "Erro ao buscar pedidos do usuário!");
-            }
-        });
     }
 
     // Adapter RecyclerView
@@ -191,6 +188,22 @@ public class TabClientePedidosFragment extends BaseFragment {
 
         public interface CardOnClickListener {
             public void onClickCard(View view, int idx);
+        }
+    }
+
+    public class LocalBroadcastReceiver extends BroadcastReceiver {
+
+        public static final String LOCAL_BROADCAST_TAB_CLIENTE_PEDIDOS_FRAGMENT = "local.broadcast.tab.cliente.pedidos.fragment";
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            pedidos = intent.getParcelableArrayListExtra("pedido.service.readByUsuario");
+            if(pedidos != null || !pedidos.isEmpty()) {
+                //TODO Como informar ao recyclerview que a view deve ser atualizada
+                recyclerView.setAdapter(new ListCardAdapter(pedidos, onClickPedido()));
+                MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), TabClientePedidosFragment.class, pedidos.toString());
+            } else
+                ToastHelper.toastShort(getActivity(), "Nenhum pedido foi encontrado!");
         }
     }
 }

@@ -1,6 +1,10 @@
 package io.github.aguirresabino.deliverycaseiro.view.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,6 +18,7 @@ import java.util.Arrays;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.aguirresabino.deliverycaseiro.R;
@@ -26,6 +31,7 @@ import io.github.aguirresabino.deliverycaseiro.model.enums.StatusPedidoEnum;
 import io.github.aguirresabino.deliverycaseiro.model.enums.ValuesApplicationEnum;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroPedido;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroRetrofitFactory;
+import io.github.aguirresabino.deliverycaseiro.model.services.PedidoService;
 import io.github.aguirresabino.deliverycaseiro.view.activity.base.BaseActivity;
 import io.github.aguirresabino.deliverycaseiro.view.helpers.ToastHelper;
 import retrofit2.Call;
@@ -39,7 +45,8 @@ public class PratoPedidoActivity extends BaseActivity {
     @BindView(R.id.activityPratoPedidoInputQuantidade) TextInputLayout quantidade;
     @BindView(R.id.appCompatImageView) AppCompatImageView imagem;
 
-    private APIDeliveryCaseiroPedido apiDeliveryCaseiroPedido;
+    private PedidoService pedidoService;
+    private LocalBroadcastReceiver localBroadcastReceiver;
     private Prato prato;
 
     @Override
@@ -48,11 +55,14 @@ public class PratoPedidoActivity extends BaseActivity {
         setContentView(R.layout.activity_prato_pedido);
         //
         ButterKnife.bind(this);
+        //
+        localBroadcastReceiver = new LocalBroadcastReceiver();
+        LocalBroadcastManager.getInstance(PratoPedidoActivity.this).registerReceiver(localBroadcastReceiver, new IntentFilter(LocalBroadcastReceiver.LOCAL_BROADCAST_RECEIVER_PRATO_PEDIDO_ACTIVITY));
 
-        this.apiDeliveryCaseiroPedido = APIDeliveryCaseiroRetrofitFactory.getApiDeliveryCaseiroPedido();
-
+        pedidoService = new PedidoService(PratoPedidoActivity.this);
         prato = getIntent().getParcelableExtra("prato");
 
+        // Carregando a imagem do prato
         Picasso.get().load(prato.getImagem()).into(imagem);
 
         toolbar.setTitle(prato.getNome());
@@ -60,8 +70,6 @@ public class PratoPedidoActivity extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         descricao.setText(prato.getDescricao());
-
-        //TODO ALTERAR IMAGEM DO PRATO
     }
 
     @Override
@@ -84,8 +92,13 @@ public class PratoPedidoActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LocalBroadcastManager.getInstance(PratoPedidoActivity.this).unregisterReceiver(localBroadcastReceiver);
+    }
+
     private void fazerPedido() {
-//        ToastHelper.toastShort(PratoPedidoActivity.this, "Clicou");
         ItemPedido itemPedido = new ItemPedido();
         itemPedido.setDescricao(prato.getDescricao());
         itemPedido.setNome(prato.getNome());
@@ -102,35 +115,31 @@ public class PratoPedidoActivity extends BaseActivity {
         pedido.setItens(Arrays.asList(itemPedido));
         pedido.setImagem(prato.getImagem());
 
-        showDialog(pedido);
-    }
-
-    private void showDialog(Pedido pedido) {
         new AlertDialog.Builder(this)
                 .setTitle(getResources().getString(R.string.app_name))
-                .setMessage("Deseja finalizar o pedido?")
+                .setMessage(getString(R.string.deseja_finalizar_o_pedido))
                 .setIcon(getResources().getDrawable(android.R.drawable.ic_dialog_alert))
-                .setPositiveButton("Sim",
+                .setPositiveButton(getString(R.string.sim),
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Call<Pedido> call = apiDeliveryCaseiroPedido.create(pedido);
-
-                                call.enqueue(new Callback<Pedido>() {
-                                    @Override
-                                    public void onResponse(Call<Pedido> call, Response<Pedido> response) {
-                                        MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), PratoPedidoActivity.class, "Pedido realizado: " + pedido.toString());
-                                        ToastHelper.toastShort(getBaseContext(), "O pedido foi realizado!");
-                                    }
-
-                                    @Override
-                                    public void onFailure(Call<Pedido> call, Throwable t) {
-                                        MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), PratoPedidoActivity.class, "Pedido não foi realizado!");
-                                    }
-                                });
+                                pedidoService.create(pedido);
                             }
                         })
-                .setNegativeButton("Não", null).show();
+                .setNegativeButton(getString(R.string.nao), null)
+                .show();
+    }
+
+    public class LocalBroadcastReceiver extends BroadcastReceiver {
+        public static final String LOCAL_BROADCAST_RECEIVER_PRATO_PEDIDO_ACTIVITY = "local.broadcast.receiver.prato.pedido.activity";
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            boolean successMessage = (boolean) intent.getBooleanExtra("pedido.service.create", false);
+
+            if(successMessage) ToastHelper.toastShort(PratoPedidoActivity.this, "O pedido foi realizado!");
+            else ToastHelper.toastShort(PratoPedidoActivity.this, "Erro durante o pedido! Tente novamente mais tarde.");
+        }
     }
 
 }
