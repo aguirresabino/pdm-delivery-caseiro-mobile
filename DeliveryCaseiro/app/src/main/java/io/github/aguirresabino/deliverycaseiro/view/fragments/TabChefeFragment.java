@@ -9,7 +9,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -109,7 +108,7 @@ public class TabChefeFragment extends BaseFragment {
     }
 
     private void buscarChefes() {
-        Call<List<Chefe>> call = apiDeliveryCaseiroChefe.buscarChefesPorCep(DeliveryApplication.usuarioLogado.getEndereco().getCep());
+        Call<List<Chefe>> call = apiDeliveryCaseiroChefe.readByCep(DeliveryApplication.usuarioLogado.getEndereco().getCep());
         call.enqueue(new Callback<List<Chefe>>() {
             @Override
             public void onResponse(Call<List<Chefe>> call, Response<List<Chefe>> response) {

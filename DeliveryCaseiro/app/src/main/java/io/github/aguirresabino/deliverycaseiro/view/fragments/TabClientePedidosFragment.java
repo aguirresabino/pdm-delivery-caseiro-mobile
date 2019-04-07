@@ -9,7 +9,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -32,12 +31,10 @@ import io.github.aguirresabino.deliverycaseiro.model.entities.Pedido;
 import io.github.aguirresabino.deliverycaseiro.model.enums.ValuesApplicationEnum;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroPedido;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroRetrofitFactory;
-import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroUsuario;
 import io.github.aguirresabino.deliverycaseiro.view.activity.ClientePerfilActivity;
 import io.github.aguirresabino.deliverycaseiro.view.activity.LoginActivity;
 import io.github.aguirresabino.deliverycaseiro.view.activity.PedidoDetailActivity;
 import io.github.aguirresabino.deliverycaseiro.view.fragments.base.BaseFragment;
-import io.github.aguirresabino.deliverycaseiro.view.helpers.ToastHelper;
 import io.github.aguirresabino.deliverycaseiro.view.transform.CircleTransform;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -112,7 +109,7 @@ public class TabClientePedidosFragment extends BaseFragment {
     }
 
     private void buscarPedidos() {
-        Call<List<Pedido>> call = apiDeliveryCaseiroPedido.getPedidosUsuario(DeliveryApplication.usuarioLogado.getId());
+        Call<List<Pedido>> call = apiDeliveryCaseiroPedido.readByUsuario(DeliveryApplication.usuarioLogado.getId());
 
         call.enqueue(new Callback<List<Pedido>>() {
             @Override

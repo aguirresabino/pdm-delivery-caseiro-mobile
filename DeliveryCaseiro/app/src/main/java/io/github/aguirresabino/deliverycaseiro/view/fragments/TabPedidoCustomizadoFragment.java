@@ -65,7 +65,7 @@ public class TabPedidoCustomizadoFragment extends BaseFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_post:
-//                fazerPedido();
+//                create();
                 break;
             case R.id.action_perfil:
                 getActivity().startActivity(new Intent(getContext(), ClientePerfilActivity.class));
@@ -78,7 +78,7 @@ public class TabPedidoCustomizadoFragment extends BaseFragment {
         return super.onOptionsItemSelected(item);
     }
 
-//    private void fazerPedido() {
+//    private void create() {
 //        ItemPedido itemPedido = new ItemPedido();
 //        itemPedido.setDescricao(descricaoPrato.getText().toString());
 //        itemPedido.setNome(nomePrato.getText().toString());
@@ -106,7 +106,7 @@ public class TabPedidoCustomizadoFragment extends BaseFragment {
 //                        new DialogInterface.OnClickListener() {
 //                            @Override
 //                            public void onClick(DialogInterface dialog, int which) {
-//                                Call<Pedido> call = apiDeliveryCaseiroUsuario.fazerPedido(pedido);
+//                                Call<Pedido> call = apiDeliveryCaseiroUsuario.create(pedido);
 //
 //                                call.enqueue(new Callback<Pedido>() {
 //                                    @Override

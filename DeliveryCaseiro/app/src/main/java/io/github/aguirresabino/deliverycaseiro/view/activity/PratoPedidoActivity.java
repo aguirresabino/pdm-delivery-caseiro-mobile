@@ -1,7 +1,6 @@
 package io.github.aguirresabino.deliverycaseiro.view.activity;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -115,7 +114,7 @@ public class PratoPedidoActivity extends BaseActivity {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Call<Pedido> call = apiDeliveryCaseiroPedido.fazerPedido(pedido);
+                                Call<Pedido> call = apiDeliveryCaseiroPedido.create(pedido);
 
                                 call.enqueue(new Callback<Pedido>() {
                                     @Override

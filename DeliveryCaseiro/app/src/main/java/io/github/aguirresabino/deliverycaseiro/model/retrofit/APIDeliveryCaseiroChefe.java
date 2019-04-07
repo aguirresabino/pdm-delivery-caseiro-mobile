@@ -14,5 +14,5 @@ import retrofit2.http.Query;
 
 public interface APIDeliveryCaseiroChefe {
     @GET("chefes")
-    Call<List<Chefe>> buscarChefesPorCep(@Query("endereco.cep") String cep);
+    Call<List<Chefe>> readByCep(@Query("endereco.cep") String cep);
 }

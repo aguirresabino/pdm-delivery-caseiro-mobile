@@ -12,8 +12,8 @@ import retrofit2.http.Query;
 public interface APIDeliveryCaseiroPedido {
 
     @POST("pedidos")
-    Call<Pedido> fazerPedido(@Body Pedido pedido);
+    Call<Pedido> create(@Body Pedido pedido);
 
     @GET("pedidos")
-    Call<List<Pedido>> getPedidosUsuario(@Query("idUsuario") String id);
+    Call<List<Pedido>> readByUsuario(@Query("idUsuario") String id);
 }
