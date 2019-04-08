@@ -10,14 +10,16 @@ import java.util.List;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import io.github.aguirresabino.deliverycaseiro.application.DeliveryApplication;
 import io.github.aguirresabino.deliverycaseiro.logs.MyLogger;
-import io.github.aguirresabino.deliverycaseiro.model.entities.Chefe;
 import io.github.aguirresabino.deliverycaseiro.model.entities.Pedido;
+import io.github.aguirresabino.deliverycaseiro.model.entities.Usuario;
 import io.github.aguirresabino.deliverycaseiro.model.enums.ValuesApplicationEnum;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroPedido;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroRetrofitFactory;
+import io.github.aguirresabino.deliverycaseiro.view.activity.AceitarPedidoCustomizadoActivity;
 import io.github.aguirresabino.deliverycaseiro.view.activity.PratoPedidoActivity;
+import io.github.aguirresabino.deliverycaseiro.view.activity.UsuarioPerfilActivity;
 import io.github.aguirresabino.deliverycaseiro.view.fragments.TabClientePedidosFragment;
-import io.github.aguirresabino.deliverycaseiro.view.helpers.ToastHelper;
+import io.github.aguirresabino.deliverycaseiro.view.fragments.TabPedidoCustomizadoFragment;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,6 +37,7 @@ public class PedidoService {
     public void create(Pedido pedido) {
         Call<Pedido> call = apiDeliveryCaseiroPedido.create(pedido);
         Intent intent = new Intent(PratoPedidoActivity.LocalBroadcastReceiver.LOCAL_BROADCAST_RECEIVER_PRATO_PEDIDO_ACTIVITY);
+        if(pedido.isPedidoCustomizado()) intent.setAction(TabPedidoCustomizadoFragment.LocalBroadcastReceiver.LOCAL_BROADCAST_TAB_PEDIDO_CUSTOMIZADO_FRAGMENT);
 
         call.enqueue(new Callback<Pedido>() {
             @Override
@@ -72,4 +75,24 @@ public class PedidoService {
              }
          });
      }
+
+    public void update(Pedido pedido) {
+        Call<Pedido> call =  apiDeliveryCaseiroPedido.update(pedido.get_id(), pedido);
+        Intent intent = new Intent(AceitarPedidoCustomizadoActivity.LocalBroadcastReceiver.LOCAL_BROADCAST_ACEITAR_PEDIDO_CUSTOMIZADO_ACEITO_ACTIVITY);
+
+        call.enqueue(new Callback<Pedido>() {
+            @Override
+            public void onResponse(Call<Pedido> call, Response<Pedido> response) {
+                MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), UsuarioService.class, "Atualizando pedido: " + response.toString());
+                Pedido pedidoReponse = response.body();
+                intent.putExtra("pedido.service.update", pedidoReponse);
+                LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+            }
+
+            @Override
+            public void onFailure(Call<Pedido> call, Throwable t) {
+                LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+            }
+        });
+    }
 }

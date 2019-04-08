@@ -23,20 +23,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.aguirresabino.deliverycaseiro.R;
 import io.github.aguirresabino.deliverycaseiro.application.DeliveryApplication;
-import io.github.aguirresabino.deliverycaseiro.logs.MyLogger;
 import io.github.aguirresabino.deliverycaseiro.model.entities.ItemPedido;
 import io.github.aguirresabino.deliverycaseiro.model.entities.Pedido;
 import io.github.aguirresabino.deliverycaseiro.model.entities.Prato;
 import io.github.aguirresabino.deliverycaseiro.model.enums.StatusPedidoEnum;
-import io.github.aguirresabino.deliverycaseiro.model.enums.ValuesApplicationEnum;
-import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroPedido;
-import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroRetrofitFactory;
 import io.github.aguirresabino.deliverycaseiro.model.services.PedidoService;
 import io.github.aguirresabino.deliverycaseiro.view.activity.base.BaseActivity;
 import io.github.aguirresabino.deliverycaseiro.view.helpers.ToastHelper;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class PratoPedidoActivity extends BaseActivity {
 
@@ -108,7 +101,7 @@ public class PratoPedidoActivity extends BaseActivity {
         Pedido pedido = new Pedido();
         pedido.setEndereco(DeliveryApplication.usuarioLogado.getEndereco());
         pedido.setIdUsuario(DeliveryApplication.usuarioLogado.getId());
-        pedido.setEntregar(true);
+        pedido.setPedidoCustomizado(false);
         pedido.setIdFornecedor(getIntent().getStringExtra("idChefe"));
         pedido.setStatus(StatusPedidoEnum.PEDIDO_EM_PREPARO.getValue());
         pedido.setValor(String.valueOf(itemPedido.getValor() * itemPedido.getQuantidade()));

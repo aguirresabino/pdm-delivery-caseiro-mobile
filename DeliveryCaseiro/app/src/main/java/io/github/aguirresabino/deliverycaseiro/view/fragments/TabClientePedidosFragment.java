@@ -32,18 +32,14 @@ import io.github.aguirresabino.deliverycaseiro.application.DeliveryApplication;
 import io.github.aguirresabino.deliverycaseiro.logs.MyLogger;
 import io.github.aguirresabino.deliverycaseiro.model.entities.Pedido;
 import io.github.aguirresabino.deliverycaseiro.model.enums.ValuesApplicationEnum;
-import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroPedido;
-import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroRetrofitFactory;
 import io.github.aguirresabino.deliverycaseiro.model.services.PedidoService;
-import io.github.aguirresabino.deliverycaseiro.view.activity.UsuarioPerfilActivity;
+import io.github.aguirresabino.deliverycaseiro.view.activity.ChefesPedidoCustomizadoAceitoActivity;
 import io.github.aguirresabino.deliverycaseiro.view.activity.LoginActivity;
 import io.github.aguirresabino.deliverycaseiro.view.activity.PedidoDetailActivity;
+import io.github.aguirresabino.deliverycaseiro.view.activity.UsuarioPerfilActivity;
 import io.github.aguirresabino.deliverycaseiro.view.fragments.base.BaseFragment;
 import io.github.aguirresabino.deliverycaseiro.view.helpers.ToastHelper;
 import io.github.aguirresabino.deliverycaseiro.view.transform.CircleTransform;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class TabClientePedidosFragment extends BaseFragment {
 
@@ -116,9 +112,15 @@ public class TabClientePedidosFragment extends BaseFragment {
             @Override
             public void onClickCard(View view, int idx) {
                 Pedido pedido = pedidos.get(idx);
-                Intent intent = new Intent(getActivity(), PedidoDetailActivity.class);
-                intent.putExtra("pedido", pedido);
-                startActivity(intent);
+                if(pedido.getIdFornecedor() != null) {
+                    Intent intent = new Intent(getActivity(), PedidoDetailActivity.class);
+                    intent.putExtra("pedido", pedido);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(getActivity(), ChefesPedidoCustomizadoAceitoActivity.class);
+                    intent.putExtra("pedido", pedido);
+                    startActivity(intent);
+                }
             }
         };
     }
@@ -151,7 +153,7 @@ public class TabClientePedidosFragment extends BaseFragment {
             Pedido pedido = pedidos.get(position);
 
             holder.nome.setText(pedido.getItens().get(0).getNome());
-            holder.descricao.setText("Preço: " + pedido.getValor() + " | " + "Quantidade: " + pedido.getItens().get(0).getQuantidade());
+            holder.descricao.setText(pedido.getStatus());
             Picasso.get()
                     .load(pedido.getImagem())
                     .transform(new CircleTransform())

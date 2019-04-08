@@ -114,7 +114,7 @@
         "numero": "131",
         "rua": "José Alves da Cunha"
       },
-      "entregar": true,
+      "pedidoCustomizado": false,
       "idFornecedor": "0",
       "idUsuario": "0",
       "imagem": "https://s3-sa-east-1.amazonaws.com/snibrazil/wp-content/uploads/2017/07/1501261019-arroz-a-piamontese_616x462.jpg",
@@ -126,7 +126,7 @@
           "valor": "7"
         }
       ],
-      "status": "0",
+      "status": "Em preparo",
       "valor": "70",
       "id": 1
     },
@@ -140,7 +140,7 @@
         "numero": "131",
         "rua": "José Alves da Cunha"
       },
-      "entregar": true,
+      "pedidoCustomizado": false,
       "idFornecedor": "1",
       "idUsuario": "0",
       "imagem": "http://semmedida.com/wp-content/uploads/2011/09/arroz_feijao.jpg",
@@ -152,9 +152,275 @@
           "valor": "30"
         }
       ],
-      "status": "0",
+      "status": "Em preparo",
       "valor": "1500",
       "id": 2
+    },
+    {
+      "endereco": {
+        "bairro": "Por do sol",
+        "cep": "58900000",
+        "cidade": "Cajazeiras",
+        "complemento": "Casa",
+        "estado": "Paraíba",
+        "numero": "131",
+        "rua": "José Alves da Cunha"
+      },
+      "pedidoCustomizado": false,
+      "idFornecedor": "0",
+      "idUsuario": "0",
+      "imagem": "http://semmedida.com/wp-content/uploads/2011/09/arroz_feijao.jpg",
+      "itens": [
+        {
+          "descricao": "Um prato com arroz, feijão e carne",
+          "nome": "Arroz, Feijão e Carne",
+          "quantidade": 30,
+          "valor": "10"
+        }
+      ],
+      "status": "Em preparo",
+      "valor": "300",
+      "id": 3
+    },
+    {
+      "endereco": {
+        "bairro": "Por do sol",
+        "cep": "58900000",
+        "cidade": "Cajazeiras",
+        "complemento": "Casa",
+        "estado": "Paraíba",
+        "numero": "131",
+        "rua": "José Alves da Cunha"
+      },
+      "pedidoCustomizado": false,
+      "idFornecedor": "0",
+      "idUsuario": "0",
+      "imagem": "https://s3-sa-east-1.amazonaws.com/snibrazil/wp-content/uploads/2017/07/1501261019-arroz-a-piamontese_616x462.jpg",
+      "itens": [
+        {
+          "descricao": "Um prato com arroz e carne",
+          "nome": "Arroz e Carne",
+          "quantidade": 100,
+          "valor": "7"
+        }
+      ],
+      "status": "Em preparo",
+      "valor": "700",
+      "id": 4
+    },
+    {
+      "endereco": {
+        "bairro": "Por do sol",
+        "cep": "58900000",
+        "cidade": "Cajazeiras",
+        "complemento": "Casa",
+        "estado": "Paraíba",
+        "numero": "131",
+        "rua": "José Alves da Cunha"
+      },
+      "pedidoCustomizado": false,
+      "idFornecedor": "0",
+      "idUsuario": "0",
+      "imagem": "http://semmedida.com/wp-content/uploads/2011/09/arroz_feijao.jpg",
+      "itens": [
+        {
+          "descricao": "Um prato com arroz, feijão e carne",
+          "nome": "Arroz, Feijão e Carne",
+          "quantidade": 1000,
+          "valor": "10"
+        }
+      ],
+      "status": "Em preparo",
+      "valor": "10000",
+      "id": 5
+    },
+    {
+      "endereco": {
+        "bairro": "Por do sol",
+        "cep": "58900000",
+        "cidade": "Cajazeiras",
+        "complemento": "Casa",
+        "estado": "Paraíba",
+        "numero": "131",
+        "rua": "José Alves da Cunha"
+      },
+      "pedidoCustomizado": false,
+      "idFornecedor": "0",
+      "idUsuario": "0",
+      "imagem": "http://semmedida.com/wp-content/uploads/2011/09/arroz_feijao.jpg",
+      "itens": [
+        {
+          "descricao": "Um prato com arroz, feijão e carne",
+          "nome": "Arroz, Feijão e Carne",
+          "quantidade": 1,
+          "valor": "10"
+        }
+      ],
+      "status": "Em preparo",
+      "valor": "10",
+      "id": 6
+    },
+    {
+      "id": 7,
+      "chefesDoPedidoCustomizado": [
+        {
+          "id": "0",
+          "imagem": "https://image.freepik.com/vetores-gratis/restaurante-do-chef-avatar-ilustracao-dos-desenhos-animados_1951-375.jpg",
+          "nome": "Chefe José",
+          "valor": "10"
+        },
+        {
+          "id": "1",
+          "imagem": "https://st3.depositphotos.com/3586665/12548/v/950/depositphotos_125480488-stock-illustration-female-cook-cartoon-funny-woman.jpg",
+          "nome": "Chefe Josefa",
+          "valor": "9"
+        }
+      ],
+      "endereco": {
+        "bairro": "Por do sol",
+        "cep": "58900000",
+        "cidade": "Cajazeiras",
+        "complemento": "Casa",
+        "estado": "Paraíba",
+        "numero": "131",
+        "rua": "José Alves da Cunha"
+      },
+      "idFornecedor": "0",
+      "idUsuario": "0",
+      "imagem": "https://scontent.fjdo5-1.fna.fbcdn.net/v/t1.0-9/54434377_2316062142004235_1098799741241655296_o.jpg?_nc_cat=106&_nc_ht=scontent.fjdo5-1.fna&oh=c6a82d3b61d26c7227543f57b97b0f2d&oe=5D021919",
+      "itens": [
+        {
+          "descricao": "Um prato customizado",
+          "nome": "Prato customizado Aguirre",
+          "quantidade": 1,
+          "valor": "10"
+        }
+      ],
+      "pedidoCustomizado": true,
+      "status": "Em preparo",
+      "valor": "10"
+    },
+    {
+      "id": 8,
+      "chefesDoPedidoCustomizado": [
+        {
+          "id": "1",
+          "imagem": "https://st3.depositphotos.com/3586665/12548/v/950/depositphotos_125480488-stock-illustration-female-cook-cartoon-funny-woman.jpg",
+          "nome": "Chefe Josefa",
+          "valor": "25"
+        }
+      ],
+      "endereco": {
+        "bairro": "Por do sol",
+        "cep": "58900000",
+        "cidade": "Cajazeiras",
+        "complemento": "Casa",
+        "estado": "Paraíba",
+        "numero": "131",
+        "rua": "José Alves da Cunha"
+      },
+      "idFornecedor": "1",
+      "idUsuario": "0",
+      "imagem": "https://scontent.fjdo5-1.fna.fbcdn.net/v/t1.0-9/54434377_2316062142004235_1098799741241655296_o.jpg?_nc_cat=106&_nc_ht=scontent.fjdo5-1.fna&oh=c6a82d3b61d26c7227543f57b97b0f2d&oe=5D021919",
+      "itens": [
+        {
+          "descricao": "Outro Pedido customizado",
+          "nome": "Outro Pedido Customizado",
+          "quantidade": 10,
+          "valor": "25"
+        }
+      ],
+      "pedidoCustomizado": true,
+      "status": "Em preparo",
+      "valor": "250"
+    },
+    {
+      "chefesDoPedidoCustomizado": [],
+      "endereco": {
+        "bairro": "Por do sol",
+        "cep": "58900000",
+        "cidade": "Cajazeiras",
+        "complemento": "Casa",
+        "estado": "Paraíba",
+        "numero": "131",
+        "rua": "José Alves da Cunha"
+      },
+      "idUsuario": "0",
+      "imagem": "https://scontent.fjdo5-1.fna.fbcdn.net/v/t1.0-9/54434377_2316062142004235_1098799741241655296_o.jpg?_nc_cat=106&_nc_ht=scontent.fjdo5-1.fna&oh=c6a82d3b61d26c7227543f57b97b0f2d&oe=5D021919",
+      "itens": [
+        {
+          "descricao": "terceiro pedido",
+          "nome": "Realizando terceiro pedido customizado",
+          "quantidade": 1
+        }
+      ],
+      "pedidoCustomizado": true,
+      "status": "Pedido Postado",
+      "id": 9
+    },
+    {
+      "endereco": {
+        "bairro": "Por do sol",
+        "cep": "58900000",
+        "cidade": "Cajazeiras",
+        "complemento": "Casa",
+        "estado": "Paraíba",
+        "numero": "131",
+        "rua": "José Alves da Cunha"
+      },
+      "idFornecedor": "0",
+      "idUsuario": "0",
+      "imagem": "http://semmedida.com/wp-content/uploads/2011/09/arroz_feijao.jpg",
+      "itens": [
+        {
+          "descricao": "Um prato com arroz, feijão e carne",
+          "nome": "Arroz, Feijão e Carne",
+          "quantidade": 10000,
+          "valor": "10"
+        }
+      ],
+      "pedidoCustomizado": false,
+      "status": "Em preparo",
+      "valor": "100000",
+      "id": 10
+    },
+    {
+      "chefesDoPedidoCustomizado": [],
+      "endereco": {
+        "bairro": "Por do sol",
+        "cep": "58900000",
+        "cidade": "Cajazeiras",
+        "complemento": "Casa",
+        "estado": "Paraíba",
+        "numero": "131",
+        "rua": "José Alves da Cunha"
+      },
+      "idUsuario": "0",
+      "imagem": "https://scontent.fjdo5-1.fna.fbcdn.net/v/t1.0-9/54434377_2316062142004235_1098799741241655296_o.jpg?_nc_cat=106&_nc_ht=scontent.fjdo5-1.fna&oh=c6a82d3b61d26c7227543f57b97b0f2d&oe=5D021919",
+      "itens": [
+        {
+          "descricao": "4 pedidos customizados",
+          "nome": "Pedido Customizado 4",
+          "quantidade": 4
+        }
+      ],
+      "pedidoCustomizado": true,
+      "status": "Pedido Postado",
+      "chefesDoPedidoCustomizado": [
+        {
+          "id": "0",
+          "imagem": "https://image.freepik.com/vetores-gratis/restaurante-do-chef-avatar-ilustracao-dos-desenhos-animados_1951-375.jpg",
+          "nome": "Chefe José",
+          "valor": "10"
+        },
+        {
+          "id": "1",
+          "imagem": "https://st3.depositphotos.com/3586665/12548/v/950/depositphotos_125480488-stock-illustration-female-cook-cartoon-funny-woman.jpg",
+          "nome": "Chefe Josefa",
+          "valor": "9"
+        }
+      ],
+      "id": 11
     }
   ]
 }

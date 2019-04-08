@@ -9,31 +9,34 @@ import java.util.List;
 import java.util.Objects;
 
 public class Pedido implements Parcelable, Cloneable {
+
     @SerializedName("id")
     private String _id;
     private String idUsuario;
     private String idFornecedor;
     private List<ItemPedido> itens;
     private String valor;
-    //0 - preparo, 1 - saiu para entrega, 2 - entregue
     private String status;
-    private boolean entregar;
+    private boolean pedidoCustomizado;
     private Endereco endereco;
     private String imagem;
+    // Estratégia adotada temporariamente, enquanto utilizar o json server
+    private List<ChefePedidoCustomizado> chefesDoPedidoCustomizado;
 
     public Pedido() {
     }
 
-    public Pedido(String _id, String idUsuario, String idFornecedor, List<ItemPedido> itens, String valor, String status, boolean entregar, Endereco endereco, String imagem) {
+    public Pedido(String _id, String idUsuario, String idFornecedor, List<ItemPedido> itens, String valor, String status, boolean pedidoCustomizado, Endereco endereco, String imagem, List<ChefePedidoCustomizado> chefesDoPedidoCustomizado) {
         this._id = _id;
         this.idUsuario = idUsuario;
         this.idFornecedor = idFornecedor;
         this.itens = itens;
         this.valor = valor;
         this.status = status;
-        this.entregar = entregar;
+        this.pedidoCustomizado = pedidoCustomizado;
         this.endereco = endereco;
         this.imagem = imagem;
+        this.chefesDoPedidoCustomizado = chefesDoPedidoCustomizado;
     }
 
     protected Pedido(Parcel in) {
@@ -43,27 +46,10 @@ public class Pedido implements Parcelable, Cloneable {
         itens = in.createTypedArrayList(ItemPedido.CREATOR);
         valor = in.readString();
         status = in.readString();
-        entregar = in.readByte() != 0;
+        pedidoCustomizado = in.readByte() != 0;
         endereco = in.readParcelable(Endereco.class.getClassLoader());
         imagem = in.readString();
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(_id);
-        dest.writeString(idUsuario);
-        dest.writeString(idFornecedor);
-        dest.writeTypedList(itens);
-        dest.writeString(valor);
-        dest.writeString(status);
-        dest.writeByte((byte) (entregar ? 1 : 0));
-        dest.writeParcelable(endereco, flags);
-        dest.writeString(imagem);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
+        chefesDoPedidoCustomizado = in.createTypedArrayList(ChefePedidoCustomizado.CREATOR);
     }
 
     public static final Creator<Pedido> CREATOR = new Creator<Pedido>() {
@@ -126,12 +112,12 @@ public class Pedido implements Parcelable, Cloneable {
         this.status = status;
     }
 
-    public boolean isEntregar() {
-        return entregar;
+    public boolean isPedidoCustomizado() {
+        return pedidoCustomizado;
     }
 
-    public void setEntregar(boolean entregar) {
-        this.entregar = entregar;
+    public void setPedidoCustomizado(boolean pedidoCustomizado) {
+        this.pedidoCustomizado = pedidoCustomizado;
     }
 
     public Endereco getEndereco() {
@@ -150,12 +136,20 @@ public class Pedido implements Parcelable, Cloneable {
         this.imagem = imagem;
     }
 
+    public List<ChefePedidoCustomizado> getChefesDoPedidoCustomizado() {
+        return chefesDoPedidoCustomizado;
+    }
+
+    public void setChefesDoPedidoCustomizado(List<ChefePedidoCustomizado> chefesDoPedidoCustomizado) {
+        this.chefesDoPedidoCustomizado = chefesDoPedidoCustomizado;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Pedido pedido = (Pedido) o;
-        return entregar == pedido.entregar &&
+        return pedidoCustomizado == pedido.pedidoCustomizado &&
                 Objects.equals(_id, pedido._id) &&
                 Objects.equals(idUsuario, pedido.idUsuario) &&
                 Objects.equals(idFornecedor, pedido.idFornecedor) &&
@@ -163,12 +157,13 @@ public class Pedido implements Parcelable, Cloneable {
                 Objects.equals(valor, pedido.valor) &&
                 Objects.equals(status, pedido.status) &&
                 Objects.equals(endereco, pedido.endereco) &&
-                Objects.equals(imagem, pedido.imagem);
+                Objects.equals(imagem, pedido.imagem) &&
+                Objects.equals(chefesDoPedidoCustomizado, pedido.chefesDoPedidoCustomizado);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(_id, idUsuario, idFornecedor, itens, valor, status, entregar, endereco, imagem);
+        return Objects.hash(_id, idUsuario, idFornecedor, itens, valor, status, pedidoCustomizado, endereco, imagem, chefesDoPedidoCustomizado);
     }
 
     @Override
@@ -180,9 +175,29 @@ public class Pedido implements Parcelable, Cloneable {
                 ", itens=" + itens +
                 ", valor='" + valor + '\'' +
                 ", status='" + status + '\'' +
-                ", entregar=" + entregar +
+                ", pedidoCustomizado=" + pedidoCustomizado +
                 ", endereco=" + endereco +
                 ", imagem='" + imagem + '\'' +
+                ", chefesDoPedidoCustomizado=" + chefesDoPedidoCustomizado +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(_id);
+        dest.writeString(idUsuario);
+        dest.writeString(idFornecedor);
+        dest.writeTypedList(itens);
+        dest.writeString(valor);
+        dest.writeString(status);
+        dest.writeByte((byte) (pedidoCustomizado ? 1 : 0));
+        dest.writeParcelable(endereco, flags);
+        dest.writeString(imagem);
+        dest.writeTypedList(chefesDoPedidoCustomizado);
     }
 }

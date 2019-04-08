@@ -7,6 +7,8 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface APIDeliveryCaseiroPedido {
@@ -16,4 +18,8 @@ public interface APIDeliveryCaseiroPedido {
 
     @GET("pedidos")
     Call<List<Pedido>> readByUsuario(@Query("idUsuario") String id);
+
+    @PUT("pedidos/{id}")
+    Call<Pedido> update(@Path("id") String id, @Body Pedido pedido);
+
 }

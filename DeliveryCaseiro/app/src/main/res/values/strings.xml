@@ -33,6 +33,10 @@
     <string name="deseja_finalizar_o_pedido">Deseja finalizar o pedido?</string>
     <string name="sim">Sim</string>
     <string name="nao">Não</string>
+    <string name="pedido_customizado">Pedido Customizado</string>
+    <string name="nome_chefe_espaco">Nome do chefe: \n\n</string>
+    <string name="quantidade_pratos_espaco">Quantidade: \n\n</string>
+    <string name="valor_cobrado_por_prato_espaco">Valor cobrado por prato: \n\n R$</string>
 
     <string-array name="mainActivityTabTitles">
         <item>Chefes</item>
