@@ -1,11 +1,15 @@
 package io.github.aguirresabino.deliverycaseiro.view.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.widget.Button;
 
 import com.google.android.material.textfield.TextInputLayout;
 
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -16,6 +20,7 @@ import io.github.aguirresabino.deliverycaseiro.model.entities.Usuario;
 import io.github.aguirresabino.deliverycaseiro.model.enums.ValuesApplicationEnum;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroRetrofitFactory;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroUsuario;
+import io.github.aguirresabino.deliverycaseiro.model.services.UsuarioService;
 import io.github.aguirresabino.deliverycaseiro.view.activity.base.BaseActivity;
 import io.github.aguirresabino.deliverycaseiro.view.helpers.ToastHelper;
 import retrofit2.Call;
@@ -32,7 +37,8 @@ public class CadastroActivity extends BaseActivity {
     @BindView(R.id.activityCadastroInputTelefone) TextInputLayout telefone;
     @BindView(R.id.activityCadastroInputCep) TextInputLayout cep;
 
-    private APIDeliveryCaseiroUsuario apiDeliveryCaseiroUsuario;
+    private UsuarioService usuarioService;
+    private LocalBroadcastReceiver localBroadcastReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +46,17 @@ public class CadastroActivity extends BaseActivity {
         setContentView(R.layout.activity_cadastro);
         //
         ButterKnife.bind(this);
+        //
+        usuarioService = new UsuarioService(CadastroActivity.this);
+        //
+        localBroadcastReceiver = new LocalBroadcastReceiver();
+        LocalBroadcastManager.getInstance(CadastroActivity.this).registerReceiver(localBroadcastReceiver, new IntentFilter(LocalBroadcastReceiver.LOCAL_BROADCAST_RECEIVER_CADASTRO_ACTIVITY));
+    }
 
-        apiDeliveryCaseiroUsuario = APIDeliveryCaseiroRetrofitFactory.getApiDeliveryCaseiroUsuario();
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LocalBroadcastManager.getInstance(CadastroActivity.this).unregisterReceiver(localBroadcastReceiver);
     }
 
     @OnClick(R.id.activityCadastroButtonCadastrar)
@@ -58,34 +73,36 @@ public class CadastroActivity extends BaseActivity {
         cadastrar.setEnabled(false);
         cancelar.setEnabled(false);
         //TODO Alterar isto para alguma coisa que mostre um loading.
-        cadastrar.setText("Aguarde...");
+        cadastrar.setText(R.string.entrar_aguarde);
 
-        Call<Usuario> call =  apiDeliveryCaseiroUsuario.create(usuario);
-
-        call.enqueue(new Callback<Usuario>() {
-            @Override
-            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
-                MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), CadastroActivity.class, "Usuário cadastrado: " + usuario.toString());
-                //
-                cadastrar.setText("Usuário cadastrado!");
-                cancelar.setText("Voltar");
-                cancelar.setEnabled(true);
-            }
-
-            @Override
-            public void onFailure(Call<Usuario> call, Throwable t) {
-                MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), CadastroActivity.class, "Erro no cadastro do usuário!");
-                ToastHelper.toastShort(getBaseContext(), "Tente novamente mais tarde!");
-                cadastrar.setEnabled(true);
-                cancelar.setEnabled(true);
-                cadastrar.setText(R.string.cadastrar);
-            }
-        });
+        usuarioService.create(usuario);
     }
 
     @OnClick(R.id.activityCadastroButtonCancelar)
     public void btnCancelar() {
         MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), CadastroActivity.class, "Botão Cancelar clicado.");
         startActivity(new Intent(this, LoginActivity.class));
+    }
+
+    public class LocalBroadcastReceiver extends BroadcastReceiver {
+
+        public static final String LOCAL_BROADCAST_RECEIVER_CADASTRO_ACTIVITY = "local.broadcast.receiver.cadastro.activity";
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            boolean successMessage = (boolean) intent.getBooleanExtra("usuario.service.create", false);
+
+            if(successMessage) {
+                // TODO Exibir dialog solicitando o login
+                cadastrar.setText(getString(R.string.usuario_cadastrado));
+                cancelar.setText(getString(R.string.voltar));
+                cancelar.setEnabled(true);
+            } else {
+                cadastrar.setText(R.string.cadastrar);
+                cadastrar.setEnabled(true);
+                cancelar.setEnabled(true);
+                ToastHelper.toastShort(getBaseContext(), "Tente novamente mais tarde!");
+            }
+        }
     }
 }

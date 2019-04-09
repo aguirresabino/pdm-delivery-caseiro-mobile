@@ -2,14 +2,9 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/action_filter"
+        android:id="@+id/action_ok"
         android:orderInCategory="100"
-        android:icon="@drawable/ic_filter_list_white_24dp"
+        android:icon="@drawable/ic_done_black_24dp"
         android:title="Ok"
         app:showAsAction="always" />
-    <item
-        android:id="@+id/action_perfil"
-        android:title="@string/perfil"/>
-    <item android:id="@+id/action_sair"
-        android:title="@string/sair"/>
 </menu>

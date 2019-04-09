@@ -30,4 +30,9 @@ public class APIDeliveryCaseiroRetrofitFactory {
         initClientRetrofit();
         return retrofit.create(APIDeliveryCaseiroChefe.class);
     }
+
+    public static APIDeliveryCaseiroPedido getApiDeliveryCaseiroPedido() {
+        initClientRetrofit();
+        return retrofit.create(APIDeliveryCaseiroPedido.class);
+    }
 }

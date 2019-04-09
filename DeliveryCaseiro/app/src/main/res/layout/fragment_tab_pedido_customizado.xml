@@ -33,20 +33,48 @@
         app:layout_constraintTop_toBottomOf="@+id/fragmentTabPedidoCustomizadoEditTextNomePrato" />
 
     <EditText
-        android:id="@+id/fragmentTabPedidoCustomizadoEditTextDescricaoPrato"
+        android:id="@+id/fragmentTabPedidoCustomizadoEditTextQuantidade"
         android:layout_width="0dp"
-        android:layout_height="410dp"
+        android:layout_height="48dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:background="@android:color/transparent"
         android:ems="10"
         android:gravity="top"
+        android:hint="@string/quantidade"
         android:inputType="textMultiLine"
-        android:lines="20"
-        android:hint="@string/descricao"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+    <View
+        android:id="@+id/divider1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentTabPedidoCustomizadoEditTextQuantidade" />
+
+    <EditText
+        android:id="@+id/fragmentTabPedidoCustomizadoEditTextDescricaoPrato"
+        android:layout_width="0dp"
+        android:layout_height="357dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:gravity="top"
+        android:hint="@string/descricao"
+        android:inputType="textMultiLine"
+        android:lines="20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider1"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,10 +6,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -24,40 +22,37 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.aguirresabino.deliverycaseiro.R;
-import io.github.aguirresabino.deliverycaseiro.model.entities.Chefe;
-import io.github.aguirresabino.deliverycaseiro.model.entities.Prato;
+import io.github.aguirresabino.deliverycaseiro.model.entities.ChefePedidoCustomizado;
+import io.github.aguirresabino.deliverycaseiro.model.entities.Pedido;
 import io.github.aguirresabino.deliverycaseiro.view.activity.base.BaseActivity;
+import io.github.aguirresabino.deliverycaseiro.view.helpers.ToastHelper;
 import io.github.aguirresabino.deliverycaseiro.view.transform.CircleTransform;
 
-public class ChefeActivity extends BaseActivity {
+public class ChefesPedidoCustomizadoAceitoActivity extends BaseActivity {
 
-    @BindView(R.id.activityChefeRecyclerView) RecyclerView recyclerView;
+    @BindView(R.id.activityChefesPedidoCustomizadoAceitoRecyclerView) RecyclerView recyclerView;
     @BindView(R.id.toolbar) Toolbar toolbar;
-    @BindView(R.id.activityChefeCollapsingToolbarLayout) CollapsingToolbarLayout collapsingToolbarLayout;
-    @BindView(R.id.activityChefeAppBarImg) AppCompatImageView imagem;
 
-    private Chefe chefe;
+    private Pedido pedido;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chefe);
+        setContentView(R.layout.activity_chefes_pedido_customizado_aceito);
         // ButterKnife
         ButterKnife.bind(this);
         //
+        pedido = getIntent().getParcelableExtra("pedido");
+        //
+        toolbar.setTitle(R.string.pedido_customizado);
         setUpToolbar(toolbar);
-        // Recuperando nome do chefe passado na Intent
-        Intent intent = getIntent();
-        this.chefe = intent.getParcelableExtra("chefe");
-        // Alterando título do menu para o nome do chefe
-        collapsingToolbarLayout.setTitle(chefe.getNome());
-        // Alterando imagem da barra
-        Picasso.get().load(chefe.getImagem()).into(imagem);
-        //collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
         //utilizando botão voltar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //configurando recyclerview
         setUpRecyclerView();
+
+        // Verificando se algum chefe aceitou fazer o pedido
+        if(pedido.getChefesDoPedidoCustomizado() == null || pedido.getChefesDoPedidoCustomizado().isEmpty())  ToastHelper.toastShort(ChefesPedidoCustomizadoAceitoActivity.this, "Nenhum chefe aceitou fazer este pedido ainda!");
     }
 
     @Override
@@ -75,53 +70,50 @@ public class ChefeActivity extends BaseActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(new ChefeListCardAdapter(this.chefe.getPratos(), this.onClickPrato()));
+        recyclerView.setAdapter(new ChefesPedidoCustomizadoAceitoActivity.ChefeListCardAdapter(this.pedido.getChefesDoPedidoCustomizado(), this.onClickChefe()));
     }
 
-    private ChefeListCardAdapter.CardOnClickListener onClickPrato(){
-        return new ChefeListCardAdapter.CardOnClickListener() {
+    private ChefesPedidoCustomizadoAceitoActivity.ChefeListCardAdapter.CardOnClickListener onClickChefe(){
+        return new ChefesPedidoCustomizadoAceitoActivity.ChefeListCardAdapter.CardOnClickListener() {
             @Override
             public void onClickCard(View view, int idx) {
-                //String item = getResources().getStringArray(R.array.teste)[idx];
-                //Toast.makeText(getBaseContext(), "Clicou em " + item, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getBaseContext(), PratoPedidoActivity.class);
-                intent.putExtra("prato", chefe.getPratos().get(idx));
-                intent.putExtra("idChefe", chefe.getId());
+                Intent intent = new Intent(getBaseContext(), AceitarPedidoCustomizadoActivity.class);
+                intent.putExtra("chefe.selecionado", idx);
+                intent.putExtra("pedido", pedido);
                 startActivity(intent);
             }
         };
     }
 
-    static class ChefeListCardAdapter extends RecyclerView.Adapter<ChefeListCardAdapter.ListCardViewHolder> {
+    static class ChefeListCardAdapter extends RecyclerView.Adapter<ChefesPedidoCustomizadoAceitoActivity.ChefeListCardAdapter.ListCardViewHolder> {
 
-        private List<Prato> pratos;
-        private ChefeListCardAdapter.CardOnClickListener cardOnClickListener;
+        private List<ChefePedidoCustomizado> chefes;
+        private ChefesPedidoCustomizadoAceitoActivity.ChefeListCardAdapter.CardOnClickListener cardOnClickListener;
 
-        public ChefeListCardAdapter(List<Prato> pratos, ChefeListCardAdapter.CardOnClickListener cardOnClickListener){
-            this.pratos = pratos;
+        public ChefeListCardAdapter(List<ChefePedidoCustomizado> chefes, ChefesPedidoCustomizadoAceitoActivity.ChefeListCardAdapter.CardOnClickListener cardOnClickListener){
+            this.chefes = chefes;
             this.cardOnClickListener = cardOnClickListener;
         }
 
         //Cria novas views
         @NonNull
         @Override
-        public ChefeListCardAdapter.ListCardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        public ChefesPedidoCustomizadoAceitoActivity.ChefeListCardAdapter.ListCardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             //criando nova view
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_line, parent, false);
 
-            ChefeListCardAdapter.ListCardViewHolder listCardViewHolder = new ChefeListCardAdapter.ListCardViewHolder(view);
+            ChefesPedidoCustomizadoAceitoActivity.ChefeListCardAdapter.ListCardViewHolder listCardViewHolder = new ChefesPedidoCustomizadoAceitoActivity.ChefeListCardAdapter.ListCardViewHolder(view);
             return listCardViewHolder;
         }
 
         @Override
-        public void onBindViewHolder(@NonNull final ChefeListCardAdapter.ListCardViewHolder holder, final int position) {
-            Prato prato = this.pratos.get(position);
+        public void onBindViewHolder(@NonNull final ChefesPedidoCustomizadoAceitoActivity.ChefeListCardAdapter.ListCardViewHolder holder, final int position) {
+            ChefePedidoCustomizado chefe = this.chefes.get(position);
 
-            holder.nome.setText(prato.getNome());
-            holder.descricao.setText(prato.getDescricao());
-//            holder.image.setImageResource(Integer.parseInt(holder.itemView.getResources().getResourceName(R.mipmap.ic_launcher_round)));
+            holder.nome.setText(chefe.getNome());
+            holder.descricao.setText("Valor cobrado: R$ " + chefe.getValor());
             Picasso.get()
-                    .load(prato.getImagem())
+                    .load(chefe.getImagem())
                     .transform(new CircleTransform())
                     .into(holder.image);
 
@@ -137,7 +129,7 @@ public class ChefeActivity extends BaseActivity {
 
         @Override
         public int getItemCount() {
-            return pratos != null || !pratos.isEmpty() ? pratos.size() : 0;
+            return chefes != null || !chefes.isEmpty() ? chefes.size() : 0;
         }
 
         public static class ListCardViewHolder extends RecyclerView.ViewHolder{

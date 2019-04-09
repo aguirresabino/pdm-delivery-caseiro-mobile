@@ -1,0 +1,346 @@
+{
+  "usuarios": [
+    {
+      "id": 0,
+      "email": "aguirre@gmail.com",
+      "endereco": {
+        "bairro": "Por do sol",
+        "cep": "58900000",
+        "cidade": "Cajazeiras",
+        "estado": "Paraíba",
+        "numero": "131",
+        "rua": "José Alves da Cunha"
+      },
+      "imagem": "file:/storage/emulated/0/Pictures/PHOTOAPP1122641798.jpg",
+      "nome": "Aguirre Sabino",
+      "senha": "1234",
+      "telefone": "83991290131"
+    },
+    {
+      "id": 1,
+      "nome": "Ana Beatriz",
+      "email": "ana@gmail.com",
+      "senha": "1234",
+      "telefone": "83991290131",
+      "imagem": "https://scontent.fjdo5-1.fna.fbcdn.net/v/t1.0-9/35053896_10209683858891688_1988421896424652800_n.jpg?_nc_cat=107&_nc_ht=scontent.fjdo5-1.fna&oh=9e9d24c84bd7cf67e9f0cf660bea2d28&oe=5D4EEF5C",
+      "endereco": {
+        "cep": "58900000",
+        "numero": "131",
+        "complemento": "Casa",
+        "rua": "Nome da Rua",
+        "bairro": "Nome Bairro",
+        "cidade": "Cajazeiras",
+        "estado": "Paraíba"
+      }
+    }
+  ],
+  "chefes": [
+    {
+      "id": 0,
+      "nome": "Chefe José",
+      "email": "jose@gmail.com",
+      "senha": "1234",
+      "telefone": "83991290131",
+      "imagem": "https://image.freepik.com/vetores-gratis/restaurante-do-chef-avatar-ilustracao-dos-desenhos-animados_1951-375.jpg",
+      "endereco": {
+        "cep": "58900000",
+        "numero": "131",
+        "complemento": "Casa",
+        "rua": "José Alves da Cunha",
+        "bairro": "Por do sol",
+        "cidade": "Cajazeiras",
+        "estado": "Paraíba"
+      },
+      "pratos": [
+        {
+          "id": 0,
+          "nome": "Arroz e Carne",
+          "valor": "7",
+          "descricao": "Um prato com arroz e carne",
+          "imagem": "https://s3-sa-east-1.amazonaws.com/snibrazil/wp-content/uploads/2017/07/1501261019-arroz-a-piamontese_616x462.jpg"
+        },
+        {
+          "id": 1,
+          "nome": "Arroz, Feijão e Carne",
+          "valor": "10",
+          "descricao": "Um prato com arroz, feijão e carne",
+          "imagem": "http://semmedida.com/wp-content/uploads/2011/09/arroz_feijao.jpg"
+        },
+        {
+          "id": 2,
+          "nome": "Macarrão",
+          "valor": "20",
+          "descricao": "Macarrão",
+          "imagem": "https://abrilexame.files.wordpress.com/2017/08/thinkstockphotos-174790734.jpg"
+        },
+        {
+          "id": 3,
+          "nome": "Pizza",
+          "valor": "50",
+          "descricao": "Pizza Tradicional",
+          "imagem": "https://tudoela.com/wp-content/uploads/2016/07/Sonhar-com-comida.jpg"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "nome": "Chefe Josefa",
+      "email": "josefa@gmail.com",
+      "senha": "1234",
+      "telefone": "83991290131",
+      "imagem": "https://st3.depositphotos.com/3586665/12548/v/950/depositphotos_125480488-stock-illustration-female-cook-cartoon-funny-woman.jpg",
+      "endereco": {
+        "cep": "58900000",
+        "numero": "131",
+        "complemento": "Casa",
+        "rua": "José Alves da Cunha",
+        "bairro": "Por do sol",
+        "cidade": "Cajazeiras",
+        "estado": "Paraíba"
+      },
+      "pratos": [
+        {
+          "id": 0,
+          "nome": "Arroz e Carne de Josefa",
+          "valor": "20",
+          "descricao": "Um prato com arroz e carne de Josefa",
+          "imagem": "https://media-cdn.tripadvisor.com/media/photo-s/09/a3/15/8b/nando-s-grill.jpg"
+        },
+        {
+          "id": 1,
+          "nome": "Arroz, Feijão e Carne de Josefa",
+          "valor": "30",
+          "descricao": "Um prato com arroz, feijão e carne de Josefa",
+          "imagem": "https://s3-sa-east-1.amazonaws.com/snibrazil/wp-content/uploads/2017/07/1501261019-arroz-a-piamontese_616x462.jpg"
+        }
+      ]
+    }
+  ],
+  "pedidos": [
+    {
+      "id": 11,
+      "chefesDoPedidoCustomizado": [
+        {
+          "id": "0",
+          "imagem": "https://image.freepik.com/vetores-gratis/restaurante-do-chef-avatar-ilustracao-dos-desenhos-animados_1951-375.jpg",
+          "nome": "Chefe José",
+          "valor": "10"
+        },
+        {
+          "id": "1",
+          "imagem": "https://st3.depositphotos.com/3586665/12548/v/950/depositphotos_125480488-stock-illustration-female-cook-cartoon-funny-woman.jpg",
+          "nome": "Chefe Josefa",
+          "valor": "9"
+        }
+      ],
+      "endereco": {
+        "bairro": "Por do sol",
+        "cep": "58900000",
+        "cidade": "Cajazeiras",
+        "complemento": "Casa",
+        "estado": "Paraíba",
+        "numero": "131",
+        "rua": "José Alves da Cunha"
+      },
+      "idFornecedor": "1",
+      "idUsuario": "0",
+      "imagem": "file:/storage/emulated/0/Pictures/PHOTOAPP-1033809211.jpg",
+      "itens": [
+        {
+          "descricao": "Um pedido personalizado pelo usuário",
+          "nome": "Pedido Personalizado",
+          "quantidade": 4,
+          "valor": "9"
+        }
+      ],
+      "pedidoCustomizado": true,
+      "status": "Em preparo",
+      "valor": "36"
+    },
+    {
+      "endereco": {
+        "bairro": "Por do sol",
+        "cep": "58900000",
+        "cidade": "Cajazeiras",
+        "estado": "Paraíba",
+        "numero": "131",
+        "rua": "José Alves da Cunha"
+      },
+      "idFornecedor": "1",
+      "idUsuario": "0",
+      "imagem": "https://media-cdn.tripadvisor.com/media/photo-s/09/a3/15/8b/nando-s-grill.jpg",
+      "itens": [
+        {
+          "descricao": "Um prato com arroz e carne de Josefa",
+          "nome": "Arroz e Carne de Josefa",
+          "quantidade": 1,
+          "valor": "20"
+        }
+      ],
+      "pedidoCustomizado": false,
+      "status": "Em preparo",
+      "valor": "20",
+      "id": 12
+    },
+    {
+      "endereco": {
+        "bairro": "Por do sol",
+        "cep": "58900000",
+        "cidade": "Cajazeiras",
+        "estado": "Paraíba",
+        "numero": "131",
+        "rua": "José Alves da Cunha"
+      },
+      "idFornecedor": "0",
+      "idUsuario": "0",
+      "imagem": "https://tudoela.com/wp-content/uploads/2016/07/Sonhar-com-comida.jpg",
+      "itens": [
+        {
+          "descricao": "Pizza Tradicional",
+          "nome": "Pizza",
+          "quantidade": 2,
+          "valor": "50"
+        }
+      ],
+      "pedidoCustomizado": false,
+      "status": "Em preparo",
+      "valor": "100",
+      "id": 13
+    },
+    {
+      "endereco": {
+        "bairro": "Por do sol",
+        "cep": "58900000",
+        "cidade": "Cajazeiras",
+        "estado": "Paraíba",
+        "numero": "131",
+        "rua": "José Alves da Cunha"
+      },
+      "idFornecedor": "0",
+      "idUsuario": "0",
+      "imagem": "https://abrilexame.files.wordpress.com/2017/08/thinkstockphotos-174790734.jpg",
+      "itens": [
+        {
+          "descricao": "Macarrão",
+          "nome": "Macarrão",
+          "quantidade": 2,
+          "valor": "20"
+        }
+      ],
+      "pedidoCustomizado": false,
+      "status": "Saiu para entrega",
+      "valor": "40",
+      "id": 14
+    },
+    {
+      "endereco": {
+        "bairro": "Por do sol",
+        "cep": "58900000",
+        "cidade": "Cajazeiras",
+        "estado": "Paraíba",
+        "numero": "131",
+        "rua": "José Alves da Cunha"
+      },
+      "idFornecedor": "0",
+      "idUsuario": "0",
+      "imagem": "http://semmedida.com/wp-content/uploads/2011/09/arroz_feijao.jpg",
+      "itens": [
+        {
+          "descricao": "Um prato com arroz, feijão e carne",
+          "nome": "Arroz, Feijão e Carne",
+          "quantidade": 1,
+          "valor": "10"
+        }
+      ],
+      "pedidoCustomizado": false,
+      "status": "Em preparo",
+      "valor": "10",
+      "id": 15
+    },
+    {
+      "endereco": {
+        "bairro": "Por do sol",
+        "cep": "58900000",
+        "cidade": "Cajazeiras",
+        "estado": "Paraíba",
+        "numero": "131",
+        "rua": "José Alves da Cunha"
+      },
+      "idFornecedor": "1",
+      "idUsuario": "0",
+      "imagem": "https://s3-sa-east-1.amazonaws.com/snibrazil/wp-content/uploads/2017/07/1501261019-arroz-a-piamontese_616x462.jpg",
+      "itens": [
+        {
+          "descricao": "Um prato com arroz, feijão e carne de Josefa",
+          "nome": "Arroz, Feijão e Carne de Josefa",
+          "quantidade": 1,
+          "valor": "30"
+        }
+      ],
+      "pedidoCustomizado": false,
+      "status": "Entregue",
+      "valor": "30",
+      "id": 16
+    },
+    {
+      "endereco": {
+        "cep": "58900000"
+      },
+      "idFornecedor": "0",
+      "idUsuario": "2",
+      "imagem": "https://tudoela.com/wp-content/uploads/2016/07/Sonhar-com-comida.jpg",
+      "itens": [
+        {
+          "descricao": "Pizza Tradicional",
+          "nome": "Pizza",
+          "quantidade": 2,
+          "valor": "50"
+        }
+      ],
+      "pedidoCustomizado": false,
+      "status": "Em preparo",
+      "valor": "100",
+      "id": 17
+    },
+    {
+      "chefesDoPedidoCustomizado": [],
+      "endereco": {
+        "cep": "58900000"
+      },
+      "idUsuario": "2",
+      "itens": [
+        {
+          "descricao": "Meu pedido",
+          "nome": "Pedido personalizado",
+          "quantidade": 1
+        }
+      ],
+      "pedidoCustomizado": true,
+      "status": "Pedido Postado",
+      "id": 18
+    },
+    {
+      "chefesDoPedidoCustomizado": [],
+      "endereco": {
+        "bairro": "Por do sol",
+        "cep": "58900000",
+        "cidade": "Cajazeiras",
+        "estado": "Paraíba",
+        "numero": "131",
+        "rua": "José Alves da Cunha"
+      },
+      "idUsuario": "0",
+      "imagem": "file:/storage/emulated/0/Pictures/PHOTOAPP-1033809211.jpg",
+      "itens": [
+        {
+          "descricao": "Meu Pedido",
+          "nome": "Outro pedido personalizado",
+          "quantidade": 4
+        }
+      ],
+      "pedidoCustomizado": true,
+      "status": "Pedido Postado",
+      "id": 19
+    }
+  ]
+}

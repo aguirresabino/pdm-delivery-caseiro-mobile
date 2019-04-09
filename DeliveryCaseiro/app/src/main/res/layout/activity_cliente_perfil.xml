@@ -1,140 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".view.activity.ClientePerfilActivity">
+    tools:context=".view.activity.UsuarioPerfilActivity">
 
-    <include layout="@layout/toolbar"/>
+    <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <!--Nome-->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/activityClientePerfilInputLayoutNome"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_components_pattern"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:hint="@string/nome"
-        android:background="@drawable/border"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        tools:ignore="UnknownIdInLayout">
+        <include layout="@layout/toolbar" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/activityClientePerfilEditTextNome"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/activityClientePerfilAlterarFoto"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="142dp"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:padding="16dp"
+            app:cardCornerRadius="0dp"
+            app:cardElevation="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            tools:ignore="UnknownId">
 
-    <!--Email-->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/activityClientePerfilInputLayoutEmail"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_components_pattern"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:hint="@string/email"
-        android:background="@drawable/border"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activityClientePerfilInputLayoutNome">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/activityClientePerfilEditTextEmail"
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/activityClientePerfilAppCompatImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="center_vertical"
+                    android:justificationMode="inter_word"
+                    android:text="Alterar foto"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/activityClientePerfilAppCompatImageView" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <View
+            android:id="@+id/divider"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:inputType="textEmailAddress" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activityClientePerfilAlterarFoto" />
 
-    <!--Senha-->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/activityClientePerfilInputLayoutSenha"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_components_pattern"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:hint="@string/senha"
-        android:background="@drawable/border"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activityClientePerfilInputLayoutEmail">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/activityClientePerfilEditTextSenha"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/activityClientePerfilInputLayoutNome"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:inputType="textPassword" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="@dimen/height_components_pattern"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
 
-    <!--Telefone-->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/activityClientePerfilInputLayoutTelefone"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_components_pattern"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:hint="@string/telefone"
-        android:background="@drawable/border"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activityClientePerfilInputLayoutSenha">
+            android:hint="@string/nome"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            tools:ignore="UnknownIdInLayout">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/activityClientePerfilEditTextTelefone"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/activityClientePerfilEditTextNome"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/activityClientePerfilInputLayoutEmail"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:inputType="phone" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="@dimen/height_components_pattern"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/activityClientePerfilButtonAtualizar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_components_pattern"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:background="@color/colorPrimary2"
-        android:text="@string/atualizar"
-        android:textColor="@color/colorPrimary"
-        android:textSize="22sp"
-        android:clickable="true"
-        android:foreground="?selectableItemBackgroundBorderless"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activityClientePerfilInputLayoutTelefone" />
+            android:hint="@string/email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activityClientePerfilInputLayoutNome">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/activityClientePerfilButtonDeletar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_components_pattern"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@color/colorAccent2"
-        android:text="@string/deletar"
-        android:textColor="@color/colorPrimary"
-        android:textSize="22sp"
-        android:clickable="true"
-        android:foreground="?selectableItemBackgroundBorderless"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activityClientePerfilButtonAtualizar"
-        app:layout_constraintVertical_bias="0.165" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/activityClientePerfilEditTextEmail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                android:inputType="textEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/activityClientePerfilInputLayoutSenha"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_components_pattern"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:hint="@string/senha"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activityClientePerfilInputLayoutEmail">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/activityClientePerfilEditTextSenha"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--Telefone-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/activityClientePerfilInputLayoutTelefone"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_components_pattern"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:hint="@string/telefone"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activityClientePerfilInputLayoutSenha">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/activityClientePerfilEditTextTelefone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:inputType="phone" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/activityClientePerfilButtonDeletar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_components_pattern"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/colorAccent2"
+            android:clickable="true"
+            android:foreground="?selectableItemBackgroundBorderless"
+            android:text="@string/deletar"
+            android:textColor="@color/colorPrimary"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activityClientePerfilInputLayoutTelefone"
+            app:layout_constraintVertical_bias="0.165" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

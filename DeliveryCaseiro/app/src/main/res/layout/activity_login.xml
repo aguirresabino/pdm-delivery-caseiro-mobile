@@ -10,7 +10,7 @@
     <!--TODO Remover background dos inputs-->
     <!--TODO Como implementar um design "responsivo"?-->
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageView"
         android:layout_width="195dp"
         android:layout_height="143dp"
