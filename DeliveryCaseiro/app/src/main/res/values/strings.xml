@@ -2,16 +2,9 @@
     <string name="app_name">Delivery Caseiro</string>
     <string name="meus_pedidos">Meus Pedidos</string>
     <string name="perfil">Perfil</string>
-
-    <!--String para abas-->
     <string name="chefes">Chefes</string>
+    <string name="chefe">Chefe</string>
     <string name="pedido_personalizado">Pedido personalizado</string>
-
-    <string-array name="initialFragmentTabTitles">
-        <item>Chefes</item>
-        <item>Pedido customizado</item>
-    </string-array>
-
     <string name="entrar">Entrar</string>
     <string name="entrar_aguarde">Aguarde</string>
     <string name="crie_sua_conta">Crie sua conta</string>
@@ -25,27 +18,35 @@
     <string name="email">Email</string>
     <string name="nome">Nome</string>
     <string name="atualizar">Atualizar</string>
-    <string name="cep" tools:ignore="ExtraTranslation">CEP</string>
+    <string name="cep">CEP</string>
     <string name="nome_do_chefe">Nome...</string>
     <string name="pedir">Pedir</string>
     <string name="quantidade">Quantidade</string>
     <string name="cancelar">Cancelar</string>
-    <string name="deletar">Deletar</string>
+    <string name="deletar">Deletar Conta</string>
+    <string name="detalhe_do_pedido">Detalhe do Pedido</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi porta erat vel vehicula dapibus. Aenean at molestie massa, quis malesuada quam. Aenean non nisl mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
+    <string name="sair">Sair</string>
+    <string name="usuario_cadastrado">Usuário cadastrado!</string>
+    <string name="voltar">Voltar</string>
+    <string name="atualizando_dados">Altualizando dados...</string>
+    <string name="deseja_finalizar_o_pedido">Deseja finalizar o pedido?</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
+    <string name="pedido_customizado">Pedido Customizado</string>
+    <string name="nome_chefe_espaco">Nome do chefe: \n\n</string>
+    <string name="quantidade_pratos_espaco">Quantidade: \n\n</string>
+    <string name="valor_cobrado_por_prato_espaco">Valor cobrado por prato: \n\n R$</string>
+    <string name="estado">Estado</string>
+    <string name="cidade">Cidade</string>
+    <string name="bairro">Bairro</string>
+    <string name="rua">Rua</string>
+    <string name="numero">Número</string>
+    <string name="complemento">Complemento</string>
 
-    <!--TODO excluir abaixo-->
-    <string-array name="testeChefeActivity">
-        <item>Prato 1</item>
-        <item>Prato 2</item>
-        <item>Prato 3</item>
-        <item>Prato 4</item>
-        <item>Prato 5</item>
-    </string-array>
-
-    <string-array name="testeClientePedidosFragment">
-        <item>Pedido 1</item>
-        <item>Pedido 2</item>
-        <item>Pedido 3</item>
-        <item>Pedido 4</item>
-        <item>Pedido 5</item>
+    <string-array name="mainActivityTabTitles">
+        <item>Chefes</item>
+        <item>Pedido customizado</item>
+        <item>Pedidos Feitos</item>
     </string-array>
 </resources>

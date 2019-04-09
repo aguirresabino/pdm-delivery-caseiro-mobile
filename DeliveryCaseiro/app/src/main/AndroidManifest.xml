@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="io.github.aguirresabino.deliverycaseiro">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-feature android:name="android.hardware.camera" android:required="true" />
 
     <application
         android:name=".application.DeliveryApplication"
@@ -15,20 +20,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".view.activity.AceitarPedidoCustomizadoActivity" />
+        <activity android:name=".view.activity.ChefesPedidoCustomizadoAceitoActivity" />
+        <activity android:name=".view.activity.UsuarioPerfilActivity" />
         <activity android:name=".view.activity.MainActivity" />
-        <activity android:name=".view.activity.ChefeActivity"/>
-        <activity android:name=".view.activity.PratoPedidoActivity"/>
-        <activity android:name=".view.activity.PedidoDetailActivity"/>
-        <activity android:name=".view.activity.LoginActivity" >
+        <activity android:name=".view.activity.ChefeActivity" />
+        <activity android:name=".view.activity.PratoPedidoActivity" />
+        <activity android:name=".view.activity.PedidoDetailActivity" />
+        <activity android:name=".view.activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.activity.CadastroActivity"></activity>
-
-        <service android:name=".model.services.LoginIntentService"/>
+        <activity android:name=".view.activity.CadastroActivity" />
     </application>
 
 </manifest>

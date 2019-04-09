@@ -7,8 +7,7 @@
     android:background="@color/colorPrimary"
     tools:context=".view.activity.PedidoDetailActivity">
 
-    <include layout="@layout/toolbar"
-        android:id="@+id/myToolbar"/>
+    <include layout="@layout/toolbar"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -22,7 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myToolbar">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -30,24 +29,23 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/appCompatImageView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="239dp"
+                android:layout_height="83dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@mipmap/ic_launcher_round" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/activityPedidoDetailDescricao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="16dp"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi porta erat vel vehicula dapibus. Aenean at molestie massa, quis malesuada quam. Aenean non nisl mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                 android:textAlignment="center"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -59,14 +57,14 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
+        android:id="@+id/activityPedidoDetailValor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:text="R$ 20,00"
         android:textAlignment="center"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/colorPrimary2"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

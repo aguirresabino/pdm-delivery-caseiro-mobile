@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context=".view.activity.PratoPedidoActivity">
 
-    <include layout="@layout/toolbar"
-        android:id="@+id/myToolbar"/>
+    <include layout="@layout/toolbar"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -21,7 +21,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myToolbar">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        tools:ignore="UnknownIdInLayout">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -29,24 +30,24 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/appCompatImageView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="234dp"
+                android:layout_height="85dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@mipmap/ic_launcher_round" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/activityPratoPedidoTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="16dp"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi porta erat vel vehicula dapibus. Aenean at molestie massa, quis malesuada quam. Aenean non nisl mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                android:text="@string/lorem_ipsum"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -64,7 +65,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/input_bg"
+        android:background="@drawable/border"
         app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,22 +77,7 @@
             android:background="@android:color/transparent"
             android:hint="@string/quantidade"
             android:inputType="number"
-            android:paddingLeft="@dimen/materialize_baseline_grid" />
+            android:paddingStart="@dimen/materialize_baseline_grid" />
     </com.google.android.material.textfield.TextInputLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/activityPratoPedidoButtonPedir"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/height_components_pattern"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        android:background="@color/colorAccent"
-        android:text="@string/pedir"
-        android:textColor="@color/md_white_1000"
-        android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activityPratoPedidoInputQuantidade" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
