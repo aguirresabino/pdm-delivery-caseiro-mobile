@@ -62,7 +62,7 @@ public class PratoPedidoActivity extends BaseActivity {
         setUpToolbar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        descricao.setText(prato.getDescricao());
+        descricao.setText(prato.getDescricao() + "\nValor do prato: R$ " + prato.getValor());
     }
 
     @Override
@@ -110,7 +110,7 @@ public class PratoPedidoActivity extends BaseActivity {
 
         new AlertDialog.Builder(this)
                 .setTitle(getResources().getString(R.string.app_name))
-                .setMessage(getString(R.string.deseja_finalizar_o_pedido))
+                .setMessage(getString(R.string.deseja_finalizar_o_pedido) + "\n Valor total: R$ " + pedido.getValor())
 //                .setIcon(getResources().getDrawable(android.R.drawable.ic_dialog_alert))
                 .setPositiveButton(getString(R.string.sim),
                         new DialogInterface.OnClickListener() {

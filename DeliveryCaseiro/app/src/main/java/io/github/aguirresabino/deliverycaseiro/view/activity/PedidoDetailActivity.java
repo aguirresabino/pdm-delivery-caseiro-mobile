@@ -35,8 +35,8 @@ public class PedidoDetailActivity extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Pedido pedido = getIntent().getParcelableExtra("pedido");
-        descricao.setText(pedido.getItens().get(0).getDescricao());
-        valor.setText(pedido.getValor());
+        descricao.setText(pedido.getItens().get(0).getDescricao() + "\n Quantidade: " + pedido.getItens().get(0).getQuantidade());
+        valor.setText("R$ " + pedido.getValor());
 
         Picasso.get().load(pedido.getImagem()).into(imagem);
     }

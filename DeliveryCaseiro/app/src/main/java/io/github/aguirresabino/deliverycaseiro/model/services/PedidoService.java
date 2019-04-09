@@ -55,8 +55,8 @@ public class PedidoService {
         });
     }
 
-     public void readByUsuario(String id) {
-         Call<List<Pedido>> call = apiDeliveryCaseiroPedido.readByUsuario(DeliveryApplication.usuarioLogado.getId());
+     public void readByUsuario(String id, String status) {
+         Call<List<Pedido>> call = apiDeliveryCaseiroPedido.readByUsuario(id, status);
          Intent intent = new Intent(TabClientePedidosFragment.LocalBroadcastReceiver.LOCAL_BROADCAST_TAB_CLIENTE_PEDIDOS_FRAGMENT);
 
          call.enqueue(new Callback<List<Pedido>>() {

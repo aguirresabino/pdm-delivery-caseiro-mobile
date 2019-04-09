@@ -4,7 +4,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,6 +15,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.DividerDrawerItem;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -31,6 +38,7 @@ import io.github.aguirresabino.deliverycaseiro.R;
 import io.github.aguirresabino.deliverycaseiro.application.DeliveryApplication;
 import io.github.aguirresabino.deliverycaseiro.logs.MyLogger;
 import io.github.aguirresabino.deliverycaseiro.model.entities.Pedido;
+import io.github.aguirresabino.deliverycaseiro.model.enums.StatusPedidoEnum;
 import io.github.aguirresabino.deliverycaseiro.model.enums.ValuesApplicationEnum;
 import io.github.aguirresabino.deliverycaseiro.model.services.PedidoService;
 import io.github.aguirresabino.deliverycaseiro.view.activity.ChefesPedidoCustomizadoAceitoActivity;
@@ -48,6 +56,7 @@ public class TabClientePedidosFragment extends BaseFragment {
     private PedidoService pedidoService;
     private LocalBroadcastReceiver localBroadcastReceiver;
     private List<Pedido> pedidos;
+    private Drawer drawer;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -65,6 +74,8 @@ public class TabClientePedidosFragment extends BaseFragment {
         // O fragment define o menu da toolbar
         setHasOptionsMenu(true);
         //
+        setUpMaterialDrawer();
+        //
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);
@@ -76,7 +87,7 @@ public class TabClientePedidosFragment extends BaseFragment {
         localBroadcastReceiver = new LocalBroadcastReceiver();
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(localBroadcastReceiver, new IntentFilter(LocalBroadcastReceiver.LOCAL_BROADCAST_TAB_CLIENTE_PEDIDOS_FRAGMENT));
         // Carregando os pedidos do usuário
-        this.pedidoService.readByUsuario(DeliveryApplication.usuarioLogado.getId());
+        this.pedidoService.readByUsuario(DeliveryApplication.usuarioLogado.getId(), StatusPedidoEnum.PEDIDO_EM_PREPARO.getValue());
         super.onViewCreated(view, savedInstanceState);
     }
 
@@ -90,6 +101,10 @@ public class TabClientePedidosFragment extends BaseFragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
+            case R.id.action_filter:
+                if(drawer.isDrawerOpen()) drawer.closeDrawer();
+                else drawer.openDrawer();
+                break;
             case R.id.action_perfil:
                 getActivity().startActivity(new Intent(getContext(), UsuarioPerfilActivity.class));
                 break;
@@ -105,6 +120,49 @@ public class TabClientePedidosFragment extends BaseFragment {
     public void onDestroy() {
         super.onDestroy();
         LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(localBroadcastReceiver);
+    }
+
+    private void setUpMaterialDrawer() {
+        final int PEDIDO_POSTADO = 1, PEDIDO_EM_PREPARO = 0, PEDIDO_SAIU_PARA_ENTREGA = 2, PEDIDO_ENTREGUE = 3;
+
+        drawer = new DrawerBuilder().withActivity(getActivity())
+                .withDrawerGravity(Gravity.RIGHT)
+                .withFullscreen(false)
+                .withInnerShadow(false)
+                .withScrollToTopAfterClick(true)
+                .withTranslucentNavigationBar(false)
+                .addDrawerItems(
+                        new PrimaryDrawerItem().withName(StatusPedidoEnum.PEDIDO_EM_PREPARO.getValue()),
+                        new PrimaryDrawerItem().withName("Postado"),
+                        new PrimaryDrawerItem().withName(StatusPedidoEnum.PEDIDO_SAIU_PARA_ENTREGA.getValue()),
+                        new PrimaryDrawerItem().withName(StatusPedidoEnum.PEDIDO_ENTREGUE.getValue())
+                )
+                .withSelectedItemByPosition(0)
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        switch (position){
+                            case PEDIDO_POSTADO:
+                                pedidoService.readByUsuario(DeliveryApplication.usuarioLogado.getId(), StatusPedidoEnum.PEDIDO_POSTADO.getValue());
+                                drawer.closeDrawer();
+                                break;
+                            case PEDIDO_EM_PREPARO:
+                                pedidoService.readByUsuario(DeliveryApplication.usuarioLogado.getId(), StatusPedidoEnum.PEDIDO_EM_PREPARO.getValue());
+                                drawer.closeDrawer();
+                                break;
+                            case PEDIDO_SAIU_PARA_ENTREGA:
+                                pedidoService.readByUsuario(DeliveryApplication.usuarioLogado.getId(), StatusPedidoEnum.PEDIDO_SAIU_PARA_ENTREGA.getValue());
+                                drawer.closeDrawer();
+                                break;
+                            case PEDIDO_ENTREGUE:
+                                pedidoService.readByUsuario(DeliveryApplication.usuarioLogado.getId(), StatusPedidoEnum.PEDIDO_ENTREGUE.getValue());
+                                drawer.closeDrawer();
+                                break;
+                        }
+                        return true;
+                    }
+                })
+                .buildForFragment();
     }
 
     private ListCardAdapter.CardOnClickListener onClickPedido() {
@@ -204,8 +262,7 @@ public class TabClientePedidosFragment extends BaseFragment {
                 //TODO Como informar ao recyclerview que a view deve ser atualizada
                 recyclerView.setAdapter(new ListCardAdapter(pedidos, onClickPedido()));
                 MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), TabClientePedidosFragment.class, pedidos.toString());
-            } else
-                ToastHelper.toastShort(getActivity(), "Nenhum pedido foi encontrado!");
+            } else ToastHelper.toastShort(getContext(), "Nenhum pedido foi encontrado!");
         }
     }
 }

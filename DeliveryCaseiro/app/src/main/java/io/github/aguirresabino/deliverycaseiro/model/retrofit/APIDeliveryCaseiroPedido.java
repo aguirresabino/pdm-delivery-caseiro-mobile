@@ -17,7 +17,7 @@ public interface APIDeliveryCaseiroPedido {
     Call<Pedido> create(@Body Pedido pedido);
 
     @GET("pedidos")
-    Call<List<Pedido>> readByUsuario(@Query("idUsuario") String id);
+    Call<List<Pedido>> readByUsuario(@Query("idUsuario") String id, @Query("status") String status);
 
     @PUT("pedidos/{id}")
     Call<Pedido> update(@Path("id") String id, @Body Pedido pedido);
