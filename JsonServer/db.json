@@ -385,7 +385,20 @@
       "id": 10
     },
     {
-      "chefesDoPedidoCustomizado": [],
+      "chefesDoPedidoCustomizado": [
+        {
+          "id": "0",
+          "imagem": "https://image.freepik.com/vetores-gratis/restaurante-do-chef-avatar-ilustracao-dos-desenhos-animados_1951-375.jpg",
+          "nome": "Chefe José",
+          "valor": "10"
+        },
+        {
+          "id": "1",
+          "imagem": "https://st3.depositphotos.com/3586665/12548/v/950/depositphotos_125480488-stock-illustration-female-cook-cartoon-funny-woman.jpg",
+          "nome": "Chefe Josefa",
+          "valor": "9"
+        }
+      ],
       "endereco": {
         "bairro": "Por do sol",
         "cep": "58900000",
@@ -406,20 +419,6 @@
       ],
       "pedidoCustomizado": true,
       "status": "Pedido Postado",
-      "chefesDoPedidoCustomizado": [
-        {
-          "id": "0",
-          "imagem": "https://image.freepik.com/vetores-gratis/restaurante-do-chef-avatar-ilustracao-dos-desenhos-animados_1951-375.jpg",
-          "nome": "Chefe José",
-          "valor": "10"
-        },
-        {
-          "id": "1",
-          "imagem": "https://st3.depositphotos.com/3586665/12548/v/950/depositphotos_125480488-stock-illustration-female-cook-cartoon-funny-woman.jpg",
-          "nome": "Chefe Josefa",
-          "valor": "9"
-        }
-      ],
       "id": 11
     }
   ]

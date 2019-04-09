@@ -4,12 +4,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.squareup.picasso.Picasso;
 
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,6 +28,7 @@ import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiro
 import io.github.aguirresabino.deliverycaseiro.model.services.UsuarioService;
 import io.github.aguirresabino.deliverycaseiro.view.activity.base.BaseActivity;
 import io.github.aguirresabino.deliverycaseiro.view.helpers.ToastHelper;
+import io.github.aguirresabino.deliverycaseiro.view.transform.CircleTransform;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,12 +40,13 @@ public class UsuarioPerfilActivity extends BaseActivity {
     @BindView(R.id.activityClientePerfilInputLayoutNome) TextInputLayout nome;
     @BindView(R.id.activityClientePerfilInputLayoutSenha) TextInputLayout senha;
     @BindView(R.id.activityClientePerfilInputLayoutTelefone) TextInputLayout telefone;
-    @BindView(R.id.activityClientePerfilButtonAtualizar) AppCompatButton atualizar;
     @BindView(R.id.activityClientePerfilButtonDeletar) AppCompatButton deletar;
+    @BindView(R.id.activityClientePerfilAppCompatImageView) AppCompatImageView appCompatImageView;
+    @BindView(R.id.activityClientePerfilAlterarFoto) CardView cardAlterarFoto;
 
     private UsuarioService usuarioService;
-    private LocalBroadcastReceiverUpdate localBroadcastReceiverUpdate;
-    private LocalBroadcastReceiverDelete localBroadcastReceiverDelete;
+    private UsuarioPerfilActivity.LocalBroadcastReceiverUpdate localBroadcastReceiverUpdate;
+    private UsuarioPerfilActivity.LocalBroadcastReceiverDelete localBroadcastReceiverDelete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +59,10 @@ public class UsuarioPerfilActivity extends BaseActivity {
         setUpToolbar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Registrando BroadcastReceiver
-        localBroadcastReceiverUpdate = new LocalBroadcastReceiverUpdate();
-        localBroadcastReceiverDelete = new LocalBroadcastReceiverDelete();
-        LocalBroadcastManager.getInstance(UsuarioPerfilActivity.this).registerReceiver(localBroadcastReceiverUpdate, new IntentFilter(LocalBroadcastReceiverUpdate.LOCAL_BROADCAST_UPDATE_USUARIO_PERFIL_ACTIVITY));
-        LocalBroadcastManager.getInstance(UsuarioPerfilActivity.this).registerReceiver(localBroadcastReceiverDelete, new IntentFilter(LocalBroadcastReceiverDelete.LOCAL_BROADCAST_DELETE_USUARIO_PERFIL_ACTIVITY));
+        localBroadcastReceiverUpdate = new UsuarioPerfilActivity.LocalBroadcastReceiverUpdate();
+        localBroadcastReceiverDelete = new UsuarioPerfilActivity.LocalBroadcastReceiverDelete();
+        LocalBroadcastManager.getInstance(UsuarioPerfilActivity.this).registerReceiver(localBroadcastReceiverUpdate, new IntentFilter(UsuarioPerfilActivity.LocalBroadcastReceiverUpdate.LOCAL_BROADCAST_UPDATE_USUARIO_PERFIL_ACTIVITY));
+        LocalBroadcastManager.getInstance(UsuarioPerfilActivity.this).registerReceiver(localBroadcastReceiverDelete, new IntentFilter(UsuarioPerfilActivity.LocalBroadcastReceiverDelete.LOCAL_BROADCAST_DELETE_USUARIO_PERFIL_ACTIVITY));
         usuarioService = new UsuarioService(UsuarioPerfilActivity.this);
     }
 
@@ -68,12 +74,21 @@ public class UsuarioPerfilActivity extends BaseActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_prato_pedido_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         //se clicar no botão voltar, a activity atual é finalizada
-        if(id == android.R.id.home){
-            finish();
-            return true;
+        switch (id) {
+            case android.R.id.home:
+                finish();
+                break;
+            case R.id.action_ok:
+                this.atualizarPerfil();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -85,18 +100,9 @@ public class UsuarioPerfilActivity extends BaseActivity {
         LocalBroadcastManager.getInstance(UsuarioPerfilActivity.this).unregisterReceiver(localBroadcastReceiverDelete);
     }
 
-    @OnClick(R.id.activityClientePerfilButtonAtualizar)
-    public void btnAtualizar() {
-        atualizar.setEnabled(false);
-        atualizar.setText(getString(R.string.atualizando_dados));
-        //
-        Usuario usuarioUpdate = DeliveryApplication.usuarioLogado;
-        usuarioUpdate.setEmail(email.getEditText().getText().toString());
-        usuarioUpdate.setNome(nome.getEditText().getText().toString());
-        usuarioUpdate.setSenha(senha.getEditText().getText().toString());
-        usuarioUpdate.setTelefone(telefone.getEditText().getText().toString());
-        //
-        usuarioService.update(usuarioUpdate);
+    @OnClick(R.id.activityClientePerfilAlterarFoto)
+    public void setCardAlterarFoto() {
+        MyLogger.logInfo(ValuesApplicationEnum.MY_TAG.getValue(), UsuarioPerfilActivity.class, "Clicou no CardView Alterar Foto");
     }
 
     @OnClick(R.id.activityClientePerfilButtonDeletar)
@@ -107,7 +113,18 @@ public class UsuarioPerfilActivity extends BaseActivity {
         usuarioService.delete(DeliveryApplication.usuarioLogado);
     }
 
+    private void atualizarPerfil() {
+        Usuario usuarioUpdate = DeliveryApplication.usuarioLogado;
+        usuarioUpdate.setEmail(email.getEditText().getText().toString());
+        usuarioUpdate.setNome(nome.getEditText().getText().toString());
+        usuarioUpdate.setSenha(senha.getEditText().getText().toString());
+        usuarioUpdate.setTelefone(telefone.getEditText().getText().toString());
+        //
+        usuarioService.update(usuarioUpdate);
+    }
+
     private void initInputs() {
+        Picasso.get().load(DeliveryApplication.usuarioLogado.getImagem()).transform(new CircleTransform()).into(appCompatImageView);
         nome.getEditText().setText(DeliveryApplication.usuarioLogado.getNome());
         email.getEditText().setText(DeliveryApplication.usuarioLogado.getEmail());
         senha.getEditText().setText(DeliveryApplication.usuarioLogado.getSenha());
@@ -126,15 +143,8 @@ public class UsuarioPerfilActivity extends BaseActivity {
 
             if(usuario != null) {
                 DeliveryApplication.usuarioLogado = usuario;
-                //
-                atualizar.setEnabled(true);
-                atualizar.setText(R.string.atualizar);
                 ToastHelper.toastShort(UsuarioPerfilActivity.this, "Usuário atualizado!");
-            } else {
-                ToastHelper.toastShort(UsuarioPerfilActivity.this, "Erro durante atualização! Tente novamente mais tarde.");
-                atualizar.setEnabled(true);
-                atualizar.setText(R.string.atualizar);
-            }
+            } else ToastHelper.toastShort(UsuarioPerfilActivity.this, "Erro durante atualização! Tente novamente mais tarde.");
         }
     }
 

@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activity.AceitarPedidoCustomizadoActivity"></activity>
+        <activity android:name=".view.activity.AceitarPedidoCustomizadoActivity" />
         <activity android:name=".view.activity.ChefesPedidoCustomizadoAceitoActivity" />
         <activity android:name=".view.activity.UsuarioPerfilActivity" />
         <activity android:name=".view.activity.MainActivity" />
