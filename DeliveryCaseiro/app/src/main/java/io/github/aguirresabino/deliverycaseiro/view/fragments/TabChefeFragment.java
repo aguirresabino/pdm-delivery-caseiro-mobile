@@ -1,7 +1,9 @@
 package io.github.aguirresabino.deliverycaseiro.view.fragments;
 
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
@@ -13,6 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputLayout;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -27,14 +31,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import io.github.aguirresabino.deliverycaseiro.R;
 import io.github.aguirresabino.deliverycaseiro.application.DeliveryApplication;
 import io.github.aguirresabino.deliverycaseiro.logs.MyLogger;
 import io.github.aguirresabino.deliverycaseiro.model.entities.Chefe;
+import io.github.aguirresabino.deliverycaseiro.model.entities.Endereco;
 import io.github.aguirresabino.deliverycaseiro.model.enums.ValuesApplicationEnum;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroChefe;
 import io.github.aguirresabino.deliverycaseiro.model.retrofit.APIDeliveryCaseiroRetrofitFactory;
 import io.github.aguirresabino.deliverycaseiro.model.services.ChefeService;
+import io.github.aguirresabino.deliverycaseiro.model.services.UsuarioService;
 import io.github.aguirresabino.deliverycaseiro.view.activity.ChefeActivity;
 import io.github.aguirresabino.deliverycaseiro.view.activity.UsuarioPerfilActivity;
 import io.github.aguirresabino.deliverycaseiro.view.activity.LoginActivity;
@@ -48,14 +55,17 @@ import retrofit2.Response;
 public class TabChefeFragment extends BaseFragment {
 
     @BindView(R.id.fragmentTabChefeRecyclerView) RecyclerView recyclerView;
+    @BindView(R.id.fragmentTabChefeFab) FloatingActionButton fabButton;
 
     private LocalBroadcastReceiver localBroadcastReceiver;
     private ChefeService chefeService;
+    private UsuarioService usuarioService;
     private List<Chefe> chefes;
 
     @Override
     public void onAttach(@NonNull Context context) {
         chefeService = new ChefeService(this.getActivity());
+        usuarioService = new UsuarioService(this.getActivity());
         super.onAttach(context);
     }
 
@@ -110,6 +120,29 @@ public class TabChefeFragment extends BaseFragment {
         LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(localBroadcastReceiver);
     }
 
+    @OnClick(R.id.fragmentTabChefeFab)
+    public void fabClick() {
+
+        LayoutInflater layoutInflater = LayoutInflater.from(getContext());
+        View inputsDialog = layoutInflater.inflate(R.layout.inputs_dialog_endereco, null);
+
+        initInputs(inputsDialog);
+
+        new AlertDialog.Builder(getContext())
+                .setView(inputsDialog)
+                .setTitle("Atualizar Endereço")
+                .setCancelable(false)
+                .setPositiveButton("Atualizar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        atualizarEndereco(inputsDialog);
+                        ToastHelper.toastShort(getContext(), "Endereço atualizado!");
+                    }
+                })
+                .setNegativeButton("Cancelar", null)
+                .show();
+    }
+
     private ChefeRecyclerViewAdapter.CardOnClickListener onClickChefe() {
         return new ChefeRecyclerViewAdapter.CardOnClickListener() {
             @Override
@@ -119,6 +152,45 @@ public class TabChefeFragment extends BaseFragment {
                 startActivity(intent);
             }
         };
+    }
+
+    private void initInputs(View view) {
+        TextInputLayout estado = view.findViewById(R.id.inputsDialogEnderecoTextInputEstado);
+        TextInputLayout cidade = view.findViewById(R.id.inputsDialogEnderecoTextInputCidade);
+        TextInputLayout bairro = view.findViewById(R.id.inputsDialogEnderecoTextInputBairro);
+        TextInputLayout rua = view.findViewById(R.id.inputsDialogEnderecoTextInputRua);
+        TextInputLayout numero = view.findViewById(R.id.inputsDialogEnderecoTextInputNumero);
+        TextInputLayout cep = view.findViewById(R.id.inputsDialogEnderecoTextInputCep);
+
+        estado.getEditText().setText(DeliveryApplication.usuarioLogado.getEndereco().getEstado());
+        cidade.getEditText().setText(DeliveryApplication.usuarioLogado.getEndereco().getCidade());
+        bairro.getEditText().setText(DeliveryApplication.usuarioLogado.getEndereco().getBairro());
+        rua.getEditText().setText(DeliveryApplication.usuarioLogado.getEndereco().getRua());
+        numero.getEditText().setText(DeliveryApplication.usuarioLogado.getEndereco().getNumero());
+        cep.getEditText().setText(DeliveryApplication.usuarioLogado.getEndereco().getCep());
+    }
+
+    private void atualizarEndereco(View view) {
+        TextInputLayout estado = view.findViewById(R.id.inputsDialogEnderecoTextInputEstado);
+        TextInputLayout cidade = view.findViewById(R.id.inputsDialogEnderecoTextInputCidade);
+        TextInputLayout bairro = view.findViewById(R.id.inputsDialogEnderecoTextInputBairro);
+        TextInputLayout rua = view.findViewById(R.id.inputsDialogEnderecoTextInputRua);
+        TextInputLayout numero = view.findViewById(R.id.inputsDialogEnderecoTextInputNumero);
+        TextInputLayout cep = view.findViewById(R.id.inputsDialogEnderecoTextInputCep);
+
+        Endereco novoEndereco = new Endereco();
+        novoEndereco.setEstado(estado.getEditText().getText().toString());
+        novoEndereco.setCidade(cidade.getEditText().getText().toString());
+        novoEndereco.setBairro(bairro.getEditText().getText().toString());
+        novoEndereco.setRua(rua.getEditText().getText().toString());
+        novoEndereco.setNumero(numero.getEditText().getText().toString());
+        novoEndereco.setCep(cep.getEditText().getText().toString());
+
+        DeliveryApplication.usuarioLogado.setEndereco(novoEndereco);
+
+        this.usuarioService.update(DeliveryApplication.usuarioLogado);
+
+        this.chefeService.readByCep(DeliveryApplication.usuarioLogado.getEndereco().getCep());
     }
 
     // Implementação do RecyclerView.Adapter

@@ -18,7 +18,7 @@
     <string name="email">Email</string>
     <string name="nome">Nome</string>
     <string name="atualizar">Atualizar</string>
-    <string name="cep" tools:ignore="ExtraTranslation">CEP</string>
+    <string name="cep">CEP</string>
     <string name="nome_do_chefe">Nome...</string>
     <string name="pedir">Pedir</string>
     <string name="quantidade">Quantidade</string>
@@ -37,27 +37,16 @@
     <string name="nome_chefe_espaco">Nome do chefe: \n\n</string>
     <string name="quantidade_pratos_espaco">Quantidade: \n\n</string>
     <string name="valor_cobrado_por_prato_espaco">Valor cobrado por prato: \n\n R$</string>
+    <string name="estado">Estado</string>
+    <string name="cidade">Cidade</string>
+    <string name="bairro">Bairro</string>
+    <string name="rua">Rua</string>
+    <string name="numero">Número</string>
+    <string name="complemento">Complemento</string>
 
     <string-array name="mainActivityTabTitles">
         <item>Chefes</item>
         <item>Pedido customizado</item>
         <item>Pedidos Feitos</item>
-    </string-array>
-
-    <!--TODO excluir abaixo-->
-    <string-array name="testeChefeActivity">
-        <item>Prato 1</item>
-        <item>Prato 2</item>
-        <item>Prato 3</item>
-        <item>Prato 4</item>
-        <item>Prato 5</item>
-    </string-array>
-
-    <string-array name="testeClientePedidosFragment">
-        <item>Pedido 1</item>
-        <item>Pedido 2</item>
-        <item>Pedido 3</item>
-        <item>Pedido 4</item>
-        <item>Pedido 5</item>
     </string-array>
 </resources>
